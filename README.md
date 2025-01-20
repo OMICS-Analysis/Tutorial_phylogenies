@@ -9,19 +9,22 @@ We will focus on the following *subjects*
 
 *Specific tasks*
 
-- [ ] Newick format mini-manual
-- [ ] Phylogenies mini-manual
+- [ ] Newick format mini-manual A
+- [ ] Phylogenies mini-manual A
   - [ ] Distances
   - [ ] Bootstrapping and support values
   - [ ] Root
-- [ ] ggtree and its main functions
-- [ ] phyloseq and its main functions
-- [ ] ape and its main functions
-- [ ] Frequent processes
- - [ ] Phylogeny labels
- - [ ] Metadata addition in tips
- - [ ] Root and re-root
- - [ ] Most useful representations: circular, vertical, other
+- [ ] Graph: ggtree (graphs) and its main functions E
+- [ ] Manipulate phylogeny: treeio D
+- [ ] Metadata managing: df o treeio-> ggtree E
+- [ ] Frequent processes in visualización
+ - [ ] Tip and node labels E
+ - [ ] Metadata addition in tips and nodes E
+ - [ ] Basic functions of ggtree E
+ - [ ] Root and re-root (first: basic concepts) D
+ - [ ] Rotate branches D
+ - [ ] Cut or resize an edge D
+ - [ ] Eliminate branches D
 
  *Keep in mind* that phylogenies are created with two main goals:
 
@@ -31,3 +34,4 @@ We will focus on the following *subjects*
  4. To deliver final phylogeny to customers
 
 So it is important that phylogenetic distances, support values, as well as relevant data are clearly visible in the phylogeny images :)
+(Big font, color: high contrast)
