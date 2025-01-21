@@ -1,6 +1,6 @@
 ---
 title: "Graph: ggtree and its main functions"
-format: html
+format: pdf
 editor: visual
 ---
 
@@ -12,7 +12,7 @@ The `ggtree` package in R is a powerful tool for visualizing and annotating phyl
 
 To follow this tutorial, ensure you have the following R packages installed:
 
-``` r
+```{r, eval=FALSE}
 install.packages("tidyverse")
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
   install.packages("BiocManager")
@@ -23,7 +23,7 @@ BiocManager::install("treeio")
 
 We will use a `.nwk` dataset for demonstration.
 
-``` r
+```{r, message=FALSE, warning=FALSE}
 library(ggtree)
 library(treeio)
 library(ggplot2)
@@ -32,11 +32,11 @@ library(dplyr)
 
 # Loading a Phylogenetic Tree
 
-`ggtree` supports various formats of phylogenetic trees. The most common is the Newick format. Let's load a tree:
+`ggtree` supports various formats of phylogenetic trees. The most common is the Newick format.
 
-``` r
+```{r}
 # Load the tree from a Newick file
-tree <- read.newick("path_to_tree_file.newick")
+tree <- read.newick("example_2_phylo.nwk")
 
 # Print tree structure
 print(tree)
@@ -46,7 +46,7 @@ print(tree)
 
 Visualizing the tree is straightforward:
 
-``` r
+```{r}
 # Basic tree plot
 p <- ggtree(tree)
 print(p)
@@ -56,10 +56,11 @@ print(p)
 
 You can add labels to the tips of the tree using `geom_tiplab`:
 
-``` r
+```{r}
 p <- ggtree(tree) +
   geom_tiplab()
 print(p)
+
 ```
 
 ### Parameters for `geom_tiplab`
@@ -68,7 +69,7 @@ print(p)
 -   `align`: Aligns labels horizontally.
 -   `angle`: Rotates labels (useful for circular trees).
 
-``` r
+```{r}
 p <- ggtree(tree) +
   geom_tiplab(size = 3, align = TRUE, angle = 45)
 print(p)
@@ -84,7 +85,7 @@ print(p)
 -   `slanted`
 -   `radial`
 
-``` r
+```{r, message=FALSE}
 # Circular layout
 p_circular <- ggtree(tree, layout = "circular")
 print(p_circular)
@@ -100,7 +101,7 @@ print(p_fan)
 
 To annotate nodes, use `geom_nodelab`:
 
-``` r
+```{r}
 p <- ggtree(tree) +
   geom_nodelab(aes(label = node), size = 3)
 print(p)
@@ -110,9 +111,9 @@ print(p)
 
 Highlight specific clades with `geom_hilight`:
 
-``` r
+```{r}
 p <- ggtree(tree) +
-  geom_hilight(node = 15, fill = "blue", alpha = 0.3)
+  geom_hilight(node = 199, fill = "blue", alpha = 0.3)
 print(p)
 ```
 
@@ -124,7 +125,7 @@ print(p)
 
 ## Annotating Specific Tips
 
-``` r
+```{r, eval=FALSE}
 p <- ggtree(tree) +
   geom_tippoint(aes(color = label), size = 3)
 print(p)
@@ -132,21 +133,34 @@ print(p)
 
 # Adding Metadata
 
-Metadata can be merged into the tree object and displayed:
+Metadata can be merged into the tree object and displayed, metadata is a `data.frame`:
 
-``` r
-# Example metadata
-data <- data.frame(
-  label = tree$tip.label,
-  Group = sample(c("A", "B"), length(tree$tip.label), replace = TRUE)
-)
+```{r, message=FALSE, warning=FALSE}
+# Cargar metadata
+metadata <- readr::read_tsv("Experiment_Design_example_2.tsv")
+metadata <- metadata %>%
+  rename(label = Assembly.Accession)  
 
-# Join metadata
-tree <- full_join(tree, data, by = "label")
+# The rows have to be in the same order as the tree
+metadata_ordered <- metadata %>%
+  filter(label %in% tree$tip.label) %>%
+  arrange(match(label, tree$tip.label))
+
+metadata_ordered$Phylogroup <- replace(metadata_ordered$Phylogroup, is.na(metadata_ordered$Phylogroup), "NA")
+
+metadata_ordered_2 <- metadata_ordered[,c(-1,-2)]
+rownames(metadata_ordered_2) <- make.unique(metadata_ordered_2$Strain)
+colnames(metadata_ordered_2)[1] <- "label"
+
+# Change tip label
+tree$tip.label <- metadata_ordered_2$label
+```
+
+```{r}
 
 # Plot tree with metadata
-p <- ggtree(tree) +
-  geom_tiplab(aes(color = Group))
+p <- ggtree(tree) %<+% metadata_ordered_2 +
+  geom_tiplab(aes(color = source))
 print(p)
 ```
 
@@ -154,142 +168,14 @@ print(p)
 
 Use `gheatmap` to add heatmaps to the tree:
 
-``` r
+```{r, message=FALSE}
 # Example matrix
 set.seed(123)
-matrix_data <- matrix(runif(50), nrow = length(tree$tip.label), ncol = 5)
-colnames(matrix_data) <- paste("Var", 1:5, sep = "_")
+matrix_data <- data.frame(Patotype = metadata_ordered_2$Patotype)
+rownames(matrix_data) <- make.unique(metadata_ordered_2$label)
 
 # Add heatmap
-gheatmap(p, matrix_data, offset = 0.1, width = 0.5, legend_title = "Variables") +
-  scale_fill_gradient(low = "white", high = "blue")
-```
-
-### Load Example Data
-
-We will load a phylogenetic tree in Newick format for demonstration:
-
-``` r
-# Load a tree file
-example_tree <- read.newick("core_gene_alignment.tree.sup.raxml.support")
-example_tree$node.label <- round(as.numeric(example_tree$node.label), digits = 3)
-```
-
-## Circular Layout Visualization
-
-Circular layouts are excellent for presenting large or complex trees. They allow for efficient space usage and a visually appealing presentation.
-
-``` r
-# Circular tree with basic styling
-circular_tree <- ggtree(example_tree, layout = "circular") +
-  geom_tiplab(size = 2, aes(angle = angle), offset = 0.5) +
-  geom_nodelab(aes(label = round(as.numeric(node.label), 2)), size = 2, nudge_y = 0.5) +
-  ggtitle("Circular Phylogenetic Tree")
-
-circular_tree
-```
-
-### Highlighting Clades in Circular Trees
-
-Highlighting specific clades can make the tree more interpretable. Use the `geom_hilight` function:
-
-``` r
-# Highlight specific clades
-highlight_tree <- circular_tree +
-  geom_hilight(node = 45, fill = "lightblue", alpha = 0.5) +
-  geom_hilight(node = 60, fill = "lightgreen", alpha = 0.5)
-
-highlight_tree
-```
-
-### Adding Heatmaps to Circular Trees
-
-We can add metadata as heatmaps around the tree:
-
-``` r
-# Example metadata
-metadata <- data.frame(
-  label = example_tree$tip.label,
-  Category = sample(c("A", "B", "C"), length(example_tree$tip.label), replace = TRUE)
-)
-
-# Prepare metadata
-metadata <- metadata %>%
-  mutate(Category_Color = case_when(
-    Category == "A" ~ "#FF5733",
-    Category == "B" ~ "#33FF57",
-    Category == "C" ~ "#3357FF"
-  ))
-
-# Merge metadata with tree
-p_circular_heatmap <- circular_tree %<+% metadata +
-  geom_tippoint(aes(color = Category), size = 2) +
-  scale_color_manual(values = metadata$Category_Color)
-
-p_circular_heatmap
-```
-
-## Styling Trees with Advanced Themes
-
-`ggtree` provides options to customize the appearance of trees using themes. Here's how to use them effectively.
-
-### Customizing Themes for Trees
-
-``` r
-# Applying a theme with a clean background
-styled_tree <- circular_tree +
-  theme_tree2() +
-  theme(
-    plot.background = element_rect(fill = "#f9f9f9", color = NA),
-    panel.border = element_blank(),
-    panel.grid = element_blank(),
-    axis.text = element_blank(),
-    axis.ticks = element_blank()
-  )
-
-styled_tree
-```
-
-### Adding Multiple Aesthetic Layers
-
-Combine multiple layers for richer visuals:
-
-``` r
-# Adding node points and branches with customized colors
-layered_tree <- ggtree(example_tree, layout = "circular", branch.length = "none") +
-  geom_tree(color = "darkgrey", size = 0.6) +
-  geom_tippoint(aes(color = label), size = 3) +
-  scale_color_viridis_d() +
-  theme(
-    legend.position = "right",
-    legend.title = element_text(size = 12),
-    legend.text = element_text(size = 10),
-    plot.title = element_text(size = 14, hjust = 0.5, face = "bold")
-  ) +
-  ggtitle("Layered Circular Tree Visualization")
-
-layered_tree
-```
-
-## Combining Trees with ggnewscale
-
-Use the `ggnewscale` package to add multiple scales of colors:
-
-``` r
-# Adding new scale for different metadata layers
-multi_scale_tree <- ggtree(example_tree, layout = "circular") +
-  geom_tippoint(aes(color = Category), size = 2) +
-  scale_color_brewer(palette = "Set2", name = "Category") +
-  ggnewscale::new_scale_color() +
-  geom_tippoint(aes(fill = Category), shape = 21, size = 3, color = "black") +
-  scale_fill_brewer(palette = "Set1", name = "Fill Category") +
-  theme(
-    legend.position = "right",
-    legend.title = element_text(size = 12),
-    legend.text = element_text(size = 10),
-    plot.title = element_text(size = 14, hjust = 0.5, face = "bold")
-  ) +
-  ggtitle("Tree with Multiple Aesthetic Layers")
-
-multi_scale_tree
+gheatmap(p, matrix_data, width=0.05, 
+         colnames=FALSE, legend_title="Patotype", color = NA, ) +
+  theme(text = element_text(size = 20))
 ```
