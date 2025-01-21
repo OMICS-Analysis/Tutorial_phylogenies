@@ -1,3 +1,4 @@
+library("dplyr")
 library("ape")
 library("ggtree")
 
@@ -44,6 +45,8 @@ ggtree(tree)+geom_tiplab()
 #You can also label internal nodes nodes.
 #Internal nodes are common ancestors for a group of leaves
 tree<-"(cat:0.6,(dog:0.1,fox:0.1)Anc:0.2);" 
+
+# Converting to a R phylo object (see apendix below)
 tree<-read.tree(text=tree)
 ggtree(tree,)+geom_tiplab()+geom_nodelab()
 
@@ -56,4 +59,12 @@ tree<-"(cat:0.6,(dog:0.1,fox:0.1)0.9:0.2);"
 tree<-read.tree(text=tree)
 ggtree(tree,)+geom_tiplab()+geom_nodelab()
 
+
+
+##Apendix 1: Alternative modes to load a newick format as a phylo object##
+## All of the following functions can create a phylo object from a newick file
+ape::read.tree("example_phylo.nwk") %>% class
+phyloseq::read_tree("example_phylo.nwk") %>% class
+phytools::read.newick("example_phylo.nwk") %>% class
+treeio::read.newick("example_phylo.nwk") %>% class
 

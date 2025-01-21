@@ -17,6 +17,21 @@ chrs=c("Strain")
 fcts=c("Organism","Host","Assembly_level")
 nums=c("Count_gene_total","ANI","BUSCO_Scaffold_N50_.MB.","BUSCO_Contigs_N50_.MB.","CheckM_Completeness")
 
+#Hola Erick: ¿Cómo ves esta alternativa? La puse por que es menos código, pero échale un ojo
+#Subset design, leave only desired columns
+x<-Design %>% select(all_of(c(chrs,fcts,nums)))
+#Order rownames of dataframe x: Make them follow tree0$tip.label
+x<-x[tree0$tip.label,]
+#Are rownames of x identical to phylogeny tip.labels
+identical(rownames(x),tree0$tip.label)
+#Convert rows to first column (label column)
+x<-rownames_to_column(x, "label")
+#Coerce columns to appropiate type
+x[chrs]<-lapply(x[chrs], as.character)
+x[fcts]<-lapply(x[fcts], factor)
+x[nums]<-lapply(x[nums], as.numeric)
+y<-x
+
 x=data.frame(label=tree0$tip.label)
 for(i in fcts) {
     x[,i]=rep("",length(x$label))
@@ -40,7 +55,8 @@ for(i in nums) {
 }
 
 # merge metadata into tree
-tree1=full_join(tree0,x,by="label")
+#Cambié el dataframe de x a y aquí para hacer la prueba
+tree1=full_join(tree0,y,by="label")
 class(tree1) # treedata with attributes (the table)
 print(tree1) # summary + tibble with data
 
