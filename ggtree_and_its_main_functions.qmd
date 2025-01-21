@@ -164,6 +164,8 @@ p <- ggtree(tree) %<+% metadata_ordered_2 +
 print(p)
 ```
 
+### Note: Alternative with `full_join` check in the code `treeio.R`
+
 # Creating Heatmaps
 
 Use `gheatmap` to add heatmaps to the tree:
