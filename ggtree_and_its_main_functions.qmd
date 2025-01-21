@@ -181,3 +181,9 @@ gheatmap(p, matrix_data, width=0.05,
          colnames=FALSE, legend_title="Patotype", color = NA, ) +
   theme(text = element_text(size = 20))
 ```
+
+## Session Info
+
+```{r}
+sessionInfo()
+```
