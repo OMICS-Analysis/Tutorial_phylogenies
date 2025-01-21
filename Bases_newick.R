@@ -36,7 +36,7 @@ tree<-read.tree(text=tree)
 ggtree(tree)+geom_tiplab()
 
 #You can indicate the length or distance of each branch
-#The length is the amount of evolutionary change in each branch
+#The length reflects the amount of evolutionary change in each branch
 tree<-"(cat:0.6,(dog:0.1,fox:0.1):0.2);" 
 tree<-read.tree(text=tree)
 ggtree(tree)+geom_tiplab()
@@ -51,15 +51,12 @@ tree<-read.tree(text=tree)
 ggtree(tree,)+geom_tiplab()+geom_nodelab()
 
 #Or instead of a node label you can use a bootstrap value
-#Bootstrap values are calculated to indicate the level of
-#support of a given node.
-#Here, the event with fox and dog having a common ancestor has a confidence of 0.9 of 1
+#Bootstrap values indicate the level of a given node.
+#Here, the event with fox and dog having a common ancestor has a confidence of 0.9 
 
 tree<-"(cat:0.6,(dog:0.1,fox:0.1)0.9:0.2);" 
 tree<-read.tree(text=tree)
 ggtree(tree,)+geom_tiplab()+geom_nodelab()
-
-
 
 ##Apendix 1: Alternative modes to load a newick format as a phylo object##
 ## All of the following functions can create a phylo object from a newick file
@@ -67,4 +64,25 @@ ape::read.tree("example_phylo.nwk") %>% class
 phyloseq::read_tree("example_phylo.nwk") %>% class
 phytools::read.newick("example_phylo.nwk") %>% class
 treeio::read.newick("example_phylo.nwk") %>% class
+
+##Here we have a more complex example
+
+tree<-"(
+      Bovine:0.69395,
+      (Gibbon:0.36079,
+          (Orang:0.33636,
+              (Gorilla:0.17147,
+                  (Chimp:0.19268, Human:0.11927):0.08386
+               ):0.06124
+           ):0.15057
+       ):0.54939,
+       Mouse:1.21460
+       );"
+tree<-read.tree(text=tree)
+ggtree(tree)+geom_tiplab()
+
+#Lets explore the contents of the phylo object
+
+#There is a list of the leave nodes or tip.labels
+tree$tip.label
 
