@@ -49,7 +49,7 @@ V(g)
 plot(g)
 
 #There is a single node (vertice/node 8) that has only outgoing 
-#connections and no incomming connections
+#connections and no incoming connections
 #This would be the root of the tree (the point from where all the branches originate)
 #In the graph language we say that "Node 8 has a in degree of 0"
 #Lets find the in degree of all nodes
