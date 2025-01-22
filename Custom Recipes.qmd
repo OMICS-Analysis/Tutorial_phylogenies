@@ -4,26 +4,35 @@ format: html
 editor: visual
 ---
 
-# Summary
+# Custom Recipes
 
 We will load a phylogenetic tree in Newick format for demonstration:
 
-``` r
+Prepare session:
+
+```{r, message=FALSE, warning=FALSE}
+library(ggtree)
+library(treeio)
+library(ggplot2)
+library(dplyr)
+```
+
+```{r}
 # Load a tree file
-example_tree <- read.newick("example_2_phylo.nwk")
-example_tree$node.label <- round(as.numeric(example_tree$node.label), digits = 3)
+tree <- read.newick("example_2_phylo.nwk")
+tree$node.label <- round(as.numeric(tree$node.label), digits = 3)
 ```
 
 ## Circular Layout Visualization
 
 Circular layouts are excellent for presenting large or complex trees. They allow for efficient space usage and a visually appealing presentation.
 
-``` r
+```{r}
 # Circular tree with basic styling
-circular_tree <- ggtree(example_tree, layout = "circular") +
+circular_tree <- ggtree(tree, layout = "circular", 
+                        branch.length = "none") +
   geom_tiplab(size = 2, aes(angle = angle), offset = 0.5) +
-  geom_nodelab(aes(label = round(as.numeric(node.label), 2)), size = 2, nudge_y = 0.5) +
-  ggtitle("Circular Phylogenetic Tree")
+  geom_nodelab(color = "black", size = 2, nudge_y = 0.5) 
 
 circular_tree
 ```
@@ -32,11 +41,11 @@ circular_tree
 
 Highlighting specific clades can make the tree more interpretable. Use the `geom_hilight` function:
 
-``` r
+```{r}
 # Highlight specific clades
 highlight_tree <- circular_tree +
-  geom_hilight(node = 45, fill = "lightblue", alpha = 0.5) +
-  geom_hilight(node = 60, fill = "lightgreen", alpha = 0.5)
+  geom_hilight(node = 199, fill = "blue", alpha = 0.5) +
+  geom_hilight(node = 200, fill = "lightgreen", alpha = 0.5)
 
 highlight_tree
 ```
@@ -45,25 +54,35 @@ highlight_tree
 
 We can add metadata as heatmaps around the tree:
 
-``` r
-# Example metadata
-metadata <- data.frame(
-  label = example_tree$tip.label,
-  Category = sample(c("A", "B", "C"), length(example_tree$tip.label), replace = TRUE)
-)
-
-# Prepare metadata
+```{r, message=FALSE}
+# Cargar metadata
+metadata <- readr::read_tsv("Experiment_Design_example_2.tsv")
 metadata <- metadata %>%
-  mutate(Category_Color = case_when(
-    Category == "A" ~ "#FF5733",
-    Category == "B" ~ "#33FF57",
-    Category == "C" ~ "#3357FF"
-  ))
+  rename(label = Assembly.Accession)  
+
+# The rows have to be in the same order as the tree
+metadata_ordered <- metadata %>%
+  filter(label %in% tree$tip.label) %>%
+  arrange(match(label, tree$tip.label))
+
+metadata_ordered$Phylogroup <- replace(metadata_ordered$Phylogroup, is.na(metadata_ordered$Phylogroup), "NA")
+
+metadata_ordered <- metadata_ordered[,c(-1,-2)]
+rownames(metadata_ordered) <- make.unique(metadata_ordered$Strain)
+colnames(metadata_ordered)[1] <- "label"
+
+# Change tip label
+tree$tip.label <- metadata_ordered$label
 
 # Merge metadata with tree
-p_circular_heatmap <- circular_tree %<+% metadata +
-  geom_tippoint(aes(color = Category), size = 2) +
-  scale_color_manual(values = metadata$Category_Color)
+p_circular_heatmap <- ggtree(tree, layout = "circular", 
+                        branch.length = "none") %<+% metadata_ordered +
+  geom_tiplab(size = 2, aes(angle = angle), offset = 0.5) +
+  geom_nodelab(color = "black", size = 2, nudge_y = 0.5)+
+  geom_tippoint(aes(color = source), size = 2) +
+  scale_color_manual(values = c("darkred", "darkcyan")) +
+  geom_hilight(node = 199, fill = "blue", alpha = 0.5) +
+  geom_hilight(node = 200, fill = "lightgreen", alpha = 0.5)
 
 p_circular_heatmap
 ```
@@ -74,7 +93,7 @@ p_circular_heatmap
 
 ### Customizing Themes for Trees
 
-``` r
+```{r}
 # Applying a theme with a clean background
 styled_tree <- circular_tree +
   theme_tree2() +
@@ -93,7 +112,7 @@ styled_tree
 
 Combine multiple layers for richer visuals:
 
-``` r
+```{r}
 # Adding node points and branches with customized colors
 layered_tree <- ggtree(example_tree, layout = "circular", branch.length = "none") +
   geom_tree(color = "darkgrey", size = 0.6) +
@@ -114,7 +133,7 @@ layered_tree
 
 Use the `ggnewscale` package to add multiple scales of colors:
 
-``` r
+```{r}
 # Adding new scale for different metadata layers
 multi_scale_tree <- ggtree(example_tree, layout = "circular") +
   geom_tippoint(aes(color = Category), size = 2) +
