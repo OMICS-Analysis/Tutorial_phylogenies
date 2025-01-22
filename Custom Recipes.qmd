@@ -95,10 +95,10 @@ p_circular_heatmap
 
 ```{r}
 # Applying a theme with a clean background
-styled_tree <- circular_tree +
+styled_tree <- p_circular_heatmap +
   theme_tree2() +
   theme(
-    plot.background = element_rect(fill = "#f9f9f9", color = NA),
+    plot.background = element_rect(fill = "darkgrey", color = NA),
     panel.border = element_blank(),
     panel.grid = element_blank(),
     axis.text = element_blank(),
@@ -108,25 +108,65 @@ styled_tree <- circular_tree +
 styled_tree
 ```
 
+## Find node-tip association
+
+If you want to fill color some nodes using the tip label, use this:
+
+```{r}
+# Extract the tree data
+tree_data <- as_tibble(tree)
+
+# Select the labels to search
+# In this case use the labels that have data in Patotype
+strains <- metadata_ordered %>% 
+  filter(!is.na(Patotype)) %>% 
+  select(label) %>% 
+  as.vector() %>% unlist()
+
+# Find tips and their parent nodes
+tips_and_nodes <- tree_data %>% 
+  select(label, parent) %>% 
+  filter(label %in% strains)
+
+
+p_circular_heatmap +
+  geom_hilight(node = tips_and_nodes$parent, fill = "green", alpha = 0.5) 
+```
+
 ### Adding Multiple Aesthetic Layers
 
 Combine multiple layers for richer visuals:
 
 ```{r}
-# Adding node points and branches with customized colors
-layered_tree <- ggtree(example_tree, layout = "circular", branch.length = "none") +
-  geom_tree(color = "darkgrey", size = 0.6) +
-  geom_tippoint(aes(color = label), size = 3) +
-  scale_color_viridis_d() +
-  theme(
-    legend.position = "right",
-    legend.title = element_text(size = 12),
-    legend.text = element_text(size = 10),
-    plot.title = element_text(size = 14, hjust = 0.5, face = "bold")
-  ) +
-  ggtitle("Layered Circular Tree Visualization")
+# Adding branches with customized colors
+pal <- c(
+  RColorBrewer::brewer.pal(6, "Set1"),
+  "#FFFFFF"
+)
 
-layered_tree
+p <- ggtree(tree, ladderize = TRUE, branch.length = "none", layout = "circular") %<+% metadata_ordered + 
+  geom_tiplab(aes(label = label, angle = angle), linesize=.1, size = 4, align = FALSE, color = "black",
+              offset = 1.5) +
+  geom_nodelab(size = 4, color = "black", nudge_x = 0.1) +
+  geom_tippoint(aes(color = Phylogroup), size = 5, shape = 20) + 
+  geom_tippoint(aes(shape = source), size = 4, alpha = 0.5) + 
+  scale_shape_manual(values = c(1, 8)) + labs(shape = "Source") +
+  scale_color_manual(values = pal) +
+  geom_hilight(node = tips_and_nodes$parent, fill = "green", alpha = 0.5) 
+
+p
+```
+
+## Add heatmap
+
+```{r, message=FALSE}
+matrix_data <- data.frame(Patotype = metadata_ordered$Patotype)
+rownames(matrix_data) <- make.unique(metadata_ordered$label)
+
+# Add heatmap
+gheatmap(p, matrix_data, width=0.05, 
+         colnames=FALSE, legend_title="Patotype", color = NA, ) +
+  theme(text = element_text(size = 20))
 ```
 
 ## Combining Trees with ggnewscale
@@ -135,12 +175,12 @@ Use the `ggnewscale` package to add multiple scales of colors:
 
 ```{r}
 # Adding new scale for different metadata layers
-multi_scale_tree <- ggtree(example_tree, layout = "circular") +
-  geom_tippoint(aes(color = Category), size = 2) +
-  scale_color_brewer(palette = "Set2", name = "Category") +
+multi_scale_tree <- ggtree(tree, layout = "circular", branch.length = "none") %<+% metadata_ordered +
+  geom_tippoint(aes(color = Patotype), size = 5) +
+  scale_color_brewer(palette = "Set2", name = "Patotype") +
   ggnewscale::new_scale_color() +
-  geom_tippoint(aes(fill = Category), shape = 21, size = 3, color = "black") +
-  scale_fill_brewer(palette = "Set1", name = "Fill Category") +
+  geom_tippoint(aes(fill = Phylogroup), shape = 21, size = 3, color = "black") +
+  scale_fill_brewer(palette = "Set1", name = "Phylogroup") +
   theme(
     legend.position = "right",
     legend.title = element_text(size = 12),
