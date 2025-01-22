@@ -1,6 +1,6 @@
 ---
 title: "custom_recipes"
-format: html
+format: pdf
 editor: visual
 ---
 
