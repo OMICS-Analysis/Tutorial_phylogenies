@@ -1,0 +1,86 @@
+---
+title: "Case study: Clavibacter"
+format: pdf
+editor: visual
+---
+
+## Prepare session:
+
+```{r, message=FALSE, warning=FALSE}
+library(ggtree)
+library(treeio)
+library(tidyverse)
+```
+
+```{r}
+# Load a tree file
+tree <- read.newick("example_phylo.nwk")
+tree$node.label <- round(as.numeric(tree$node.label), digits = 3)
+```
+
+## Prepare metadata
+
+```{r, message=FALSE, warning=FALSE}
+
+# Cargar metadata
+metadata <- readr::read_tsv("Experiment_Design_example_1.tsv")
+
+metadata <- metadata %>%
+  rename(label = Assembly.Accession)  # Para coincidir con etiquetas del árbol
+
+# Unir metadata con etiquetas del árbol
+metadata_ordered <- metadata %>%
+  filter(label %in% tree$tip.label) %>%
+  arrange(match(label, tree$tip.label))
+
+
+metadata_ordered <- metadata_ordered[,c(-1)]
+tree$tip.label <- metadata_ordered$Strain
+
+matrix_heatmap <- data.frame(metadata_ordered %>%
+  mutate(Country = str_extract(Location, "^[^:]+")) %>% 
+  select(Country))
+
+metadata_ordered <- metadata_ordered %>%
+  mutate(Country = str_extract(Location, "^[^:]+"))
+
+rownames(matrix_heatmap) <- make.unique(metadata_ordered$Strain)
+rownames(metadata_ordered) <- make.unique(metadata_ordered$Strain)
+
+country_colors <- RColorBrewer::brewer.pal(n = min(length(unique(matrix_heatmap$Country)), 30), name = "Set1")
+ 
+```
+
+## Graph
+
+```{r, message=FALSE, warning=FALSE}
+
+library(phytools)
+# reroot
+
+# Reenraizar en la hoja "LeafName"
+tree_rerooted <- reroot(tree, node = which(tree$tip.label == "DM1"))
+
+ggtree(tree_rerooted) %<+% metadata_ordered + 
+  geom_tiplab(aes(label = label))
+
+ggtree(tree_rerooted, ladderize = TRUE, layout = "circular") %<+% metadata_ordered + 
+  geom_tiplab(aes(label = label, angle = angle),
+              linesize = .1, size = 5, offset = .01) +
+  geom_nodelab(size = 4, color = "black") +
+  geom_tippoint(aes(color = Country), size = 8, shape = 20) +
+  geom_tippoint(aes(shape = Source), size = 10, alpha = 0.5) +
+  scale_shape_manual(values = c(18, 8, 18)) +
+  labs(shape = "Source")
+
+# Generar el grafico
+p4 <- ggtree(tree_rerooted, ladderize = TRUE, layout = "circular") %<+% metadata_ordered + 
+  geom_tiplab(aes(label = label, angle = angle), linesize=.1, size = 8, align = FALSE, color = "black",
+              offset = 1.5) +
+  geom_nodelab(size = 4, color = "black", nudge_x = 0.1) +
+  geom_tippoint(aes(color = Country), size = 8, shape = 20) +
+  geom_tippoint(aes(shape = Source), size = 10, alpha = 0.5) +
+  scale_shape_manual(values = c(18, 8, 18)) +
+  labs(shape = "Source")
+# p4
+```
