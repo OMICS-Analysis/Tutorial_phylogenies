@@ -14,8 +14,10 @@ library(tidyverse)
 
 ```{r}
 # Load a tree file
-tree <- read.newick("example_phylo.nwk")
+tree <- read.newick("Cmi_cut_reroot.nwk")
 tree$node.label <- round(as.numeric(tree$node.label), digits = 3)
+#Convert tree information to tibble
+treetib<-as_tibble(tree)
 ```
 
 ## Prepare metadata
@@ -29,6 +31,9 @@ metadata <- metadata %>%
   rename(label = Assembly.Accession)  # Para coincidir con etiquetas del árbol
 
 # Unir metadata con etiquetas del árbol
+treetib<-left_join(treetib, metadata, by = 'label')
+# Estos tibbles pueden ser convertidos nuevamente a arbol facilmante
+##Source: https://yulab-smu.top/treedata-book/chapter2.html
 metadata_ordered <- metadata %>%
   filter(label %in% tree$tip.label) %>%
   arrange(match(label, tree$tip.label))

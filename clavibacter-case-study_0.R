@@ -20,6 +20,8 @@ outgroup<-metadata %>% filter(Source=="Reference")  %>% .[["label"]]
 tree_reroot<-root(tree, outgroup)
 ggtree(tree_reroot) + geom_rootpoint(col="red")
 
+write.tree(tree_reroot,"Cmi_full_reroot.nwk")
+
 #Convert tree information to tibble object and add metadata
 treetib<-as_tibble(tree)
 treetib<-left_join(treetib, metadata, by = 'label')
@@ -32,3 +34,5 @@ ggtree(tree_reroot) + geom_point2(aes(subset=(node==mrca_ingroup)), col='red')
 #Now we subset by the phylogeny using the MRCA of C. michiganensis
 tree_Cmi<-tree_subset(tree_reroot,212,levels_back = 0)
 ggtree(tree_Cmi) + geom_rootpoint(col="red")
+
+write.tree(tree_Cmi,"Cmi_cut_reroot.nwk")
