@@ -9,22 +9,26 @@ We will focus on the following *subjects*
 
 *Specific tasks*
 
-- [ ] Newick format mini-manual A
+- [x] Newick format mini-manual A
 - [ ] Phylogenies mini-manual A
   - [ ] Distances
   - [ ] Bootstrapping and support values
   - [ ] Root
 - [ ] Graph: ggtree (graphs) and its main functions E
-- [ ] Manipulate phylogeny: treeio D
+- [x] Manipulate phylogeny: treeio D
 - [ ] Metadata managing: df o treeio-> ggtree E
 - [ ] Frequent processes in visualización
- - [ ] Tip and node labels E
- - [ ] Metadata addition in tips and nodes E
- - [ ] Basic functions of ggtree E
- - [ ] Root and re-root (first: basic concepts) D
- - [ ] Rotate branches D
- - [ ] Cut or resize an edge D
- - [ ] Eliminate branches D
+ - [x] Tip and node labels E
+ - [x] Metadata addition in tips and nodes E
+ - [x] Basic functions of ggtree E
+ - [x] Root and re-root (first: basic concepts) D
+ - [x] Rotate branches D
+ - [x] Cut or resize an edge D
+ - [x] Eliminate branches D
+ - [x] Cut phylogeny by internal node A
+ - [ ] Parent, child, ancestor and MRCA identification A + D
+- [ ] Convert treeio.R* to tree_object_handling.R: phylo, tibble, ggtree, igraph
+- [ ] Create: tree_explore_and_transforme.R: ancestor, child, MCRA, siblings, root, cut, prune
 
  *Keep in mind* that phylogenies are created with two main goals:
 

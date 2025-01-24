@@ -1,9 +1,11 @@
+#MIGRATE TO fussion with as_tible and left_join (important that it is left_join as I have had errors caused by extra clades in metadata)
+
 # https://www.r-bloggers.com/2018/05/treeio-phylogenetic-data-integration
 
 # basic loadup
 library(treeio)
 library(tidyverse)
-tree0=read.newick("example_phylo.nwk")
+tree0=read.newick("data/example_phylo.nwk")
 class(tree0) # simple phylo tree
 print(tree0) # simple summary
 
