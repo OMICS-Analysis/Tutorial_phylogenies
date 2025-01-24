@@ -2,6 +2,11 @@ library("dplyr")
 library("treeio")
 library("ggtree")
 library("igraph")
+library("ape")
+
+#####################################
+#WORKING EXAMPLE
+#####################################
 
 #Lets explore the contents of the phylo object
 tree<-"(Bovine:0.69395,
@@ -18,56 +23,58 @@ tree<-read.tree(text=tree)
 ggtree(tree)+geom_tiplab()+ geom_tippoint(size=3, color="red")+
   geom_nodepoint(size=3, color="blue")
 
-#These is the list of leaves (red in the previous picture)
-tree$tip.label %>% print
-#And the number of internal nodes (blue in the previous picture)
-tree$Nnode %>% print
-
-#These are the node labels in the pylo object
-labels<-c(tree$tip.label,1:tree$Nnode)
-print(labels)
-
-#The node ids in the phylo object would be as follows
-node_label_id<-data.frame(node=labels,node_number=1:length(labels))
-print(node_label_id)
+#Phylo object information can be converted to tibble
+treetib<-as_tibble(tree)
+View(treetib)
 
 #The phylogeny edges are defined by the parent node and the child node
-#This would be the node were each line starts and the node were it ends
-
-tree$edge %>% print
-edges_df<-tree$edge %>% data.frame 
-
 #As a phylogeny is a group of nodes connected by edges it can be
 #easily converted to a directed graph
 
-g<-graph_from_data_frame(edges_df, directed = TRUE, vertices = NULL)
-
-#These are the vertices of the graph (phylogeny nodes)
-V(g)
+g<-graph_from_data_frame(treetib, directed=TRUE)
+print(g)
 
 #This is the image of the graph
 plot(g)
 
-#There is a single node (vertice/node 8) that has only outgoing 
-#connections and no incoming connections
+#We can eliminate the self-loop of the root if present
+g<-simplify(g, remove.multiple = FALSE, remove.loops = TRUE)
+plot(g)
+
+#We can see the edge properties like this
+E(g)$branch.length
+
+#####################################
+#SIMPLIFY-PRUNE BY MINIMUM DISTANCE
+#####################################
+tree_Cmi<-read.tree("Cmi_cut_reroot.nwk")
+treetib_Cmi<-as_tibble(tree_Cmi)
+g_Cmi<-graph_from_data_frame(treetib_Cmi, directed=TRUE)
+plot(g_Cmi,vertex.size=2,edge.arrow.size=0.01)
+#####################################
+#FINDING THE COMMON ANCESTOR OF A GROUP OF NODES: Bases
+#####################################
+
+#There is a single node (vertice/node 8) that has itself as a parent
+#In the tibble object of the graph
 #This would be the root of the tree (the point from where all the branches originate)
-#In the graph language we say that "Node 8 has a in degree of 0"
-#Lets find the in degree of all nodes
 
-indeg<-degree(g, mode=c("in"))
-print(indeg)
-
-#And this would be the name of the root node
-r<-names(sort(indeg)[1])
+r<-treetib %>% filter(parent==node) %>% .$node %>% as.character
 print(r)
+
+# We delete the r connection to itself (self loop) to allow path calculation
+g<-simplify(g)
+plot(g)
 
 #Find the shortest way from root to a leaf
 sp<-shortest_paths(g,r,"6")$vpath[[1]] %>% names
-print(sp)
+
+
+
 
 
 #####################################
-#FINDING THE COMMON ANCESTOR OF A GROUP OF NODES
+#FINDING THE COMMON ANCESTOR OF A GROUP OF NODES: Function
 #####################################
 
 #We want to find the common ancestor of Human and Orangutan and Chimp
@@ -100,6 +107,7 @@ common_ancestor<-function(labs,tree){
   ttg<-tree_to_graph(tree)
   
   #Find the root node of the tree
+  print
   indeg<-degree(ttg[[1]], mode=c("in"))
   rootnode<-names(sort(indeg)[1])
   
