@@ -64,7 +64,3 @@ gheatmap(p, matrix_heatmap, width=0.05,
                                 "#40d689", "grey")) +
   labs(fill = "Mexican State")
 
-
-legend.position = c(1.35,0.5), 
-,
-plot.margin = margin(t = 50, r = 10, b = 50, l = 10)
