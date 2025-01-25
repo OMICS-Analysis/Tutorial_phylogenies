@@ -76,7 +76,7 @@ if(identical(rownames(x),tree0$tip.label)){
     x[chrs]<-lapply(x[chrs], as.character)
     x[fcts]<-lapply(x[fcts], factor)
     x[nums]<-lapply(x[nums], as.numeric)
-    treetib<-left_join(treetib, metadata_ordered, by = c('label'))
+    treetib<-left_join(treetib, x, by = c('label'))
     tree_cm <- as.treedata(treetib)
 }
 
@@ -86,10 +86,54 @@ if(identical(rownames(x),tree0$tip.label)){
 ## which specify plot properties. These objects can be handled in several
 ## ways to create more detailed plots.
 
+library(ggtree)
+library(RColorBrewer)
 
+# we create the plot object
+plo<-ggtree(tree_cm)
+class(plo)
+print(plo)
+
+names(plo) # see contents
+
+# ggplot's added methods operate on the object
+
+plo0<-plo +
+      geom_nodelab(color="black",breaks=NA) +
+      geom_tiplab(aes(label=label),fontface=2)
+
+print(plo$layers) # original object
+print(plo0$layers) # new object has added information
 
 ## Another way is to use the `cowplot` library to print the plot as a grid of 
 ## several objects. This comes useful to create complex plots and legends in
 ## the cases in which `ggplot` makes this difficult.
+
+library(cowplot)
+
+colrs=c(brewer.pal(length(levels(x$Organism)),"Paired"),"palegreen","chartreuse4")
+names(colrs)=c(levels(x$Organism),levels(x$Host))
+
+annot=x[c("Organism","Host")]
+rownames(annot)=x$label
+
+plo1=gheatmap(plo0,annot[,"Organism",drop=F]) + 
+              scale_color_manual("Organism",values=colrs) + 
+              theme(legend.position="right")
+leg1=get_legend(plo1)
+
+plo2=gheatmap(plo0,annot[,"Host",drop=F]) + 
+              scale_color_manual("Host",values=colrs) + 
+              theme(legend.position="right")
+leg2=get_legend(plo2)
+
+plo3=gheatmap(plo0,annot) + 
+     scale_color_manual(values=colrs) + 
+     theme(legend.position="none")
+
+all_leg=plot_grid(NULL,leg1,leg2,NULL,nrow=1,ncol=4,
+                  rel_widths=c(0.25,1,1,0.25))
+plot_grid(plo3,all_leg,nrow=2,ncol=1,
+          rel_heights=c(1.3,0.15))
 
 ## *igraph*
