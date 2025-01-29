@@ -78,11 +78,11 @@ simplify_phylo_by_dist<-function(tree,dist,metadata){
 }
 
 tree_Cmi_0001<-simplify_phylo_by_dist(tree_Cmi,0.0001,metadata)
-ggtree(tree_Cmi_0001[[1]]) + geom_rootpoint(col="red")
+ggtree(tree_Cmi_0001[[1]]) + geom_rootpoint(col="red") + geom_tiplab()
 write.tree(tree_Cmi_0001[[1]],"results/Example1_Cmi_root_d0001.nwk")
 
 tree_Cmi_00005<-simplify_phylo_by_dist(tree_Cmi,0.00005,metadata)
-ggtree(tree_Cmi_00005[[1]]) + geom_rootpoint(col="red")
+ggtree(tree_Cmi_00005[[1]]) + geom_rootpoint(col="red") + geom_tiplab()
 write.tree(tree_Cmi_00005[[1]],"results/Example1_Cmi_root_d00005.nwk")
 
 tree_Cmi_000025<-simplify_phylo_by_dist(tree_Cmi,0.000025,metadata)
