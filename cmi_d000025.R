@@ -22,7 +22,7 @@ metadata_ordered <- metadata_ordered %>%
   mutate(Estado = ifelse(grepl("Mexico", Location), str_extract(Location, "(?<=:)[^:]+"), NA))
 
 # Fix manual "Estado"
-# readr::write_tsv(metadata_ordered, "metada_ordered_example1.tsv")
+readr::write_tsv(metadata_ordered, "metada_ordered_example1.tsv")
 metadata_ordered <- readr::read_tsv("metada_ordered_example1.tsv")
 
 # tree$tip.label <- metadata_ordered$Strain
@@ -130,5 +130,46 @@ ggsave(
   dpi = 300,
   width = 400,   # Ancho en mm
   height = 300,  # Alto en mm
+  units = "mm"
+)
+
+
+## Vertical Tree
+metadata_ordered$Estado <- ifelse(is.na(metadata_ordered$Estado),"",metadata_ordered$Estado)
+
+metadata <- metadata_ordered %>%
+  mutate(newlabel = ifelse(Source == "Cliente", 
+                           ifelse(Estado == "" | is.na(Estado), 
+                                  paste0(Strain, "_", Country, "_+"),  # Sin "|", ya que Estado está vacío
+                                  paste0(Strain, "_", Country, "|", Estado, "_+")  # Con "|Estado"
+                           ), 
+                           ifelse(Estado == "" | is.na(Estado), 
+                                  paste0(Strain, "_", Country),  # Sin "|", porque Estado está vacío
+                                  paste0(Strain, "_", Country, "|", Estado)  # Con "|Estado"
+                           )))
+
+metadata$newlabel <- gsub("-", "_", metadata$newlabel)
+metadata$newlabel <- gsub("[()]", "", metadata$newlabel) # Eliminar paréntesis
+# Normalizar nombres: guiones "-" a guiones bajos "_"
+metadata$newlabel <- gsub("-", "_", metadata$newlabel)
+
+# Eliminar otros caracteres problemáticos (opcional)
+metadata$newlabel <- gsub("[.]", "", metadata$newlabel)  # Eliminar puntos
+metadata$newlabel <- gsub(" ", "_", metadata$newlabel) 
+metadata$newlabel <- gsub(":", "_", metadata$newlabel) 
+
+tree <- read.newick("results/Example1_Cmi_root_d000025.nwk")
+tree$tip.label <- metadata$newlabel[match(tree$tip.label, metadata$label)]
+t1 <- ggtree(tree) +
+  geom_rootpoint(col="red")+
+  geom_tiplab()+
+  theme(text = element_text(size=13)) 
+
+ggsave(
+  filename = "results/Cmi_root_000025/Cmi_root_d000025_verticalTree.png",
+  plot = t1,
+  dpi = 300,
+  width = 800,   # Ancho en mm
+  height = 290,  # Alto en mm
   units = "mm"
 )
