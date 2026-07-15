@@ -1,5 +1,4 @@
 library("dplyr")
-library("ape")
 library("ggtree")
 
 #Newick tree format is a way of representing a phylogeny with parentheses and commas.
