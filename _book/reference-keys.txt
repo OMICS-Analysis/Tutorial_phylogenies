@@ -1,4 +1,0 @@
-fig:fig1
-introduction
-newick
-appendix1-1-converting-to-a-r-phylo-object-see-apendix-below

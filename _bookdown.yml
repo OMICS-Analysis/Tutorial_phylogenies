@@ -1,5 +1,5 @@
-book_filename: "Tutorial_phylogenies"
+delete_merged_file: true
+output_dir: "docs"
 language:
   ui:
     chapter_name: "Chapter "
-delete_merged_file: true
