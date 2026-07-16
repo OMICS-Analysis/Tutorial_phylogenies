@@ -1,4 +1,5 @@
 fig:fig1
+fig:ggtree
 introduction
 newick
 ggtree1

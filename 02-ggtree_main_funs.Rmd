@@ -50,7 +50,7 @@ Basic Tree Visualization
 
 Visualizing the tree is straightforward
 
-```{r, warning=FALSE,message=FALSE}
+```{r ggtree, fig.cap="Most basic tree", fig.align='center'}
 # Basic tree plot
 ggtree(tree)
 ```

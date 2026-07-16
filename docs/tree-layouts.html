@@ -186,20 +186,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Circular layout</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="tree-layouts.html#cb19-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree, <span class="at">layout =</span> <span class="st">&quot;circular&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-17-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" alt="" width="672" /></p>
 <p>Fan layout</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="tree-layouts.html#cb20-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree, <span class="at">layout =</span> <span class="st">&quot;fan&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-17-1.png" alt="" width="672" /></p>
 <div id="annotating-trees" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Annotating Trees<a href="tree-layouts.html#annotating-trees" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Adding Node Labels</p>
 <p>To annotate nodes, use geom_nodelab:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="tree-layouts.html#cb21-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span> <span class="fu">geom_nodelab</span>(<span class="fu">aes</span>(<span class="at">label =</span> node), <span class="at">size =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" alt="" width="672" /></p>
 <p>Highlighting Clades</p>
 <p>Highlight specific clades with geom_hilight:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="tree-layouts.html#cb22-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span> <span class="fu">geom_hilight</span>(<span class="at">node =</span> <span class="dv">199</span>, <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" alt="" width="672" /></p>
 <p>Parameters for geom_hilight</p>
 <ul>
 <li>node: Specify the node ID to highlight.</li>
@@ -251,13 +251,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb29-2"><a href="tree-layouts.html#cb29-2" tabindex="-1"></a>tree2 <span class="ot">&lt;-</span> <span class="fu">rename_taxa</span>(tree, metadata, Assembly.Accession, Strain)</span>
 <span id="cb29-3"><a href="tree-layouts.html#cb29-3" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">ggtree</span>(tree2)<span class="sc">+</span><span class="fu">geom_tiplab</span>()</span>
 <span id="cb29-4"><a href="tree-layouts.html#cb29-4" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-24-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-23-1.png" alt="" width="672" /></p>
 <p>Or even better, attach metadata to ggtree object …</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="tree-layouts.html#cb30-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(tree) <span class="sc">%&lt;+%</span> metadata</span></code></pre></div>
 <p>… and use any metadata column as labels</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="tree-layouts.html#cb31-1" tabindex="-1"></a>p<span class="ot">&lt;-</span>p <span class="sc">+</span> <span class="fu">geom_tiplab</span>(<span class="fu">aes</span>(<span class="at">label =</span> Strain))</span>
 <span id="cb31-2"><a href="tree-layouts.html#cb31-2" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-26-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-25-1.png" alt="" width="672" /></p>
 <p>You could also change tip labels by</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="tree-layouts.html#cb32-1" tabindex="-1"></a>tree2<span class="ot">&lt;-</span>tree</span>
 <span id="cb32-2"><a href="tree-layouts.html#cb32-2" tabindex="-1"></a>tree2<span class="sc">$</span>tip.label <span class="ot">&lt;-</span> metadata<span class="sc">$</span>Strain</span></code></pre></div>
@@ -267,7 +267,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb33-3"><a href="tree-layouts.html#cb33-3" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="fu">aes</span>(<span class="at">label=</span>Strain))<span class="sc">+</span></span>
 <span id="cb33-4"><a href="tree-layouts.html#cb33-4" tabindex="-1"></a>  <span class="fu">geom_tippoint</span>(<span class="fu">aes</span>(<span class="at">color =</span> source), <span class="at">size =</span> <span class="dv">3</span>)</span>
 <span id="cb33-5"><a href="tree-layouts.html#cb33-5" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-28-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-27-1.png" alt="" width="672" /></p>
 <p>Note: There is a metadata fusion alternative with full_join, check in the code treeio.R</p>
 </div>
 <div id="creating-heatmaps" class="section level2 hasAnchor" number="4.3">
