@@ -1,9 +1,5 @@
 # Newick Format {#newick}
 
-```{r, echo=FALSE}
-knitr::include_graphics(normalizePath("docs/_main_files/figure-html/"))
-```
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
 ```
