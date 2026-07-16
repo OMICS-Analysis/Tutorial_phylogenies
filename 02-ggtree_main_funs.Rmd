@@ -47,7 +47,7 @@ Visualizing the tree is straightforward
 ```{r, warning=FALSE,message=FALSE}
 # Basic tree plot
 p <- ggtree(tree)
-print(p)
+p
 ```
 
 Adding Tip Labels
@@ -56,7 +56,7 @@ You can add labels to the tips of the tree using geom_tiplab:
 ```{r, warning=FALSE, message=FALSE}
 p <- ggtree(tree) +
   geom_tiplab()
-print(p)
+p
 ```
 
 Parameters for geom_tiplab:
@@ -68,7 +68,7 @@ Parameters for geom_tiplab:
 ```{r, warning=FALSE, message=FALSE}
 p <- ggtree(tree) +
   geom_tiplab(size = 3, align = TRUE, angle = 45)
-print(p)
+p
 ```
 
 Tree Layouts

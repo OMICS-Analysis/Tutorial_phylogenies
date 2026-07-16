@@ -212,13 +212,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Visualizing the tree is straightforward</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="ggtree1.html#cb16-1" tabindex="-1"></a><span class="co"># Basic tree plot</span></span>
 <span id="cb16-2"><a href="ggtree1.html#cb16-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(tree)</span>
-<span id="cb16-3"><a href="ggtree1.html#cb16-3" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
+<span id="cb16-3"><a href="ggtree1.html#cb16-3" tabindex="-1"></a>p</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" alt="" width="672" /></p>
 <p>Adding Tip Labels</p>
 <p>You can add labels to the tips of the tree using geom_tiplab:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="ggtree1.html#cb17-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(tree) <span class="sc">+</span></span>
 <span id="cb17-2"><a href="ggtree1.html#cb17-2" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>()</span>
-<span id="cb17-3"><a href="ggtree1.html#cb17-3" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
+<span id="cb17-3"><a href="ggtree1.html#cb17-3" tabindex="-1"></a>p</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" alt="" width="672" /></p>
 <p>Parameters for geom_tiplab:</p>
 <ul>
@@ -228,7 +228,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="ggtree1.html#cb18-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(tree) <span class="sc">+</span></span>
 <span id="cb18-2"><a href="ggtree1.html#cb18-2" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">align =</span> <span class="cn">TRUE</span>, <span class="at">angle =</span> <span class="dv">45</span>)</span>
-<span id="cb18-3"><a href="ggtree1.html#cb18-3" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
+<span id="cb18-3"><a href="ggtree1.html#cb18-3" tabindex="-1"></a>p</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" alt="" width="672" /></p>
 <p>Tree Layouts</p>
 <p>ggtree supports various layouts for trees, such as:</p>
