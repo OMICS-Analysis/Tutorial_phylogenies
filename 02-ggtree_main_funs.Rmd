@@ -46,12 +46,11 @@ tree <- read.newick("data/example_2_phylo.nwk")
 print(tree)
 ```
  
-Basic Tree Visualization
+## Basic Tree Visualization
 
 Visualizing the tree is straightforward
 
-```{r ggtree, fig.cap="Most basic tree", fig.align='center'}
-# Basic tree plot
+```{r, warning=FALSE, message=FALSE}
 ggtree(tree)
 ```
 

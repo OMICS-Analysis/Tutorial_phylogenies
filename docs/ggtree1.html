@@ -147,6 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.1" data-path="ggtree1.html"><a href="ggtree1.html#prerequisites"><i class="fa fa-check"></i><b>3.1</b> Prerequisites</a></li>
 <li class="chapter" data-level="3.2" data-path="ggtree1.html"><a href="ggtree1.html#loading-a-phylogenetic-tree"><i class="fa fa-check"></i><b>3.2</b> Loading a Phylogenetic Tree</a></li>
+<li class="chapter" data-level="3.3" data-path="ggtree1.html"><a href="ggtree1.html#basic-tree-visualization"><i class="fa fa-check"></i><b>3.3</b> Basic Tree Visualization</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="tree-layouts.html"><a href="tree-layouts.html"><i class="fa fa-check"></i><b>4</b> Tree Layouts</a>
 <ul>
@@ -215,20 +216,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   , 0.981998, 0.987349, 0.946895, 0.994059, 1.000000, ...
 ## 
 ## Unrooted; includes branch length(s).</code></pre>
-<p>Basic Tree Visualization</p>
-<p>Visualizing the tree is straightforward</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="ggtree1.html#cb16-1" tabindex="-1"></a><span class="co"># Basic tree plot</span></span>
-<span id="cb16-2"><a href="ggtree1.html#cb16-2" tabindex="-1"></a><span class="fu">ggtree</span>(tree)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ggtree"></span>
-<img src="_main_files/figure-html/ggtree-1.png" alt="Most basic tree" width="672" />
-<p class="caption">
-Figure 3.1: Most basic tree
-</p>
 </div>
+<div id="basic-tree-visualization" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Basic Tree Visualization<a href="ggtree1.html#basic-tree-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Visualizing the tree is straightforward</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="ggtree1.html#cb16-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" alt="" width="672" /></p>
 <p>Adding Tip Labels</p>
 <p>You can add labels to the tips of the tree using geom_tiplab:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="ggtree1.html#cb17-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span> <span class="fu">geom_tiplab</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" alt="" width="672" /></p>
 <p>Parameters for geom_tiplab:</p>
 <ul>
 <li>size: Adjusts the size of the labels.</li>
@@ -236,7 +233,7 @@ Figure 3.1: Most basic tree
 <li>angle: Rotates labels (useful for circular trees).</li>
 </ul>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="ggtree1.html#cb18-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span> <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">align =</span> <span class="cn">TRUE</span>, <span class="at">angle =</span> <span class="dv">45</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" alt="" width="672" /></p>
 </div>
 </div>
             </section>

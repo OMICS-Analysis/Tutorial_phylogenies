@@ -1,10 +1,10 @@
 fig:fig1
-fig:ggtree
 introduction
 newick
 ggtree1
 prerequisites
 loading-a-phylogenetic-tree
+basic-tree-visualization
 tree-layouts
 annotating-trees
 adding-metadata
