@@ -1,0 +1,170 @@
+--- 
+title: "OMICs Analysis - Phylogeny training"
+author: "OMICs Analysis"
+date: "`r Sys.Date()`"
+site: OMICS-Analysis/Tutorial_phylogenies
+documentclass: book
+# bibliography: [book.bib, packages.bib]
+# url: your book url like https://pkg.yihui.org/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: "Recetas principales para la graficación de filogenias"
+# link-citations: yes
+github-repo: OMICS-Analysis/Tutorial_phylogenies
+---
+
+# Introduction
+
+These is our main training resource for phylogeny manipulation and graphic representation. We focus on the following *subjects*
+
++ NEWICK FORMAT: Content and meaning
++ Usage of the main PACKAGES for phylogeny analysis
++ RECIPES for frequent tasks
+
+*Specific tasks*
+
+- [x] Newick format mini-manual
+- [ ] Phylogenies mini-manual
+  - [ ] Distances
+  - [ ] Bootstrapping and support values
+  - [ ] Root
+- [ ] Graph: ggtree (graphs) and its main functions
+- [x] Manipulate phylogeny: treeio
+- [ ] Metadata managing: df o treeio-> ggtree
+- [ ] Frequent processes in visualization
+ - [x] Tip and node labels
+ - [x] Metadata addition in tips and nodes
+ - [x] Basic functions of ggtree
+ - [x] Root and re-root (first: basic concepts)
+ - [x] Rotate branches
+ - [x] Cut or resize an edge
+ - [x] Eliminate branches
+ - [x] Cut phylogeny by internal node
+ - [ ] Parent, child, ancestor and MRCA identification
+- [ ] Convert treeio.R* to tree_object_handling.R: phylo, tibble, ggtree, igraph
+- [ ] Create: tree_explore_and_transforme.R: ancestor, child, MCRA, siblings, root, cut, prune
+
+ *Keep in mind* that phylogenies are created with two main goals:
+
+ 1. To verify the phylogenetic position of know strains
+ 2. To eliminate or re-label redundant or problematic strains
+ 3. To test different representations using the matetadata
+ 4. To deliver final phylogeny to customers
+
+So it is important that phylogenetic distances, support values, as well as relevant data are clearly visible in the phylogeny images :)
+(Big font, color: high contrast)
+
+<!--chapter:end:index.Rmd-->
+
+# Newick Format {#newick}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+Load the neccesary libraries for this section
+
+```{r eval=TRUE, warning=FALSE}
+library("ape") #We use this library to read the newick texts
+library("ggtree")
+```
+
+Newick format is a way of representing a phylogeny (a tree) with parentheses and commas. Its basic elements are:
+
+* Branches
+* Nodes
+   + Leaves: Nodes with no descendants, also colled tip points
+   + Internal nodes: Nodes with descendants
+
+A Minimal newick tree has only branches. There is a branch for each comma and each internal parenthesis pair.
+
+```{r eval=TRUE, warning= FALSE}
+#   (  , (,)  )
+#        ^ ^    internal parenthesis pair.
+#   ^         ^  external parenthesis
+```
+
+Lets obtain this tree in phylo format
+```{r eval=TRUE, warning= FALSE}
+tree<-"(,(,));" 
+tree<-read.tree(text=tree)
+```
+
+And now we can use ggtree to generate an image
+```{r fig1, fig.cap='A minimal newick tree', out.width='50%', fig.align='center', warning=FALSE}
+ggtree(tree)+geom_tiplab()
+```
+
+Here you can see tip points and internal nodes colored in red and blue, respectively
+
+```{r eval=TRUE, warning=FALSE}
+ggtree(tree)+
+  geom_tippoint(size=3, color="red")+
+  geom_nodepoint(size=3, color="blue")
+```
+
+The tree leaves (tip points) can be labeled 
+Labels correspond to clades (species, strains)
+
+```{r eval=TRUE, warning=FALSE}
+tree<-"(cat,(dog,fox));" 
+tree<-read.tree(text=tree)
+ggtree(tree)+geom_tiplab()
+```
+
+You can indicate different lengths for each branch
+The length reflects the amount of evolutionary change of the branch
+
+```{r eval=TRUE, warning=FALSE}
+tree<-"(cat:0.6,(dog:0.1,fox:0.1):0.2);" 
+tree<-read.tree(text=tree)
+ggtree(tree)+geom_tiplab()
+```
+
+You can also label internal nodes.
+Internal nodes are common ancestors for a group of leaves
+```{r eval=TRUE, warning=FALSE}
+tree<-"(cat:0.6,(dog:0.1,fox:0.1)Anc2:0.2)Anc1;" 
+tree<-read.tree(text=tree)
+ggtree(tree)+geom_tiplab()+geom_nodelab()
+```
+
+... or instead of a node label you can use a bootstrap value
+Bootstrap values indicate the support of a given node.
+Here, the event with fox and dog having a common ancestor has a confidence of 0.9 
+
+```{r eval=TRUE, warning=FALSE}
+tree<-"(cat:0.6,(dog:0.1,fox:0.1)0.9:0.2)0.98;" 
+tree<-read.tree(text=tree)
+ggtree(tree,)+geom_tiplab()+geom_nodelab()
+```
+
+Here we have a more complex example
+
+```{r eval=TRUE, warning=FALSE}
+tree<-"(Bovine:0.69395,
+      (Gibbon:0.36079,
+          (Orang:0.33636,
+              (Gorilla:0.17147,
+                  (Chimp:0.19268, Human:0.11927)0.5:0.08386
+               )0.9:0.06124
+           )0.7:0.15057
+       )0.8:0.54939,Mouse:1.21460)0.9;"
+tree<-read.tree(text=tree)
+ggtree(tree)+geom_tiplab()+geom_nodelab()
+```
+
+## APPENDIX1 1: Converting to a R phylo object (see apendix below)
+
+All of the following functions can create a phylo object from a newick file
+```{r eval=FALSE, warning=FALSE}
+ape::read.tree("example_phylo.nwk") %>% class
+phyloseq::read_tree("example_phylo.nwk") %>% class
+phytools::read.newick("example_phylo.nwk") %>% class
+treeio::read.newick("example_phylo.nwk") %>% class
+```
+
+
+
+
+<!--chapter:end:01-Newick_Format.Rmd-->
+

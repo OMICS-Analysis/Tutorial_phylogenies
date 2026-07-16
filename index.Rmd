@@ -2,14 +2,14 @@
 title: "OMICs Analysis - Phylogeny training"
 author: "OMICs Analysis"
 date: "`r Sys.Date()`"
-site: Tutorial_phylogenies
+site: OMICS-Analysis/Tutorial_phylogenies
 documentclass: book
 # bibliography: [book.bib, packages.bib]
 # url: your book url like https://pkg.yihui.org/bookdown
 # cover-image: path to the social sharing image like images/cover.jpg
 description: "Recetas principales para la graficación de filogenias"
 # link-citations: yes
-github-repo: omics-analysis/Tutorial_phylogenies
+github-repo: OMICS-Analysis/Tutorial_phylogenies
 ---
 
 # Introduction

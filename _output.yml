@@ -6,5 +6,5 @@ bookdown::gitbook:
         <li><a href="./">Phylogenies tutorial</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/omics-analysis/Tutorial_phylogenies/main/%s
+    edit: https://github.com/OMICS-Analysis/Tutorial_phylogenies/tree/main/docs/
     download: ["pdf", "epub"]
