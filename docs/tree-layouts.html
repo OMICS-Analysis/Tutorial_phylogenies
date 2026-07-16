@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Tree Layouts | OMICs Analysis - Phylogeny training</title>
+  <meta name="description" content="Recetas principales para la graficación de filogenias" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Tree Layouts | OMICs Analysis - Phylogeny training" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Recetas principales para la graficación de filogenias" />
+  <meta name="github-repo" content="OMICS-Analysis/Tutorial_phylogenies" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Tree Layouts | OMICs Analysis - Phylogeny training" />
+  
+  <meta name="twitter:description" content="Recetas principales para la graficación de filogenias" />
+  
+
+<meta name="author" content="OMICs Analysis" />
+
+
+<meta name="date" content="2026-07-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ggtree1.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Phylogenies tutorial</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="newick.html"><a href="newick.html"><i class="fa fa-check"></i><b>2</b> Newick Format</a></li>
+<li class="chapter" data-level="3" data-path="ggtree1.html"><a href="ggtree1.html"><i class="fa fa-check"></i><b>3</b> Main ggtree functions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggtree1.html"><a href="ggtree1.html#prerequisites"><i class="fa fa-check"></i><b>3.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="3.2" data-path="ggtree1.html"><a href="ggtree1.html#loading-a-phylogenetic-tree"><i class="fa fa-check"></i><b>3.2</b> Loading a Phylogenetic Tree</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="tree-layouts.html"><a href="tree-layouts.html"><i class="fa fa-check"></i><b>4</b> Tree Layouts</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="tree-layouts.html"><a href="tree-layouts.html#annotating-trees"><i class="fa fa-check"></i><b>4.1</b> Annotating Trees</a></li>
+<li class="chapter" data-level="4.2" data-path="tree-layouts.html"><a href="tree-layouts.html#adding-metadata"><i class="fa fa-check"></i><b>4.2</b> Adding Metadata</a></li>
+<li class="chapter" data-level="4.3" data-path="tree-layouts.html"><a href="tree-layouts.html#creating-heatmaps"><i class="fa fa-check"></i><b>4.3</b> Creating Heatmaps</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">OMICs Analysis - Phylogeny training</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tree-layouts" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Tree Layouts<a href="tree-layouts.html#tree-layouts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>ggtree supports various layouts for trees, such as:</p>
+<ul>
+<li>rectangular (default)</li>
+<li>circular</li>
+<li>fan</li>
+<li>slanted</li>
+<li>radial</li>
+</ul>
+<p>Circular layout</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="tree-layouts.html#cb19-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree, <span class="at">layout =</span> <span class="st">&quot;circular&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-17-1.png" alt="" width="672" /></p>
+<p>Fan layout</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="tree-layouts.html#cb20-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree, <span class="at">layout =</span> <span class="st">&quot;fan&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" alt="" width="672" /></p>
+<div id="annotating-trees" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Annotating Trees<a href="tree-layouts.html#annotating-trees" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Adding Node Labels</p>
+<p>To annotate nodes, use geom_nodelab:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="tree-layouts.html#cb21-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span> <span class="fu">geom_nodelab</span>(<span class="fu">aes</span>(<span class="at">label =</span> node), <span class="at">size =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" alt="" width="672" /></p>
+<p>Highlighting Clades</p>
+<p>Highlight specific clades with geom_hilight:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="tree-layouts.html#cb22-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span> <span class="fu">geom_hilight</span>(<span class="at">node =</span> <span class="dv">199</span>, <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" alt="" width="672" /></p>
+<p>Parameters for geom_hilight</p>
+<ul>
+<li>node: Specify the node ID to highlight.</li>
+<li>fill: The fill color for the highlight.</li>
+<li>alpha: Transparency of the highlight.</li>
+</ul>
+<p>Annotating Specific Tips</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="tree-layouts.html#cb23-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(tree) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="tree-layouts.html#cb23-2" tabindex="-1"></a>  <span class="fu">geom_tippoint</span>(<span class="fu">aes</span>(<span class="at">color =</span> label), <span class="at">size =</span> <span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb23-3"><a href="tree-layouts.html#cb23-3" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb23-4"><a href="tree-layouts.html#cb23-4" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
+</div>
+<div id="adding-metadata" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Adding Metadata<a href="tree-layouts.html#adding-metadata" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Metadata can be merged into the tree object and displayed, metadata is a data.frame:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="tree-layouts.html#cb24-1" tabindex="-1"></a><span class="co"># Charge metadata and keep relevant columns</span></span>
+<span id="cb24-2"><a href="tree-layouts.html#cb24-2" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">&quot;data/Experiment_Design_example_2.tsv&quot;</span>)</span>
+<span id="cb24-3"><a href="tree-layouts.html#cb24-3" tabindex="-1"></a>metadata<span class="ot">&lt;-</span>metadata <span class="sc">%&gt;%</span> <span class="fu">select</span>(Assembly.Accession,Strain,Phylogroup,Patotype,Geographic.location,source)</span>
+<span id="cb24-4"><a href="tree-layouts.html#cb24-4" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(metadata))</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 6
+##   Assembly.Accession Strain Phylogroup Patotype Geographic.location source   
+##   &lt;chr&gt;              &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;               &lt;chr&gt;    
+## 1 GCF_000007445.1    CFT073 B2         UPEC     &lt;NA&gt;                reference
+## 2 GCF_000010385.1    SE11   B1         Comensal &lt;NA&gt;                reference
+## 3 GCF_000010485.1    SE15   B2         Comensal &lt;NA&gt;                reference
+## 4 GCF_000010745.1    12009  B1         EHEC     &lt;NA&gt;                reference
+## 5 GCF_000010765.1    11128  B1         EHEC     &lt;NA&gt;                reference
+## 6 GCF_000013265.1    UTI89  B2         UPEC     &lt;NA&gt;                reference</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="tree-layouts.html#cb26-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">tail</span>(metadata))</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 6
+##   Assembly.Accession Strain Phylogroup Patotype Geographic.location source
+##   &lt;chr&gt;              &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;               &lt;chr&gt; 
+## 1 GCF_039912475.1    UTAK-5 &lt;NA&gt;       &lt;NA&gt;     USA                 bovine
+## 2 GCF_039912505.1    UTAK-2 &lt;NA&gt;       &lt;NA&gt;     USA                 bovine
+## 3 GCF_039912655.1    UTAK-1 &lt;NA&gt;       &lt;NA&gt;     USA                 bovine
+## 4 GCF_040215525.1    B1     &lt;NA&gt;       &lt;NA&gt;     China:Tongliao      bovine
+## 5 GCF_040215555.1    800    &lt;NA&gt;       &lt;NA&gt;     China:TongLiao      bovine
+## 6 GCF_043950225.1    TC24   &lt;NA&gt;       &lt;NA&gt;     Guadeloupe          bovine</code></pre>
+<p>metadata &lt;- metadata %&gt;% rename(label = Assembly.Accession)</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="tree-layouts.html#cb28-1" tabindex="-1"></a><span class="co"># Metadata rows have to be in the same order as the tree</span></span>
+<span id="cb28-2"><a href="tree-layouts.html#cb28-2" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="tree-layouts.html#cb28-3" tabindex="-1"></a>tree<span class="ot">&lt;-</span><span class="fu">read.tree</span>(<span class="st">&quot;data/example_2_phylo.nwk&quot;</span>)</span>
+<span id="cb28-4"><a href="tree-layouts.html#cb28-4" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="tree-layouts.html#cb28-5" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> metadata <span class="sc">%&gt;%</span></span>
+<span id="cb28-6"><a href="tree-layouts.html#cb28-6" tabindex="-1"></a>  <span class="fu">filter</span>(Assembly.Accession <span class="sc">%in%</span> tree<span class="sc">$</span>tip.label) <span class="sc">%&gt;%</span></span>
+<span id="cb28-7"><a href="tree-layouts.html#cb28-7" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">match</span>(Assembly.Accession, tree<span class="sc">$</span>tip.label))</span></code></pre></div>
+<p>You can rename the taxa in the tree object</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="tree-layouts.html#cb29-1" tabindex="-1"></a><span class="co"># Rename the taxa in the tree object</span></span>
+<span id="cb29-2"><a href="tree-layouts.html#cb29-2" tabindex="-1"></a>tree2 <span class="ot">&lt;-</span> <span class="fu">rename_taxa</span>(tree, metadata, Assembly.Accession, Strain)</span>
+<span id="cb29-3"><a href="tree-layouts.html#cb29-3" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">ggtree</span>(tree2)<span class="sc">+</span><span class="fu">geom_tiplab</span>()</span>
+<span id="cb29-4"><a href="tree-layouts.html#cb29-4" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-24-1.png" alt="" width="672" /></p>
+<p>Or even better, attach metadata to ggtree object …</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="tree-layouts.html#cb30-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(tree) <span class="sc">%&lt;+%</span> metadata</span></code></pre></div>
+<p>… and use any metadata column as labels</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="tree-layouts.html#cb31-1" tabindex="-1"></a>p<span class="ot">&lt;-</span>p <span class="sc">+</span> <span class="fu">geom_tiplab</span>(<span class="fu">aes</span>(<span class="at">label =</span> Strain))</span>
+<span id="cb31-2"><a href="tree-layouts.html#cb31-2" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-26-1.png" alt="" width="672" /></p>
+<p>You could also change tip labels by</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="tree-layouts.html#cb32-1" tabindex="-1"></a>tree2<span class="ot">&lt;-</span>tree</span>
+<span id="cb32-2"><a href="tree-layouts.html#cb32-2" tabindex="-1"></a>tree2<span class="sc">$</span>tip.label <span class="ot">&lt;-</span> metadata<span class="sc">$</span>Strain</span></code></pre></div>
+<p>Color elements using metadataa</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="tree-layouts.html#cb33-1" tabindex="-1"></a><span class="co"># Plot tree with metadata</span></span>
+<span id="cb33-2"><a href="tree-layouts.html#cb33-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(tree) <span class="sc">%&lt;+%</span> metadata <span class="sc">+</span></span>
+<span id="cb33-3"><a href="tree-layouts.html#cb33-3" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="fu">aes</span>(<span class="at">label=</span>Strain))<span class="sc">+</span></span>
+<span id="cb33-4"><a href="tree-layouts.html#cb33-4" tabindex="-1"></a>  <span class="fu">geom_tippoint</span>(<span class="fu">aes</span>(<span class="at">color =</span> source), <span class="at">size =</span> <span class="dv">3</span>)</span>
+<span id="cb33-5"><a href="tree-layouts.html#cb33-5" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-28-1.png" alt="" width="672" /></p>
+<p>Note: There is a metadata fusion alternative with full_join, check in the code treeio.R</p>
+</div>
+<div id="creating-heatmaps" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Creating Heatmaps<a href="tree-layouts.html#creating-heatmaps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>#Use gheatmap to add heatmaps to the tree:
+#THIS CODE IS CURRENTLY FAILING!!</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="tree-layouts.html#cb34-1" tabindex="-1"></a><span class="co"># Example matrix</span></span>
+<span id="cb34-2"><a href="tree-layouts.html#cb34-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb34-3"><a href="tree-layouts.html#cb34-3" tabindex="-1"></a>matrix_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Patotype =</span> metadata<span class="sc">$</span>Patotype,</span>
+<span id="cb34-4"><a href="tree-layouts.html#cb34-4" tabindex="-1"></a>                          <span class="at">Geography=</span>metadata<span class="sc">$</span>Geographic.location)</span>
+<span id="cb34-5"><a href="tree-layouts.html#cb34-5" tabindex="-1"></a><span class="fu">rownames</span>(matrix_data) <span class="ot">&lt;-</span>metadata<span class="sc">$</span>Assembly.Accession</span>
+<span id="cb34-6"><a href="tree-layouts.html#cb34-6" tabindex="-1"></a><span class="co"># Add heatmap</span></span>
+<span id="cb34-7"><a href="tree-layouts.html#cb34-7" tabindex="-1"></a><span class="fu">gheatmap</span>(p, matrix_data, <span class="at">width=</span><span class="fl">0.05</span>, <span class="at">colnames=</span><span class="cn">FALSE</span>, <span class="at">legend_title=</span><span class="st">&quot;Patotype&quot;</span> ) <span class="sc">+</span></span>
+<span id="cb34-8"><a href="tree-layouts.html#cb34-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>))</span></code></pre></div>
+<p>Session Info</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="tree-layouts.html#cb35-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ggtree1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/OMICS-Analysis/Tutorial_phylogenies/tree/main/docs/02-ggtree_main_funs.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -142,16 +142,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="newick.html"><a href="newick.html"><i class="fa fa-check"></i><b>2</b> Newick Format</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="newick.html"><a href="newick.html#appendix1-1-converting-to-a-r-phylo-object-see-apendix-below"><i class="fa fa-check"></i><b>2.1</b> APPENDIX1 1: Converting to a R phylo object (see apendix below)</a></li>
-</ul></li>
+<li class="chapter" data-level="2" data-path="newick.html"><a href="newick.html"><i class="fa fa-check"></i><b>2</b> Newick Format</a></li>
 <li class="chapter" data-level="3" data-path="ggtree1.html"><a href="ggtree1.html"><i class="fa fa-check"></i><b>3</b> Main ggtree functions</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="ggtree1.html"><a href="ggtree1.html#prerequisites"><i class="fa fa-check"></i><b>3.1</b> Prerequisites</a></li>
-<li class="chapter" data-level="3.2" data-path="ggtree1.html"><a href="ggtree1.html#annotating-trees"><i class="fa fa-check"></i><b>3.2</b> Annotating Trees</a></li>
-<li class="chapter" data-level="3.3" data-path="ggtree1.html"><a href="ggtree1.html#adding-metadata"><i class="fa fa-check"></i><b>3.3</b> Adding Metadata</a></li>
-<li class="chapter" data-level="3.4" data-path="ggtree1.html"><a href="ggtree1.html#creating-heatmaps"><i class="fa fa-check"></i><b>3.4</b> Creating Heatmaps</a></li>
+<li class="chapter" data-level="3.2" data-path="ggtree1.html"><a href="ggtree1.html#loading-a-phylogenetic-tree"><i class="fa fa-check"></i><b>3.2</b> Loading a Phylogenetic Tree</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="tree-layouts.html"><a href="tree-layouts.html"><i class="fa fa-check"></i><b>4</b> Tree Layouts</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="tree-layouts.html"><a href="tree-layouts.html#annotating-trees"><i class="fa fa-check"></i><b>4.1</b> Annotating Trees</a></li>
+<li class="chapter" data-level="4.2" data-path="tree-layouts.html"><a href="tree-layouts.html#adding-metadata"><i class="fa fa-check"></i><b>4.2</b> Adding Metadata</a></li>
+<li class="chapter" data-level="4.3" data-path="tree-layouts.html"><a href="tree-layouts.html#creating-heatmaps"><i class="fa fa-check"></i><b>4.3</b> Creating Heatmaps</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -244,15 +245,7 @@ Here, the event with fox and dog having a common ancestor has a confidence of 0.
 <span id="cb10-9"><a href="newick.html#cb10-9" tabindex="-1"></a>tree<span class="ot">&lt;-</span><span class="fu">read.tree</span>(<span class="at">text=</span>tree)</span>
 <span id="cb10-10"><a href="newick.html#cb10-10" tabindex="-1"></a><span class="fu">ggtree</span>(tree)<span class="sc">+</span><span class="fu">geom_tiplab</span>()<span class="sc">+</span><span class="fu">geom_nodelab</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" alt="" width="672" /></p>
-<div id="appendix1-1-converting-to-a-r-phylo-object-see-apendix-below" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> APPENDIX1 1: Converting to a R phylo object (see apendix below)<a href="newick.html#appendix1-1-converting-to-a-r-phylo-object-see-apendix-below" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>All of the following functions can create a phylo object from a newick file</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="newick.html#cb11-1" tabindex="-1"></a>ape<span class="sc">::</span><span class="fu">read.tree</span>(<span class="st">&quot;example_phylo.nwk&quot;</span>) <span class="sc">%&gt;%</span> class</span>
-<span id="cb11-2"><a href="newick.html#cb11-2" tabindex="-1"></a>phyloseq<span class="sc">::</span><span class="fu">read_tree</span>(<span class="st">&quot;example_phylo.nwk&quot;</span>) <span class="sc">%&gt;%</span> class</span>
-<span id="cb11-3"><a href="newick.html#cb11-3" tabindex="-1"></a>phytools<span class="sc">::</span><span class="fu">read.newick</span>(<span class="st">&quot;example_phylo.nwk&quot;</span>) <span class="sc">%&gt;%</span> class</span>
-<span id="cb11-4"><a href="newick.html#cb11-4" tabindex="-1"></a>treeio<span class="sc">::</span><span class="fu">read.newick</span>(<span class="st">&quot;example_phylo.nwk&quot;</span>) <span class="sc">%&gt;%</span> class</span></code></pre></div>
 
-</div>
 </div>
             </section>
 

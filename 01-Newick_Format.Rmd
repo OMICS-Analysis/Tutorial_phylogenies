@@ -96,15 +96,7 @@ tree<-read.tree(text=tree)
 ggtree(tree)+geom_tiplab()+geom_nodelab()
 ```
 
-## APPENDIX1 1: Converting to a R phylo object (see apendix below)
 
-All of the following functions can create a phylo object from a newick file
-```{r eval=FALSE, warning=FALSE}
-ape::read.tree("example_phylo.nwk") %>% class
-phyloseq::read_tree("example_phylo.nwk") %>% class
-phytools::read.newick("example_phylo.nwk") %>% class
-treeio::read.newick("example_phylo.nwk") %>% class
-```
 
 
 

@@ -25,11 +25,17 @@ library(ggplot2)
 library(dplyr)
 ```
 
-Loading a Phylogenetic Tree
+## Loading a Phylogenetic Tree
 
-We will use a .nwk tree for demonstration.
+ggtree supports various formats of phylogenetic trees. The most common is the Newick format and therefore we will use a *.nwk tree for demonstration.
 
-ggtree supports various formats of phylogenetic trees. The most common is the Newick format.
+All of the following functions can create a phylo object from a newick file
+```{r eval=FALSE, warning=FALSE}
+ape::read.tree("example_phylo.nwk") %>% class
+phyloseq::read_tree("example_phylo.nwk") %>% class
+phytools::read.newick("example_phylo.nwk") %>% class
+treeio::read.newick("example_phylo.nwk") %>% class
+```
 
 
 ```{r, warning=FALSE, message=FALSE}
@@ -46,17 +52,14 @@ Visualizing the tree is straightforward
 
 ```{r, warning=FALSE,message=FALSE}
 # Basic tree plot
-p <- ggtree(tree)
-p
+ggtree(tree)
 ```
 
 Adding Tip Labels
 
 You can add labels to the tips of the tree using geom_tiplab:
 ```{r, warning=FALSE, message=FALSE}
-p <- ggtree(tree) +
-  geom_tiplab()
-p
+ggtree(tree) + geom_tiplab()
 ```
 
 Parameters for geom_tiplab:
@@ -66,12 +69,10 @@ Parameters for geom_tiplab:
 * angle: Rotates labels (useful for circular trees).
 
 ```{r, warning=FALSE, message=FALSE}
-p <- ggtree(tree) +
-  geom_tiplab(size = 3, align = TRUE, angle = 45)
-p
+ggtree(tree) + geom_tiplab(size = 3, align = TRUE, angle = 45)
 ```
 
-Tree Layouts
+# Tree Layouts
 
 ggtree supports various layouts for trees, such as:
 
@@ -83,14 +84,12 @@ ggtree supports various layouts for trees, such as:
 
 Circular layout
 ```{r, warning=FALSE, message=FALSE}
-p_circular <- ggtree(tree, layout = "circular")
-print(p_circular)
+ggtree(tree, layout = "circular")
 ```
 
 Fan layout
 ```{r, warning=FALSE, message=FALSE}
-p_fan <- ggtree(tree, layout = "fan")
-print(p_fan)
+ggtree(tree, layout = "fan")
 ```
 
 ## Annotating Trees
@@ -100,9 +99,7 @@ Adding Node Labels
 To annotate nodes, use geom_nodelab:
 
 ```{r, warning=FALSE, message=FALSE}
-p <- ggtree(tree) +
-  geom_nodelab(aes(label = node), size = 3)
-print(p)
+ggtree(tree) + geom_nodelab(aes(label = node), size = 3)
 ```
 
 Highlighting Clades
@@ -110,9 +107,7 @@ Highlighting Clades
 Highlight specific clades with geom_hilight:
 
 ```{r, warning=FALSE, message=FALSE}
-p <- ggtree(tree) +
-  geom_hilight(node = 199, fill = "blue", alpha = 0.3)
-print(p)
+ggtree(tree) + geom_hilight(node = 199, fill = "blue", alpha = 0.3)
 ```
 
 Parameters for geom_hilight

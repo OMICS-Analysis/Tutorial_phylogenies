@@ -1,9 +1,10 @@
 fig:fig1
 introduction
 newick
-appendix1-1-converting-to-a-r-phylo-object-see-apendix-below
 ggtree1
 prerequisites
+loading-a-phylogenetic-tree
+tree-layouts
 annotating-trees
 adding-metadata
 creating-heatmaps
