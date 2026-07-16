@@ -8,4 +8,13 @@ basic-tree-visualization
 tree-layouts
 annotating-trees
 adding-metadata
-creating-heatmaps
+heats
+customrecipes
+section
+circular-layout-visualization
+highlighting-clades-in-circular-trees
+adding-heatmaps-to-circular-trees
+styling-trees-with-advanced-themes
+customizing-themes-for-trees
+adding-multiple-aesthetic-layers
+combining-trees-with-ggnewscale

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Newick Format | OMICs Analysis - Phylogeny training</title>
+  <title>Chapter 4 Adding Heatmaps | OMICs Analysis - Phylogeny training</title>
   <meta name="description" content="Recetas principales para la graficación de filogenias" />
   <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Newick Format | OMICs Analysis - Phylogeny training" />
+  <meta property="og:title" content="Chapter 4 Adding Heatmaps | OMICs Analysis - Phylogeny training" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Recetas principales para la graficación de filogenias" />
   <meta name="github-repo" content="OMICS-Analysis/Tutorial_phylogenies" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Newick Format | OMICs Analysis - Phylogeny training" />
+  <meta name="twitter:title" content="Chapter 4 Adding Heatmaps | OMICs Analysis - Phylogeny training" />
   
   <meta name="twitter:description" content="Recetas principales para la graficación de filogenias" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="ggtree1.html"/>
+<link rel="prev" href="ggtree1.html"/>
+<link rel="next" href="customrecipes.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -188,77 +188,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="newick" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Newick Format<a href="newick.html#newick" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Load the neccesary libraries for this section</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="newick.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ape&quot;</span>) <span class="co">#We use this library to read the newick texts</span></span>
-<span id="cb1-2"><a href="newick.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggtree&quot;</span>)</span></code></pre></div>
-<p>Newick format is a way of representing a phylogeny (a tree) with parentheses and commas. Its basic elements are:</p>
-<ul>
-<li>Branches</li>
-<li>Nodes
-<ul>
-<li>Leaves: Nodes with no descendants, also colled tip points</li>
-<li>Internal nodes: Nodes with descendants</li>
-</ul></li>
-</ul>
-<p>A Minimal newick tree has only branches. There is a branch for each comma and each internal parenthesis pair.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="newick.html#cb2-1" tabindex="-1"></a><span class="co">#   (  , (,)  )</span></span>
-<span id="cb2-2"><a href="newick.html#cb2-2" tabindex="-1"></a><span class="co">#        ^ ^    internal parenthesis pair.</span></span>
-<span id="cb2-3"><a href="newick.html#cb2-3" tabindex="-1"></a><span class="co">#   ^         ^  external parenthesis</span></span></code></pre></div>
-<p>Lets obtain this tree in phylo format</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="newick.html#cb3-1" tabindex="-1"></a>tree<span class="ot">&lt;-</span><span class="st">&quot;(,(,));&quot;</span> </span>
-<span id="cb3-2"><a href="newick.html#cb3-2" tabindex="-1"></a>tree<span class="ot">&lt;-</span><span class="fu">read.tree</span>(<span class="at">text=</span>tree)</span></code></pre></div>
-<p>And now we can use ggtree to generate an image</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="newick.html#cb4-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree)<span class="sc">+</span><span class="fu">geom_tiplab</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig1"></span>
-<img src="_main_files/figure-html/fig1-1.png" alt="A minimal newick tree" width="50%" />
-<p class="caption">
-Figure 2.1: A minimal newick tree
-</p>
-</div>
-<p>Here you can see tip points and internal nodes colored in red and blue, respectively</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="newick.html#cb5-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree)<span class="sc">+</span></span>
-<span id="cb5-2"><a href="newick.html#cb5-2" tabindex="-1"></a>  <span class="fu">geom_tippoint</span>(<span class="at">size=</span><span class="dv">3</span>, <span class="at">color=</span><span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
-<span id="cb5-3"><a href="newick.html#cb5-3" tabindex="-1"></a>  <span class="fu">geom_nodepoint</span>(<span class="at">size=</span><span class="dv">3</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" alt="" width="672" /></p>
-<p>The tree leaves (tip points) can be labeled
-Labels correspond to clades (species, strains)</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="newick.html#cb6-1" tabindex="-1"></a>tree<span class="ot">&lt;-</span><span class="st">&quot;(cat,(dog,fox));&quot;</span> </span>
-<span id="cb6-2"><a href="newick.html#cb6-2" tabindex="-1"></a>tree<span class="ot">&lt;-</span><span class="fu">read.tree</span>(<span class="at">text=</span>tree)</span>
-<span id="cb6-3"><a href="newick.html#cb6-3" tabindex="-1"></a><span class="fu">ggtree</span>(tree)<span class="sc">+</span><span class="fu">geom_tiplab</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" alt="" width="672" /></p>
-<p>You can indicate different lengths for each branch
-The length reflects the amount of evolutionary change of the branch</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="newick.html#cb7-1" tabindex="-1"></a>tree<span class="ot">&lt;-</span><span class="st">&quot;(cat:0.6,(dog:0.1,fox:0.1):0.2);&quot;</span> </span>
-<span id="cb7-2"><a href="newick.html#cb7-2" tabindex="-1"></a>tree<span class="ot">&lt;-</span><span class="fu">read.tree</span>(<span class="at">text=</span>tree)</span>
-<span id="cb7-3"><a href="newick.html#cb7-3" tabindex="-1"></a><span class="fu">ggtree</span>(tree)<span class="sc">+</span><span class="fu">geom_tiplab</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" alt="" width="672" /></p>
-<p>You can also label internal nodes.
-Internal nodes are common ancestors for a group of leaves</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="newick.html#cb8-1" tabindex="-1"></a>tree<span class="ot">&lt;-</span><span class="st">&quot;(cat:0.6,(dog:0.1,fox:0.1)Anc2:0.2)Anc1;&quot;</span> </span>
-<span id="cb8-2"><a href="newick.html#cb8-2" tabindex="-1"></a>tree<span class="ot">&lt;-</span><span class="fu">read.tree</span>(<span class="at">text=</span>tree)</span>
-<span id="cb8-3"><a href="newick.html#cb8-3" tabindex="-1"></a><span class="fu">ggtree</span>(tree)<span class="sc">+</span><span class="fu">geom_tiplab</span>()<span class="sc">+</span><span class="fu">geom_nodelab</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" alt="" width="672" /></p>
-<p>… or instead of a node label you can use a bootstrap value
-Bootstrap values indicate the support of a given node.
-Here, the event with fox and dog having a common ancestor has a confidence of 0.9</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="newick.html#cb9-1" tabindex="-1"></a>tree<span class="ot">&lt;-</span><span class="st">&quot;(cat:0.6,(dog:0.1,fox:0.1)0.9:0.2)0.98;&quot;</span> </span>
-<span id="cb9-2"><a href="newick.html#cb9-2" tabindex="-1"></a>tree<span class="ot">&lt;-</span><span class="fu">read.tree</span>(<span class="at">text=</span>tree)</span>
-<span id="cb9-3"><a href="newick.html#cb9-3" tabindex="-1"></a><span class="fu">ggtree</span>(tree,)<span class="sc">+</span><span class="fu">geom_tiplab</span>()<span class="sc">+</span><span class="fu">geom_nodelab</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" alt="" width="672" /></p>
-<p>Here we have a more complex example</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="newick.html#cb10-1" tabindex="-1"></a>tree<span class="ot">&lt;-</span><span class="st">&quot;(Bovine:0.69395,</span></span>
-<span id="cb10-2"><a href="newick.html#cb10-2" tabindex="-1"></a><span class="st">      (Gibbon:0.36079,</span></span>
-<span id="cb10-3"><a href="newick.html#cb10-3" tabindex="-1"></a><span class="st">          (Orang:0.33636,</span></span>
-<span id="cb10-4"><a href="newick.html#cb10-4" tabindex="-1"></a><span class="st">              (Gorilla:0.17147,</span></span>
-<span id="cb10-5"><a href="newick.html#cb10-5" tabindex="-1"></a><span class="st">                  (Chimp:0.19268, Human:0.11927)0.5:0.08386</span></span>
-<span id="cb10-6"><a href="newick.html#cb10-6" tabindex="-1"></a><span class="st">               )0.9:0.06124</span></span>
-<span id="cb10-7"><a href="newick.html#cb10-7" tabindex="-1"></a><span class="st">           )0.7:0.15057</span></span>
-<span id="cb10-8"><a href="newick.html#cb10-8" tabindex="-1"></a><span class="st">       )0.8:0.54939,Mouse:1.21460)0.9;&quot;</span></span>
-<span id="cb10-9"><a href="newick.html#cb10-9" tabindex="-1"></a>tree<span class="ot">&lt;-</span><span class="fu">read.tree</span>(<span class="at">text=</span>tree)</span>
-<span id="cb10-10"><a href="newick.html#cb10-10" tabindex="-1"></a><span class="fu">ggtree</span>(tree)<span class="sc">+</span><span class="fu">geom_tiplab</span>()<span class="sc">+</span><span class="fu">geom_nodelab</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" alt="" width="672" /></p>
+<div id="heats" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Adding Heatmaps<a href="heats.html#heats" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We will use these libraries</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="heats.html#cb34-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb34-2"><a href="heats.html#cb34-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggtree&quot;</span>)</span>
+<span id="cb34-3"><a href="heats.html#cb34-3" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;readr&quot;</span>)</span>
+<span id="cb34-4"><a href="heats.html#cb34-4" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+<p>And load our tree and our clade metadata</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="heats.html#cb35-1" tabindex="-1"></a><span class="co"># Tree</span></span>
+<span id="cb35-2"><a href="heats.html#cb35-2" tabindex="-1"></a>tr<span class="ot">&lt;-</span><span class="fu">read.tree</span>(<span class="st">&quot;data/example_2_phylo.nwk&quot;</span>)</span>
+<span id="cb35-3"><a href="heats.html#cb35-3" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="heats.html#cb35-4" tabindex="-1"></a><span class="co"># Metadata</span></span>
+<span id="cb35-5"><a href="heats.html#cb35-5" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">&quot;data/Experiment_Design_example_2.tsv&quot;</span>)</span>
+<span id="cb35-6"><a href="heats.html#cb35-6" tabindex="-1"></a><span class="co"># keeping only the relevant columns</span></span>
+<span id="cb35-7"><a href="heats.html#cb35-7" tabindex="-1"></a>design<span class="ot">&lt;-</span>design <span class="sc">%&gt;%</span>  <span class="fu">select</span>(Assembly.Accession,Strain,</span>
+<span id="cb35-8"><a href="heats.html#cb35-8" tabindex="-1"></a>         Phylogroup,Patotype,Geographic.location,source)</span>
+<span id="cb35-9"><a href="heats.html#cb35-9" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="heats.html#cb35-10" tabindex="-1"></a><span class="co">#Make design must follow same order than tree tips</span></span>
+<span id="cb35-11"><a href="heats.html#cb35-11" tabindex="-1"></a><span class="co">#In this case: same order of Assembly Accessions GCF_0020201...</span></span>
+<span id="cb35-12"><a href="heats.html#cb35-12" tabindex="-1"></a>design <span class="ot">&lt;-</span> design <span class="sc">%&gt;%</span></span>
+<span id="cb35-13"><a href="heats.html#cb35-13" tabindex="-1"></a>  <span class="fu">filter</span>(Assembly.Accession <span class="sc">%in%</span> tr<span class="sc">$</span>tip.label) <span class="sc">%&gt;%</span></span>
+<span id="cb35-14"><a href="heats.html#cb35-14" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">match</span>(Assembly.Accession, tr<span class="sc">$</span>tip.label))</span></code></pre></div>
+<p>Use design to create a data frame with heatmap data. The rownames
+must of this data frame must be the tree tip labels (Assembly Accessions in this case)</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="heats.html#cb36-1" tabindex="-1"></a>heat_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Patotype =</span> <span class="fu">as.factor</span>(design<span class="sc">$</span>Patotype))</span>
+<span id="cb36-2"><a href="heats.html#cb36-2" tabindex="-1"></a><span class="fu">rownames</span>(heat_data) <span class="ot">&lt;-</span>design<span class="sc">$</span>Assembly.Accession</span></code></pre></div>
+<p>Create a ggtree object and add the metadata</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="heats.html#cb37-1" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">ggtree</span>(tr) <span class="sc">%&lt;+%</span> design</span>
+<span id="cb37-2"><a href="heats.html#cb37-2" tabindex="-1"></a>p<span class="ot">&lt;-</span>p <span class="sc">+</span> <span class="fu">geom_tiplab</span>(<span class="fu">aes</span>(<span class="at">label =</span> Strain),<span class="at">size=</span><span class="dv">2</span>)</span></code></pre></div>
+<p>Now we can use gheatmap to plot a tree with heatmap</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="heats.html#cb38-1" tabindex="-1"></a><span class="fu">gheatmap</span>(p, heat_data, <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">width=</span><span class="fl">0.05</span>, <span class="at">colnames=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/treeheat-1.png" alt="" width="672" /></p>
 
 </div>
             </section>
@@ -266,8 +227,8 @@ Here, the event with fox and dog having a common ancestor has a confidence of 0.
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ggtree1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="ggtree1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="customrecipes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -298,7 +259,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/OMICS-Analysis/Tutorial_phylogenies/tree/main/docs/01-Newick_Format.Rmd",
+    "link": "https://github.com/OMICS-Analysis/Tutorial_phylogenies/tree/main/docs/05-heatmaps.Rmd",
     "text": "Edit"
   },
   "history": {

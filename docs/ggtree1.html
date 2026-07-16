@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="newick.html"/>
-
+<link rel="next" href="heats.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -151,7 +151,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="ggtree1.html"><a href="ggtree1.html#tree-layouts"><i class="fa fa-check"></i><b>3.4</b> Tree Layouts</a></li>
 <li class="chapter" data-level="3.5" data-path="ggtree1.html"><a href="ggtree1.html#annotating-trees"><i class="fa fa-check"></i><b>3.5</b> Annotating Trees</a></li>
 <li class="chapter" data-level="3.6" data-path="ggtree1.html"><a href="ggtree1.html#adding-metadata"><i class="fa fa-check"></i><b>3.6</b> Adding Metadata</a></li>
-<li class="chapter" data-level="3.7" data-path="ggtree1.html"><a href="ggtree1.html#creating-heatmaps"><i class="fa fa-check"></i><b>3.7</b> Creating Heatmaps</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="heats.html"><a href="heats.html"><i class="fa fa-check"></i><b>4</b> Adding Heatmaps</a></li>
+<li class="chapter" data-level="5" data-path="customrecipes.html"><a href="customrecipes.html"><i class="fa fa-check"></i><b>5</b> ggtree Custom Recipes</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="customrecipes.html"><a href="customrecipes.html#section"><i class="fa fa-check"></i><b>5.1</b> </a></li>
+<li class="chapter" data-level="5.2" data-path="customrecipes.html"><a href="customrecipes.html#circular-layout-visualization"><i class="fa fa-check"></i><b>5.2</b> Circular Layout Visualization</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="customrecipes.html"><a href="customrecipes.html#highlighting-clades-in-circular-trees"><i class="fa fa-check"></i><b>5.2.1</b> Highlighting Clades in Circular Trees</a></li>
+<li class="chapter" data-level="5.2.2" data-path="customrecipes.html"><a href="customrecipes.html#adding-heatmaps-to-circular-trees"><i class="fa fa-check"></i><b>5.2.2</b> Adding Heatmaps to Circular Trees</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="customrecipes.html"><a href="customrecipes.html#styling-trees-with-advanced-themes"><i class="fa fa-check"></i><b>5.3</b> Styling Trees with Advanced Themes</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="customrecipes.html"><a href="customrecipes.html#customizing-themes-for-trees"><i class="fa fa-check"></i><b>5.3.1</b> Customizing Themes for Trees</a></li>
+<li class="chapter" data-level="5.3.2" data-path="customrecipes.html"><a href="customrecipes.html#adding-multiple-aesthetic-layers"><i class="fa fa-check"></i><b>5.3.2</b> Adding Multiple Aesthetic Layers</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="customrecipes.html"><a href="customrecipes.html#combining-trees-with-ggnewscale"><i class="fa fa-check"></i><b>5.4</b> Combining Trees with ggnewscale</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -297,7 +312,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 GCF_040215525.1    B1     &lt;NA&gt;       &lt;NA&gt;     China:Tongliao      bovine
 ## 5 GCF_040215555.1    800    &lt;NA&gt;       &lt;NA&gt;     China:TongLiao      bovine
 ## 6 GCF_043950225.1    TC24   &lt;NA&gt;       &lt;NA&gt;     Guadeloupe          bovine</code></pre>
-<p>metadata &lt;- metadata %&gt;% rename(label = Assembly.Accession)</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="ggtree1.html#cb28-1" tabindex="-1"></a><span class="co"># Metadata rows have to be in the same order as the tree</span></span>
 <span id="cb28-2"><a href="ggtree1.html#cb28-2" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="ggtree1.html#cb28-3" tabindex="-1"></a>tree<span class="ot">&lt;-</span><span class="fu">read.tree</span>(<span class="st">&quot;data/example_2_phylo.nwk&quot;</span>)</span>
@@ -328,21 +342,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb33-5"><a href="ggtree1.html#cb33-5" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
 <p><img src="_main_files/figure-html/color_source-1.png" alt="" width="672" /></p>
 <p>Note: There is a metadata fusion alternative with full_join, check in the code treeio.R</p>
-</div>
-<div id="creating-heatmaps" class="section level2 hasAnchor" number="3.7">
-<h2><span class="header-section-number">3.7</span> Creating Heatmaps<a href="ggtree1.html#creating-heatmaps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>#Use gheatmap to add heatmaps to the tree:
-#THIS CODE IS CURRENTLY FAILING!!</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="ggtree1.html#cb34-1" tabindex="-1"></a><span class="co"># Example matrix</span></span>
-<span id="cb34-2"><a href="ggtree1.html#cb34-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb34-3"><a href="ggtree1.html#cb34-3" tabindex="-1"></a>matrix_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Patotype =</span> metadata<span class="sc">$</span>Patotype,</span>
-<span id="cb34-4"><a href="ggtree1.html#cb34-4" tabindex="-1"></a>                          <span class="at">Geography=</span>metadata<span class="sc">$</span>Geographic.location)</span>
-<span id="cb34-5"><a href="ggtree1.html#cb34-5" tabindex="-1"></a><span class="fu">rownames</span>(matrix_data) <span class="ot">&lt;-</span>metadata<span class="sc">$</span>Assembly.Accession</span>
-<span id="cb34-6"><a href="ggtree1.html#cb34-6" tabindex="-1"></a><span class="co"># Add heatmap</span></span>
-<span id="cb34-7"><a href="ggtree1.html#cb34-7" tabindex="-1"></a><span class="fu">gheatmap</span>(p, matrix_data, <span class="at">width=</span><span class="fl">0.05</span>, <span class="at">colnames=</span><span class="cn">FALSE</span>, <span class="at">legend_title=</span><span class="st">&quot;Patotype&quot;</span> ) <span class="sc">+</span></span>
-<span id="cb34-8"><a href="ggtree1.html#cb34-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>))</span></code></pre></div>
-<p>Session Info</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="ggtree1.html#cb35-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 
 </div>
 </div>
@@ -351,8 +350,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="newick.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="newick.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="heats.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 ggtree Custom Recipes | OMICs Analysis - Phylogeny training</title>
+  <meta name="description" content="Recetas principales para la graficación de filogenias" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 ggtree Custom Recipes | OMICs Analysis - Phylogeny training" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Recetas principales para la graficación de filogenias" />
+  <meta name="github-repo" content="OMICS-Analysis/Tutorial_phylogenies" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 ggtree Custom Recipes | OMICs Analysis - Phylogeny training" />
+  
+  <meta name="twitter:description" content="Recetas principales para la graficación de filogenias" />
+  
+
+<meta name="author" content="OMICs Analysis" />
+
+
+<meta name="date" content="2026-07-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="heats.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Phylogenies tutorial</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="newick.html"><a href="newick.html"><i class="fa fa-check"></i><b>2</b> Newick Format</a></li>
+<li class="chapter" data-level="3" data-path="ggtree1.html"><a href="ggtree1.html"><i class="fa fa-check"></i><b>3</b> Main ggtree functions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggtree1.html"><a href="ggtree1.html#prerequisites"><i class="fa fa-check"></i><b>3.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="3.2" data-path="ggtree1.html"><a href="ggtree1.html#loading-a-phylogenetic-tree"><i class="fa fa-check"></i><b>3.2</b> Loading a Phylogenetic Tree</a></li>
+<li class="chapter" data-level="3.3" data-path="ggtree1.html"><a href="ggtree1.html#basic-tree-visualization"><i class="fa fa-check"></i><b>3.3</b> Basic Tree Visualization</a></li>
+<li class="chapter" data-level="3.4" data-path="ggtree1.html"><a href="ggtree1.html#tree-layouts"><i class="fa fa-check"></i><b>3.4</b> Tree Layouts</a></li>
+<li class="chapter" data-level="3.5" data-path="ggtree1.html"><a href="ggtree1.html#annotating-trees"><i class="fa fa-check"></i><b>3.5</b> Annotating Trees</a></li>
+<li class="chapter" data-level="3.6" data-path="ggtree1.html"><a href="ggtree1.html#adding-metadata"><i class="fa fa-check"></i><b>3.6</b> Adding Metadata</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="heats.html"><a href="heats.html"><i class="fa fa-check"></i><b>4</b> Adding Heatmaps</a></li>
+<li class="chapter" data-level="5" data-path="customrecipes.html"><a href="customrecipes.html"><i class="fa fa-check"></i><b>5</b> ggtree Custom Recipes</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="customrecipes.html"><a href="customrecipes.html#section"><i class="fa fa-check"></i><b>5.1</b> </a></li>
+<li class="chapter" data-level="5.2" data-path="customrecipes.html"><a href="customrecipes.html#circular-layout-visualization"><i class="fa fa-check"></i><b>5.2</b> Circular Layout Visualization</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="customrecipes.html"><a href="customrecipes.html#highlighting-clades-in-circular-trees"><i class="fa fa-check"></i><b>5.2.1</b> Highlighting Clades in Circular Trees</a></li>
+<li class="chapter" data-level="5.2.2" data-path="customrecipes.html"><a href="customrecipes.html#adding-heatmaps-to-circular-trees"><i class="fa fa-check"></i><b>5.2.2</b> Adding Heatmaps to Circular Trees</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="customrecipes.html"><a href="customrecipes.html#styling-trees-with-advanced-themes"><i class="fa fa-check"></i><b>5.3</b> Styling Trees with Advanced Themes</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="customrecipes.html"><a href="customrecipes.html#customizing-themes-for-trees"><i class="fa fa-check"></i><b>5.3.1</b> Customizing Themes for Trees</a></li>
+<li class="chapter" data-level="5.3.2" data-path="customrecipes.html"><a href="customrecipes.html#adding-multiple-aesthetic-layers"><i class="fa fa-check"></i><b>5.3.2</b> Adding Multiple Aesthetic Layers</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="customrecipes.html"><a href="customrecipes.html#combining-trees-with-ggnewscale"><i class="fa fa-check"></i><b>5.4</b> Combining Trees with ggnewscale</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">OMICs Analysis - Phylogeny training</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="customrecipes" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> ggtree Custom Recipes<a href="customrecipes.html#customrecipes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We will load a phylogenetic tree in Newick format for demonstration.</p>
+<p>Prepare session:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="customrecipes.html#cb39-1" tabindex="-1"></a><span class="fu">library</span>(ggtree)</span>
+<span id="cb39-2"><a href="customrecipes.html#cb39-2" tabindex="-1"></a><span class="fu">library</span>(treeio)</span>
+<span id="cb39-3"><a href="customrecipes.html#cb39-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb39-4"><a href="customrecipes.html#cb39-4" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<div id="section" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> </h2>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="customrecipes.html#cb40-1" tabindex="-1"></a><span class="co"># Load a tree file</span></span>
+<span id="cb40-2"><a href="customrecipes.html#cb40-2" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">read.newick</span>(<span class="st">&quot;data/example_2_phylo.nwk&quot;</span>)</span>
+<span id="cb40-3"><a href="customrecipes.html#cb40-3" tabindex="-1"></a>tree<span class="sc">$</span>node.label <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">as.numeric</span>(tree<span class="sc">$</span>node.label), <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+</div>
+<div id="circular-layout-visualization" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Circular Layout Visualization<a href="customrecipes.html#circular-layout-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Circular layouts are excellent for presenting large or complex trees. They allow for efficient space usage and a visually appealing presentation.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="customrecipes.html#cb41-1" tabindex="-1"></a><span class="co"># Circular tree with basic styling</span></span>
+<span id="cb41-2"><a href="customrecipes.html#cb41-2" tabindex="-1"></a>circular_tree <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(tree, <span class="at">layout =</span> <span class="st">&quot;circular&quot;</span>, </span>
+<span id="cb41-3"><a href="customrecipes.html#cb41-3" tabindex="-1"></a>                        <span class="at">branch.length =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-4"><a href="customrecipes.html#cb41-4" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="fu">aes</span>(<span class="at">angle =</span> angle), <span class="at">offset =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb41-5"><a href="customrecipes.html#cb41-5" tabindex="-1"></a>  <span class="fu">geom_nodelab</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">nudge_y =</span> <span class="fl">0.5</span>) </span>
+<span id="cb41-6"><a href="customrecipes.html#cb41-6" tabindex="-1"></a></span>
+<span id="cb41-7"><a href="customrecipes.html#cb41-7" tabindex="-1"></a>circular_tree</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-24-1.png" alt="" width="672" /></p>
+<div id="highlighting-clades-in-circular-trees" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Highlighting Clades in Circular Trees<a href="customrecipes.html#highlighting-clades-in-circular-trees" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Highlighting specific clades can make the tree more interpretable. Use the <code>geom_hilight</code> function:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="customrecipes.html#cb42-1" tabindex="-1"></a><span class="co"># Highlight specific clades</span></span>
+<span id="cb42-2"><a href="customrecipes.html#cb42-2" tabindex="-1"></a>highlight_tree <span class="ot">&lt;-</span> circular_tree <span class="sc">+</span></span>
+<span id="cb42-3"><a href="customrecipes.html#cb42-3" tabindex="-1"></a>  <span class="fu">geom_hilight</span>(<span class="at">node =</span> <span class="dv">199</span>, <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb42-4"><a href="customrecipes.html#cb42-4" tabindex="-1"></a>  <span class="fu">geom_hilight</span>(<span class="at">node =</span> <span class="dv">200</span>, <span class="at">fill =</span> <span class="st">&quot;lightgreen&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span>
+<span id="cb42-5"><a href="customrecipes.html#cb42-5" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="customrecipes.html#cb42-6" tabindex="-1"></a>highlight_tree</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-25-1.png" alt="" width="672" /></p>
+</div>
+<div id="adding-heatmaps-to-circular-trees" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Adding Heatmaps to Circular Trees<a href="customrecipes.html#adding-heatmaps-to-circular-trees" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can add metadata as heatmaps around the tree:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="customrecipes.html#cb43-1" tabindex="-1"></a><span class="co"># Cargar metadata</span></span>
+<span id="cb43-2"><a href="customrecipes.html#cb43-2" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">&quot;data/Experiment_Design_example_2.tsv&quot;</span>)</span>
+<span id="cb43-3"><a href="customrecipes.html#cb43-3" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="customrecipes.html#cb43-4" tabindex="-1"></a><span class="fu">colnames</span>(metadata)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;label&quot;</span></span>
+<span id="cb43-5"><a href="customrecipes.html#cb43-5" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="customrecipes.html#cb43-6" tabindex="-1"></a><span class="co"># The rows have to be in the same order as the tree</span></span>
+<span id="cb43-7"><a href="customrecipes.html#cb43-7" tabindex="-1"></a>metadata_ordered <span class="ot">&lt;-</span> metadata <span class="sc">%&gt;%</span></span>
+<span id="cb43-8"><a href="customrecipes.html#cb43-8" tabindex="-1"></a>  <span class="fu">filter</span>(label <span class="sc">%in%</span> tree<span class="sc">$</span>tip.label) <span class="sc">%&gt;%</span></span>
+<span id="cb43-9"><a href="customrecipes.html#cb43-9" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">match</span>(label, tree<span class="sc">$</span>tip.label))</span>
+<span id="cb43-10"><a href="customrecipes.html#cb43-10" tabindex="-1"></a></span>
+<span id="cb43-11"><a href="customrecipes.html#cb43-11" tabindex="-1"></a>metadata_ordered<span class="sc">$</span>Phylogroup <span class="ot">&lt;-</span> <span class="fu">replace</span>(metadata_ordered<span class="sc">$</span>Phylogroup, <span class="fu">is.na</span>(metadata_ordered<span class="sc">$</span>Phylogroup), <span class="st">&quot;NA&quot;</span>)</span>
+<span id="cb43-12"><a href="customrecipes.html#cb43-12" tabindex="-1"></a></span>
+<span id="cb43-13"><a href="customrecipes.html#cb43-13" tabindex="-1"></a></span>
+<span id="cb43-14"><a href="customrecipes.html#cb43-14" tabindex="-1"></a></span>
+<span id="cb43-15"><a href="customrecipes.html#cb43-15" tabindex="-1"></a><span class="co">#Convert tree information to tibble object and add metadata</span></span>
+<span id="cb43-16"><a href="customrecipes.html#cb43-16" tabindex="-1"></a>treetib <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(tree)</span>
+<span id="cb43-17"><a href="customrecipes.html#cb43-17" tabindex="-1"></a>treetib <span class="ot">&lt;-</span> <span class="fu">left_join</span>(treetib, metadata_ordered, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;label&#39;</span>))</span>
+<span id="cb43-18"><a href="customrecipes.html#cb43-18" tabindex="-1"></a></span>
+<span id="cb43-19"><a href="customrecipes.html#cb43-19" tabindex="-1"></a>tree_ec <span class="ot">&lt;-</span> <span class="fu">as.treedata</span>(treetib)</span>
+<span id="cb43-20"><a href="customrecipes.html#cb43-20" tabindex="-1"></a></span>
+<span id="cb43-21"><a href="customrecipes.html#cb43-21" tabindex="-1"></a></span>
+<span id="cb43-22"><a href="customrecipes.html#cb43-22" tabindex="-1"></a></span>
+<span id="cb43-23"><a href="customrecipes.html#cb43-23" tabindex="-1"></a></span>
+<span id="cb43-24"><a href="customrecipes.html#cb43-24" tabindex="-1"></a><span class="co"># Merge metadata with tree</span></span>
+<span id="cb43-25"><a href="customrecipes.html#cb43-25" tabindex="-1"></a>p_circular_heatmap <span class="ot">&lt;-</span>  <span class="fu">ggtree</span>(tree_ec, <span class="at">layout =</span> <span class="st">&quot;circular&quot;</span>, </span>
+<span id="cb43-26"><a href="customrecipes.html#cb43-26" tabindex="-1"></a>                        <span class="at">branch.length =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-27"><a href="customrecipes.html#cb43-27" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="fu">aes</span>(<span class="at">label =</span> Strain,<span class="at">angle =</span> angle), <span class="at">offset =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb43-28"><a href="customrecipes.html#cb43-28" tabindex="-1"></a>  <span class="fu">geom_nodelab</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">nudge_y =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb43-29"><a href="customrecipes.html#cb43-29" tabindex="-1"></a>  <span class="fu">geom_tippoint</span>(<span class="fu">aes</span>(<span class="at">color =</span> source), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb43-30"><a href="customrecipes.html#cb43-30" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;darkcyan&quot;</span>))</span>
+<span id="cb43-31"><a href="customrecipes.html#cb43-31" tabindex="-1"></a></span>
+<span id="cb43-32"><a href="customrecipes.html#cb43-32" tabindex="-1"></a>p_circular_heatmap</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-26-1.png" alt="" width="672" /></p>
+</div>
+</div>
+<div id="styling-trees-with-advanced-themes" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Styling Trees with Advanced Themes<a href="customrecipes.html#styling-trees-with-advanced-themes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>ggtree</code> provides options to customize the appearance of trees using themes. Here’s how to use them effectively.</p>
+<div id="customizing-themes-for-trees" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Customizing Themes for Trees<a href="customrecipes.html#customizing-themes-for-trees" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="customrecipes.html#cb44-1" tabindex="-1"></a><span class="co"># Applying a theme with a clean background</span></span>
+<span id="cb44-2"><a href="customrecipes.html#cb44-2" tabindex="-1"></a>styled_tree <span class="ot">&lt;-</span> circular_tree <span class="sc">+</span></span>
+<span id="cb44-3"><a href="customrecipes.html#cb44-3" tabindex="-1"></a>  <span class="fu">theme_tree2</span>() <span class="sc">+</span></span>
+<span id="cb44-4"><a href="customrecipes.html#cb44-4" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb44-5"><a href="customrecipes.html#cb44-5" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;#f9f9f9&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb44-6"><a href="customrecipes.html#cb44-6" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb44-7"><a href="customrecipes.html#cb44-7" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb44-8"><a href="customrecipes.html#cb44-8" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb44-9"><a href="customrecipes.html#cb44-9" tabindex="-1"></a>    <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb44-10"><a href="customrecipes.html#cb44-10" tabindex="-1"></a>  )</span>
+<span id="cb44-11"><a href="customrecipes.html#cb44-11" tabindex="-1"></a></span>
+<span id="cb44-12"><a href="customrecipes.html#cb44-12" tabindex="-1"></a>styled_tree</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-27-1.png" alt="" width="672" /></p>
+</div>
+<div id="adding-multiple-aesthetic-layers" class="section level3 hasAnchor" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Adding Multiple Aesthetic Layers<a href="customrecipes.html#adding-multiple-aesthetic-layers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Combine multiple layers for richer visuals:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="customrecipes.html#cb45-1" tabindex="-1"></a><span class="co"># Adding node points and branches with customized colors</span></span>
+<span id="cb45-2"><a href="customrecipes.html#cb45-2" tabindex="-1"></a>layered_tree <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(tree_ec, <span class="at">layout =</span> <span class="st">&quot;circular&quot;</span>, <span class="at">branch.length =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb45-3"><a href="customrecipes.html#cb45-3" tabindex="-1"></a>  <span class="fu">geom_tree</span>(<span class="at">color =</span> <span class="st">&quot;darkgrey&quot;</span>, <span class="at">size =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb45-4"><a href="customrecipes.html#cb45-4" tabindex="-1"></a>  <span class="fu">geom_tippoint</span>(<span class="fu">aes</span>(<span class="at">color =</span> Phylogroup), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb45-5"><a href="customrecipes.html#cb45-5" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb45-6"><a href="customrecipes.html#cb45-6" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb45-7"><a href="customrecipes.html#cb45-7" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>,</span>
+<span id="cb45-8"><a href="customrecipes.html#cb45-8" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb45-9"><a href="customrecipes.html#cb45-9" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb45-10"><a href="customrecipes.html#cb45-10" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb45-11"><a href="customrecipes.html#cb45-11" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb45-12"><a href="customrecipes.html#cb45-12" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Layered Circular Tree Visualization&quot;</span>)</span>
+<span id="cb45-13"><a href="customrecipes.html#cb45-13" tabindex="-1"></a></span>
+<span id="cb45-14"><a href="customrecipes.html#cb45-14" tabindex="-1"></a>layered_tree</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-28-1.png" alt="" width="672" /></p>
+</div>
+</div>
+<div id="combining-trees-with-ggnewscale" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Combining Trees with ggnewscale<a href="customrecipes.html#combining-trees-with-ggnewscale" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Use the <code>ggnewscale</code> package to add multiple scales of colors:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="customrecipes.html#cb46-1" tabindex="-1"></a><span class="co"># Adding new scale for different metadata layers</span></span>
+<span id="cb46-2"><a href="customrecipes.html#cb46-2" tabindex="-1"></a>multi_scale_tree <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(tree_ec, <span class="at">layout =</span> <span class="st">&quot;circular&quot;</span>, <span class="at">branch.length =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb46-3"><a href="customrecipes.html#cb46-3" tabindex="-1"></a>  <span class="fu">geom_tippoint</span>(<span class="fu">aes</span>(<span class="at">color =</span> Patotype), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb46-4"><a href="customrecipes.html#cb46-4" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>, <span class="at">name =</span> <span class="st">&quot;Category&quot;</span>) <span class="sc">+</span></span>
+<span id="cb46-5"><a href="customrecipes.html#cb46-5" tabindex="-1"></a>  ggnewscale<span class="sc">::</span><span class="fu">new_scale_color</span>() <span class="sc">+</span></span>
+<span id="cb46-6"><a href="customrecipes.html#cb46-6" tabindex="-1"></a>  <span class="fu">geom_tippoint</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Phylogroup), <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb46-7"><a href="customrecipes.html#cb46-7" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>, <span class="at">name =</span> <span class="st">&quot;Fill Category&quot;</span>) <span class="sc">+</span></span>
+<span id="cb46-8"><a href="customrecipes.html#cb46-8" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb46-9"><a href="customrecipes.html#cb46-9" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>,</span>
+<span id="cb46-10"><a href="customrecipes.html#cb46-10" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb46-11"><a href="customrecipes.html#cb46-11" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb46-12"><a href="customrecipes.html#cb46-12" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb46-13"><a href="customrecipes.html#cb46-13" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb46-14"><a href="customrecipes.html#cb46-14" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Tree with Multiple Aesthetic Layers&quot;</span>)</span>
+<span id="cb46-15"><a href="customrecipes.html#cb46-15" tabindex="-1"></a></span>
+<span id="cb46-16"><a href="customrecipes.html#cb46-16" tabindex="-1"></a>multi_scale_tree</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" alt="" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="heats.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/OMICS-Analysis/Tutorial_phylogenies/tree/main/docs/06_ggtree_custom_recipes.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

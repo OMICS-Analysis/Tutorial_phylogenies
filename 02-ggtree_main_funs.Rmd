@@ -135,7 +135,6 @@ metadata<-metadata %>% select(Assembly.Accession,Strain,Phylogroup,Patotype,Geog
 print(head(metadata))
 print(tail(metadata))
 ```
-metadata <- metadata %>% rename(label = Assembly.Accession)  
 
 
 ```{r, message=FALSE, warning=FALSE}
@@ -183,25 +182,3 @@ print(p)
 ```
 
 Note: There is a metadata fusion alternative with full_join, check in the code treeio.R
-
-## Creating Heatmaps
-
-#Use gheatmap to add heatmaps to the tree:
-#THIS CODE IS CURRENTLY FAILING!!
-```{r, warning=FALSE, message=FALSE,eval=FALSE}
-# Example matrix
-set.seed(123)
-matrix_data <- data.frame(Patotype = metadata$Patotype,
-                          Geography=metadata$Geographic.location)
-rownames(matrix_data) <-metadata$Assembly.Accession
-# Add heatmap
-gheatmap(p, matrix_data, width=0.05, colnames=FALSE, legend_title="Patotype" ) +
-  theme(text = element_text(size = 20))
-```
-
-
-Session Info
-
-```{r, warning=FALSE, message=FALSE,eval=FALSE}
-sessionInfo()
-```
