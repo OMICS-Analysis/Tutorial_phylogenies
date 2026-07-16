@@ -50,14 +50,14 @@ print(tree)
 
 Visualizing the tree is straightforward
 
-```{r, warning=FALSE, message=FALSE}
+```{r plottree, warning=FALSE, message=FALSE}
 ggtree(tree)
 ```
 
 Adding Tip Labels
 
 You can add labels to the tips of the tree using geom_tiplab:
-```{r, warning=FALSE, message=FALSE}
+```{r tree_tiplab, warning=FALSE, message=FALSE}
 ggtree(tree) + geom_tiplab()
 ```
 
@@ -67,7 +67,7 @@ Parameters for geom_tiplab:
 * align: Aligns labels horizontally.
 * angle: Rotates labels (useful for circular trees).
 
-```{r, warning=FALSE, message=FALSE}
+```{r tree_tiplab_edit, warning=FALSE, message=FALSE}
 ggtree(tree) + geom_tiplab(size = 3, align = TRUE, angle = 45)
 ```
 
@@ -82,13 +82,13 @@ ggtree supports various layouts for trees, such as:
 * radial
 
 Circular layout
-```{r, warning=FALSE, message=FALSE}
-ggtree(tree, layout = "circular")
+```{r tree_circle, warning=FALSE, message=FALSE}
+par(mar = c(0, 0, 0, 0)) # Bottom, Left, Top, Right margins
 ```
 
-Fan layout
-```{r, warning=FALSE, message=FALSE}
-ggtree(tree, layout = "fan")
+Slanted layout
+```{r tree_slanted, warning=FALSE, message=FALSE}
+ggtree(tree, layout = "slanted")
 ```
 
 ## Annotating Trees
@@ -97,7 +97,7 @@ Adding Node Labels
 
 To annotate nodes, use geom_nodelab:
 
-```{r, warning=FALSE, message=FALSE}
+```{r tree_tip_labs, warning=FALSE, message=FALSE}
 ggtree(tree) + geom_nodelab(aes(label = node), size = 3)
 ```
 
@@ -105,7 +105,7 @@ Highlighting Clades
 
 Highlight specific clades with geom_hilight:
 
-```{r, warning=FALSE, message=FALSE}
+```{r tree_highli, warning=FALSE, message=FALSE}
 ggtree(tree) + geom_hilight(node = 199, fill = "blue", alpha = 0.3)
 ```
 
@@ -117,7 +117,7 @@ Parameters for geom_hilight
 
 Annotating Specific Tips
 
-```{r, eval=FALSE, warning=FALSE, message=FALSE}
+```{r tree_highli_params, eval=FALSE, warning=FALSE, message=FALSE}
 p <- ggtree(tree) +
   geom_tippoint(aes(color = label), size = 3)+
   theme(legend.position = "none")
@@ -149,7 +149,7 @@ metadata <- metadata %>%
 ```
 
 You can rename the taxa in the tree object
-```{r, message=FALSE, warning=FALSE}
+```{r tip_rename, message=FALSE, warning=FALSE}
 # Rename the taxa in the tree object
 tree2 <- rename_taxa(tree, metadata, Assembly.Accession, Strain)
 p<-ggtree(tree2)+geom_tiplab()
@@ -162,19 +162,19 @@ p <- ggtree(tree) %<+% metadata
 ```
 
 ... and use any metadata column as labels
-```{r, message=FALSE, warning=FALSE}
+```{r label Strain , message=FALSE, warning=FALSE}
 p<-p + geom_tiplab(aes(label = Strain))
 print(p)
 ```
 
 You could also change tip labels by
-```{r, message=FALSE, warning=FALSE}
+```{r , message=FALSE, warning=FALSE}
 tree2<-tree
 tree2$tip.label <- metadata$Strain
 ```
 
 Color elements using metadataa
-```{r, warning=FALSE, message=FALSE}
+```{r color_source, warning=FALSE, message=FALSE}
 # Plot tree with metadata
 p <- ggtree(tree) %<+% metadata +
   geom_tiplab(aes(label=Strain))+
