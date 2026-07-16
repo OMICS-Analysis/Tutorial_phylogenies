@@ -71,7 +71,7 @@ Parameters for geom_tiplab:
 ggtree(tree) + geom_tiplab(size = 3, align = TRUE, angle = 45)
 ```
 
-# Tree Layouts
+## Tree Layouts
 
 ggtree supports various layouts for trees, such as:
 
