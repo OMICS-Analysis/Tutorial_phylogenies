@@ -139,9 +139,3 @@ GCF_011801245.1	1106	South Korea	NA	Reference	KyungHee University	Clavibacter ca
 GCF_014775655.1	DM1	Canada	NA	Reference	Canadian Food Inspection Agency	Clavibacter zhangzhiyongii	PRJNA659511	NA	91.132713	98.3	98.3	0	0.9	0.9	116	1	1	3098336	0	3	3	99.49	0	0	Complete Genome
 GCF_021922925.1	LPPA 982	USA	NA	Reference	University of Hawaii	Clavibacter phaseoli	PRJNA544766	NA	93.518631	97.4	97.4	0	1.7	0.9	116	2	2	3226754	0	3	3	99.49	0.76	0	Complete Genome
 GCF_021952865.1	CFBP 8216	USA	NA	Reference	University of Hawaii	Clavibacter californiensis	PRJNA544536	NA	94.859192	97.4	96.6	0.9	1.7	0.9	116	2	2	3243492	0	3	3	99.49	1.01	100	Complete Genome
-V9XD4P_6	SIN16	Mexico:Sinaloa	Solanum lycopersicum	Cliente	Cliente	Clavibacter michiganensis	NA	NA	99.160278	98.3	98.3	0	0.9	0.9	116	3	3	3361701	0	3	3	99.49	0	0	NA
-V9XD4P_1	LAC3-16T	Mexico: Culiacan	Solanum lycopersicum	Cliente	Cliente	Clavibacter michiganensis	NA	NA	99.145523	98.3	98.3	0	0.9	0.9	116	4	4	3490294	0	3	3	99.49	0	0	NA
-V9XD4P_2	LAC3-19T	Mexico: Culiacan	Solanum lycopersicum	Cliente	Cliente	Clavibacter michiganensis	NA	NA	99.153503	98.3	98.3	0	0.9	0.9	116	4	4	3490294	0	3	3	99.49	0	0	NA
-V9XD4P_3	LCE2-22T	Mexico: Elota	Solanum lycopersicum	Cliente	Cliente	Clavibacter michiganensis	NA	NA	99.153076	98.3	98.3	0	0.9	0.9	116	4	4	3490293	0	3	3	99.49	0	0	NA
-V9XD4P_4	LCE3-24T	Mexico: Elota	Solanum lycopersicum	Cliente	Cliente	Clavibacter michiganensis	NA	NA	99.135925	98.3	98.3	0	0.9	0.9	116	4	4	3402834	0	3	3	99.49	0	0	NA
-V9XD4P_7	SIN24	Mexico: Sinaloa	Solanum lycopersicum	Cliente	Cliente	Clavibacter michiganensis	NA	NA	99.106049	98.3	98.3	0	0.9	0.9	116	4	4	3435025	0	3	3	99.49	0	0	NA

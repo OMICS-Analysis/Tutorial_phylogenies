@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Tree object handling | OMICs Analysis - Phylogeny training</title>
+  <meta name="description" content="Recetas principales para la graficación de filogenias" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Tree object handling | OMICs Analysis - Phylogeny training" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Recetas principales para la graficación de filogenias" />
+  <meta name="github-repo" content="OMICS-Analysis/Tutorial_phylogenies" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Tree object handling | OMICs Analysis - Phylogeny training" />
+  
+  <meta name="twitter:description" content="Recetas principales para la graficación de filogenias" />
+  
+
+<meta name="author" content="OMICs Analysis" />
+
+
+<meta name="date" content="2026-07-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ggtree1.html"/>
+<link rel="next" href="heats.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Phylogenies tutorial</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="newick.html"><a href="newick.html"><i class="fa fa-check"></i><b>2</b> Newick Format</a></li>
+<li class="chapter" data-level="3" data-path="ggtree1.html"><a href="ggtree1.html"><i class="fa fa-check"></i><b>3</b> Main ggtree functions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggtree1.html"><a href="ggtree1.html#prerequisites"><i class="fa fa-check"></i><b>3.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="3.2" data-path="ggtree1.html"><a href="ggtree1.html#loading-a-phylogenetic-tree"><i class="fa fa-check"></i><b>3.2</b> Loading a Phylogenetic Tree</a></li>
+<li class="chapter" data-level="3.3" data-path="ggtree1.html"><a href="ggtree1.html#basic-tree-visualization"><i class="fa fa-check"></i><b>3.3</b> Basic Tree Visualization</a></li>
+<li class="chapter" data-level="3.4" data-path="ggtree1.html"><a href="ggtree1.html#tree-layouts"><i class="fa fa-check"></i><b>3.4</b> Tree Layouts</a></li>
+<li class="chapter" data-level="3.5" data-path="ggtree1.html"><a href="ggtree1.html#annotating-trees"><i class="fa fa-check"></i><b>3.5</b> Annotating Trees</a></li>
+<li class="chapter" data-level="3.6" data-path="ggtree1.html"><a href="ggtree1.html#adding-metadata"><i class="fa fa-check"></i><b>3.6</b> Adding Metadata</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="treeobject.html"><a href="treeobject.html"><i class="fa fa-check"></i><b>4</b> Tree object handling</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="treeobject.html"><a href="treeobject.html#phylo-objects"><i class="fa fa-check"></i><b>4.1</b> <code>phylo</code> objects</a></li>
+<li class="chapter" data-level="4.2" data-path="treeobject.html"><a href="treeobject.html#tibbles-and-tidytree-objects"><i class="fa fa-check"></i><b>4.2</b> tibbles and tidytree objects</a></li>
+<li class="chapter" data-level="4.3" data-path="treeobject.html"><a href="treeobject.html#ggtree-objects"><i class="fa fa-check"></i><b>4.3</b> ggtree objects</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="heats.html"><a href="heats.html"><i class="fa fa-check"></i><b>5</b> Adding Heatmaps</a></li>
+<li class="chapter" data-level="6" data-path="customrecipes.html"><a href="customrecipes.html"><i class="fa fa-check"></i><b>6</b> ggtree Custom Recipes</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="customrecipes.html"><a href="customrecipes.html#section"><i class="fa fa-check"></i><b>6.1</b> </a></li>
+<li class="chapter" data-level="6.2" data-path="customrecipes.html"><a href="customrecipes.html#circular-layout-visualization"><i class="fa fa-check"></i><b>6.2</b> Circular Layout Visualization</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="customrecipes.html"><a href="customrecipes.html#highlighting-clades-in-circular-trees"><i class="fa fa-check"></i><b>6.2.1</b> Highlighting Clades in Circular Trees</a></li>
+<li class="chapter" data-level="6.2.2" data-path="customrecipes.html"><a href="customrecipes.html#adding-heatmaps-to-circular-trees"><i class="fa fa-check"></i><b>6.2.2</b> Adding Heatmaps to Circular Trees</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="customrecipes.html"><a href="customrecipes.html#styling-trees-with-advanced-themes"><i class="fa fa-check"></i><b>6.3</b> Styling Trees with Advanced Themes</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="customrecipes.html"><a href="customrecipes.html#customizing-themes-for-trees"><i class="fa fa-check"></i><b>6.3.1</b> Customizing Themes for Trees</a></li>
+<li class="chapter" data-level="6.3.2" data-path="customrecipes.html"><a href="customrecipes.html#adding-multiple-aesthetic-layers"><i class="fa fa-check"></i><b>6.3.2</b> Adding Multiple Aesthetic Layers</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="customrecipes.html"><a href="customrecipes.html#combining-trees-with-ggnewscale"><i class="fa fa-check"></i><b>6.4</b> Combining Trees with ggnewscale</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">OMICs Analysis - Phylogeny training</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="treeobject" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Tree object handling<a href="treeobject.html#treeobject" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Trees exist as objects of various forms in R before they are printed to a
+visual form. These objects allow us to modify tree data in different ways
+to enrich and improve visualization.</p>
+<div id="phylo-objects" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> <code>phylo</code> objects<a href="treeobject.html#phylo-objects" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Trees are initially imported from Newick files by <code>read.newick</code> as <code>phylo</code>
+objects. These are simple objects which outline tree nodes, edges, and
+their labels making them easily accessible.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="treeobject.html#cb34-1" tabindex="-1"></a><span class="fu">library</span>(treeio)</span>
+<span id="cb34-2"><a href="treeobject.html#cb34-2" tabindex="-1"></a>tree0<span class="ot">=</span><span class="fu">read.newick</span>(<span class="st">&quot;data/example_phylo_Cmi.nwk&quot;</span>)</span>
+<span id="cb34-3"><a href="treeobject.html#cb34-3" tabindex="-1"></a><span class="fu">class</span>(tree0) <span class="co"># simple phylo tree</span></span></code></pre></div>
+<pre><code>## [1] &quot;phylo&quot;</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="treeobject.html#cb36-1" tabindex="-1"></a><span class="fu">print</span>(tree0) <span class="co"># simple summary</span></span></code></pre></div>
+<pre><code>## 
+## Phylogenetic tree with 136 tips and 134 internal nodes.
+## 
+## Tip labels:
+##   GCA_033376255.1, GCA_032917875.1, GCA_030521005.1, GCA_030520985.1, GCA_030521045.1, GCA_030521015.1, ...
+## Node labels:
+##   , 0.997758, 0.942927, 1.000000, 0.904709, 1.000000, ...
+## 
+## Unrooted; includes branch length(s).</code></pre>
+<p>You can find the following information in a tree object</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="treeobject.html#cb38-1" tabindex="-1"></a><span class="fu">names</span>(tree0)</span></code></pre></div>
+<pre><code>## [1] &quot;edge&quot;        &quot;edge.length&quot; &quot;Nnode&quot;       &quot;node.label&quot;  &quot;tip.label&quot;</code></pre>
+<p><code>tip.label</code> has the leaf names.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="treeobject.html#cb40-1" tabindex="-1"></a><span class="fu">head</span>(tree0<span class="sc">$</span>tip.label)</span></code></pre></div>
+<pre><code>## [1] &quot;GCA_033376255.1&quot; &quot;GCA_032917875.1&quot; &quot;GCA_030521005.1&quot; &quot;GCA_030520985.1&quot;
+## [5] &quot;GCA_030521045.1&quot; &quot;GCA_030521015.1&quot;</code></pre>
+<p><code>node.label</code> has the tags in the nodes from the Newick file. In the case of RAxML outputs, these tags are the bootstrap support values.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="treeobject.html#cb42-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(tree0<span class="sc">$</span>node.label))</span></code></pre></div>
+<pre><code>## [1] &quot;&quot;         &quot;0.997758&quot; &quot;0.942927&quot; &quot;1.000000&quot; &quot;0.904709&quot; &quot;1.000000&quot;</code></pre>
+<p><code>edge</code> links leaves and inner nodes to build the tree.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="treeobject.html#cb44-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(tree0<span class="sc">$</span>edge))</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]  137  138
+## [2,]  138    1
+## [3,]  138    2
+## [4,]  137  139
+## [5,]  139  140
+## [6,]  140  141</code></pre>
+<p><code>edge.length</code> holds the lengths of the edges according to the phylogenetic
+calculations from RAxML. The edges are counted starting from the number
+of leaves + 1.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="treeobject.html#cb46-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(tree0<span class="sc">$</span>edge.length))</span></code></pre></div>
+<pre><code>## [1] 0.000005 0.000205 0.000004 0.000001 0.000010 0.000001</code></pre>
+<p>The advantage of the <code>phylo</code> object is that its contents are easy to
+modify:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="treeobject.html#cb48-1" tabindex="-1"></a>tree0a<span class="ot">&lt;-</span>tree0</span>
+<span id="cb48-2"><a href="treeobject.html#cb48-2" tabindex="-1"></a>xtip<span class="ot">&lt;-</span><span class="fu">which</span>(tree0a<span class="sc">$</span>tip.label<span class="sc">==</span><span class="st">&quot;GCF_021952865.1&quot;</span>)</span>
+<span id="cb48-3"><a href="treeobject.html#cb48-3" tabindex="-1"></a>tree0a<span class="sc">$</span>tip.label[xtip]<span class="ot">=</span><span class="st">&quot;changed&quot;</span></span>
+<span id="cb48-4"><a href="treeobject.html#cb48-4" tabindex="-1"></a><span class="fu">plot</span>(tree0a)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-24-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="treeobject.html#cb49-1" tabindex="-1"></a><span class="fu">rm</span>(tree0a)</span></code></pre></div>
+</div>
+<div id="tibbles-and-tidytree-objects" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> tibbles and tidytree objects<a href="treeobject.html#tibbles-and-tidytree-objects" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The downside of <code>phylo</code> objects is that they are not easy to enrich with
+needed annotations. A good way to cover this is <code>tidytree</code> objects, which
+seamlessly merge all data and make them easily accessible for routines
+downstream. <code>tidytree</code> objects, though, are S4 objects which have more
+rigid encapsulation.
+Building <code>tidytree</code> objects from <code>phylo</code> objects can become cumbersome
+using regular data manipulation routines. Fortunately, tibble functions
+make this construction much easier.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="treeobject.html#cb50-1" tabindex="-1"></a>treetib<span class="ot">&lt;-</span><span class="fu">as_tibble</span>(tree0)</span>
+<span id="cb50-2"><a href="treeobject.html#cb50-2" tabindex="-1"></a><span class="fu">class</span>(treetib)</span></code></pre></div>
+<pre><code>## [1] &quot;tbl_tree&quot;   &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="treeobject.html#cb52-1" tabindex="-1"></a><span class="fu">print</span>(treetib)</span></code></pre></div>
+<pre><code>## # A tbl_tree abstraction: 270 × 4
+## # which can be converted to treedata or phylo 
+## # via as.treedata or as.phylo
+##    parent  node branch.length label          
+##     &lt;int&gt; &lt;int&gt;         &lt;dbl&gt; &lt;chr&gt;          
+##  1    138     1      0.000205 GCA_033376255.1
+##  2    138     2      0.000004 GCA_032917875.1
+##  3    142     3      0.000002 GCA_030521005.1
+##  4    142     4      0.000002 GCA_030520985.1
+##  5    141     5      0.000008 GCA_030521045.1
+##  6    140     6      0.000012 GCA_030521015.1
+##  7    145     7      0.00185  GCA_044004465.1
+##  8    147     8      0.00149  GCA_044029445.1
+##  9    148     9      0.000001 GCA_030521115.1
+## 10    149    10      0.000001 GCA_030521105.1
+## # ℹ 260 more rows</code></pre>
+<p>This makes it easy to add metadata. We will use some annotations as example. Remember that metadata labels must be in the same order as tip labels.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="treeobject.html#cb54-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb54-2"><a href="treeobject.html#cb54-2" tabindex="-1"></a><span class="co"># Charge metadata and keep relevant columns</span></span>
+<span id="cb54-3"><a href="treeobject.html#cb54-3" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">&quot;data/Experiment_Design_example_1.tsv&quot;</span>)</span>
+<span id="cb54-4"><a href="treeobject.html#cb54-4" tabindex="-1"></a>metadata<span class="ot">&lt;-</span>metadata <span class="sc">%&gt;%</span> <span class="fu">select</span>(Assembly.Accession,Strain,</span>
+<span id="cb54-5"><a href="treeobject.html#cb54-5" tabindex="-1"></a>                              Location,Source,Organism)</span>
+<span id="cb54-6"><a href="treeobject.html#cb54-6" tabindex="-1"></a><span class="co">#Reorder to match phylo tree object</span></span>
+<span id="cb54-7"><a href="treeobject.html#cb54-7" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> metadata <span class="sc">%&gt;%</span></span>
+<span id="cb54-8"><a href="treeobject.html#cb54-8" tabindex="-1"></a>  <span class="fu">filter</span>(Assembly.Accession <span class="sc">%in%</span> tree0<span class="sc">$</span>tip.label) <span class="sc">%&gt;%</span></span>
+<span id="cb54-9"><a href="treeobject.html#cb54-9" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">match</span>(Assembly.Accession, tree0<span class="sc">$</span>tip.label))</span>
+<span id="cb54-10"><a href="treeobject.html#cb54-10" tabindex="-1"></a></span>
+<span id="cb54-11"><a href="treeobject.html#cb54-11" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(metadata))</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 5
+##   Assembly.Accession Strain  Location           Source Organism                 
+##   &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;              &lt;chr&gt;  &lt;chr&gt;                    
+## 1 GCA_033376255.1    MX10-E4 Mexico: Guanajuato &lt;NA&gt;   Clavibacter michiganensi…
+## 2 GCA_032917875.1    MX11-E8 Mexico: Guanajuato &lt;NA&gt;   Clavibacter michiganensi…
+## 3 GCA_030521005.1    C47     Israel             &lt;NA&gt;   Clavibacter michiganensis
+## 4 GCA_030520985.1    C48     Israel             &lt;NA&gt;   Clavibacter michiganensis
+## 5 GCA_030521045.1    C44     Israel             &lt;NA&gt;   Clavibacter michiganensis
+## 6 GCA_030521015.1    C46     Israel             &lt;NA&gt;   Clavibacter michiganensis</code></pre>
+</div>
+<div id="ggtree-objects" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> ggtree objects<a href="treeobject.html#ggtree-objects" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>ggplot2</code> produces graphs, and <code>ggtree</code> is built on top to specialize in plotting trees. However, to generate the plots <code>ggplot2</code> creates objects
+which specify plot properties. These objects can be handled in several
+ways to create more detailed plots.</p>
+<p>We creatte a ggtree plot object</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="treeobject.html#cb56-1" tabindex="-1"></a><span class="fu">library</span>(ggtree)</span>
+<span id="cb56-2"><a href="treeobject.html#cb56-2" tabindex="-1"></a>plo<span class="ot">&lt;-</span><span class="fu">ggtree</span>(tree0)</span>
+<span id="cb56-3"><a href="treeobject.html#cb56-3" tabindex="-1"></a><span class="fu">class</span>(plo)</span></code></pre></div>
+<pre><code>## [1] &quot;ggtree&quot;          &quot;ggplot2::ggplot&quot; &quot;ggplot&quot;          &quot;ggplot2::gg&quot;    
+## [5] &quot;S7_object&quot;       &quot;gg&quot;</code></pre>
+<p>And plot it</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="treeobject.html#cb58-1" tabindex="-1"></a>plo</span></code></pre></div>
+<p><img src="_main_files/figure-html/cmi_phylo_naked-1.png" alt="" width="672" /></p>
+<p>ggplot’s added methods operate on the object</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="treeobject.html#cb59-1" tabindex="-1"></a>plo0<span class="ot">&lt;-</span>plo <span class="sc">+</span></span>
+<span id="cb59-2"><a href="treeobject.html#cb59-2" tabindex="-1"></a>      <span class="fu">geom_nodelab</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">breaks=</span><span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb59-3"><a href="treeobject.html#cb59-3" tabindex="-1"></a>      <span class="fu">geom_tiplab</span>(<span class="fu">aes</span>(<span class="at">label=</span>label),<span class="at">fontface=</span><span class="dv">2</span>)</span>
+<span id="cb59-4"><a href="treeobject.html#cb59-4" tabindex="-1"></a></span>
+<span id="cb59-5"><a href="treeobject.html#cb59-5" tabindex="-1"></a><span class="fu">print</span>(plo<span class="sc">$</span>layers) <span class="co"># original object</span></span></code></pre></div>
+<pre><code>## $stat_tree
+## mapping: node = ~node, parent = ~parent, x = ~x, y = ~y 
+## geom_segment: lineend = round, na.rm = TRUE, arrow = NULL
+## stat_tree_horizontal: layout = rectangular, lineend = round, na.rm = TRUE, rootnode = TRUE, continuous = none
+## position_identity 
+## 
+## $stat_tree...2
+## mapping: node = ~node, parent = ~parent, x = ~x, y = ~y 
+## geom_segment: lineend = round, na.rm = TRUE
+## stat_tree_vertical: layout = rectangular, lineend = round, na.rm = TRUE, rootnode = TRUE, continuous = none
+## position_identity</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="treeobject.html#cb61-1" tabindex="-1"></a><span class="fu">print</span>(plo0<span class="sc">$</span>layers) <span class="co"># new object has added information</span></span></code></pre></div>
+<pre><code>## $stat_tree
+## mapping: node = ~node, parent = ~parent, x = ~x, y = ~y 
+## geom_segment: lineend = round, na.rm = TRUE, arrow = NULL
+## stat_tree_horizontal: layout = rectangular, lineend = round, na.rm = TRUE, rootnode = TRUE, continuous = none
+## position_identity 
+## 
+## $stat_tree...2
+## mapping: node = ~node, parent = ~parent, x = ~x, y = ~y 
+## geom_segment: lineend = round, na.rm = TRUE
+## stat_tree_vertical: layout = rectangular, lineend = round, na.rm = TRUE, rootnode = TRUE, continuous = none
+## position_identity 
+## 
+## $label_geom
+## mapping: x = ~x + diff(range(x, na.rm = TRUE))/200, y = ~y, label = ~label, node = ~node, subset = ~!isTip 
+## geom_text_g_gtree: parse = FALSE, check_overlap = FALSE, na.rm = TRUE
+## stat_tree_label: na.rm = TRUE
+## position_nudge 
+## 
+## $label_geom...4
+## mapping: x = ~x + diff(range(x, na.rm = TRUE))/200, y = ~y, label = ~label, node = ~node, subset = ~isTip 
+## geom_text_g_gtree: parse = FALSE, check_overlap = FALSE, na.rm = TRUE
+## stat_tree_label: na.rm = TRUE
+## position_nudge</code></pre>
+<p>Another way is to use the <code>cowplot</code> library to print the plot as a grid of several objects. This comes useful to create complex plots and legends in
+the cases in which <code>ggplot</code> makes this difficult.</p>
+<p>Lets create a custom coloring scheme for our phylogeny</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="treeobject.html#cb63-1" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb63-2"><a href="treeobject.html#cb63-2" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb63-3"><a href="treeobject.html#cb63-3" tabindex="-1"></a></span>
+<span id="cb63-4"><a href="treeobject.html#cb63-4" tabindex="-1"></a>metadata<span class="sc">$</span>Organism<span class="ot">&lt;-</span><span class="fu">as.factor</span>(metadata<span class="sc">$</span>Organism)</span>
+<span id="cb63-5"><a href="treeobject.html#cb63-5" tabindex="-1"></a>metadata<span class="sc">$</span>Source<span class="ot">&lt;-</span><span class="fu">as.factor</span>(metadata<span class="sc">$</span>Source)</span>
+<span id="cb63-6"><a href="treeobject.html#cb63-6" tabindex="-1"></a></span>
+<span id="cb63-7"><a href="treeobject.html#cb63-7" tabindex="-1"></a>colrs<span class="ot">=</span><span class="fu">c</span>(<span class="fu">brewer.pal</span>(<span class="fu">length</span>(<span class="fu">levels</span>(metadata<span class="sc">$</span>Organism)),<span class="st">&quot;Paired&quot;</span>),</span>
+<span id="cb63-8"><a href="treeobject.html#cb63-8" tabindex="-1"></a>        <span class="st">&quot;palegreen&quot;</span>,<span class="st">&quot;chartreuse4&quot;</span>)</span>
+<span id="cb63-9"><a href="treeobject.html#cb63-9" tabindex="-1"></a></span>
+<span id="cb63-10"><a href="treeobject.html#cb63-10" tabindex="-1"></a><span class="fu">names</span>(colrs)<span class="ot">=</span><span class="fu">c</span>(<span class="fu">levels</span>(metadata<span class="sc">$</span>Organism),<span class="fu">levels</span>(metadata<span class="sc">$</span>Source))</span>
+<span id="cb63-11"><a href="treeobject.html#cb63-11" tabindex="-1"></a>colrs</span></code></pre></div>
+<pre><code>##                     Clavibacter californiensis 
+##                                      &quot;#A6CEE3&quot; 
+##                            Clavibacter capsici 
+##                                      &quot;#1F78B4&quot; 
+##                        Clavibacter lycopersici 
+##                                      &quot;#B2DF8A&quot; 
+##                      Clavibacter michiganensis 
+##                                      &quot;#33A02C&quot; 
+## Clavibacter michiganensis subsp. michiganensis 
+##                                      &quot;#FB9A99&quot; 
+##            Clavibacter nebraskensis NCPPB 2581 
+##                                      &quot;#E31A1C&quot; 
+##                           Clavibacter phaseoli 
+##                                      &quot;#FDBF6F&quot; 
+##                        Clavibacter sepedonicus 
+##                                      &quot;#FF7F00&quot; 
+##                     Clavibacter zhangzhiyongii 
+##                                      &quot;#CAB2D6&quot; 
+##                                      Reference 
+##                                    &quot;palegreen&quot; 
+##                                           &lt;NA&gt; 
+##                                  &quot;chartreuse4&quot;</code></pre>
+<p>Create a data frame for coloring</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="treeobject.html#cb65-1" tabindex="-1"></a>annot<span class="ot">&lt;-</span>metadata <span class="sc">%&gt;%</span> <span class="fu">select</span>(Organism,Source)</span>
+<span id="cb65-2"><a href="treeobject.html#cb65-2" tabindex="-1"></a><span class="fu">rownames</span>(annot)<span class="ot">&lt;-</span>metadata<span class="sc">$</span>Assembly.Accession</span></code></pre></div>
+<p>POR FAVOR AYÚDENME AQUÍ, NO LOGRO QUE ME SALGA ESTA RECETA
+DE FILOGENIA CON HEATMAPS!! El data frame annot cambió con respecto
+al código original que creo que es de D</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="treeobject.html#cb66-1" tabindex="-1"></a>plo1<span class="ot">&lt;-</span><span class="fu">gheatmap</span>(plo0,annot[,<span class="dv">1</span>,<span class="at">drop=</span>F]) <span class="sc">+</span> </span>
+<span id="cb66-2"><a href="treeobject.html#cb66-2" tabindex="-1"></a>             <span class="fu">scale_color_manual</span>(annot<span class="sc">$</span>Organism,<span class="at">values=</span>colrs) <span class="sc">+</span> </span>
+<span id="cb66-3"><a href="treeobject.html#cb66-3" tabindex="-1"></a>             <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;right&quot;</span>)</span>
+<span id="cb66-4"><a href="treeobject.html#cb66-4" tabindex="-1"></a>plo1</span>
+<span id="cb66-5"><a href="treeobject.html#cb66-5" tabindex="-1"></a></span>
+<span id="cb66-6"><a href="treeobject.html#cb66-6" tabindex="-1"></a></span>
+<span id="cb66-7"><a href="treeobject.html#cb66-7" tabindex="-1"></a>leg1<span class="ot">=</span><span class="fu">get_legend</span>(plo1)</span>
+<span id="cb66-8"><a href="treeobject.html#cb66-8" tabindex="-1"></a></span>
+<span id="cb66-9"><a href="treeobject.html#cb66-9" tabindex="-1"></a>plo2<span class="ot">=</span><span class="fu">gheatmap</span>(plo0,annot[,<span class="st">&quot;Host&quot;</span>,<span class="at">drop=</span>F]) <span class="sc">+</span> </span>
+<span id="cb66-10"><a href="treeobject.html#cb66-10" tabindex="-1"></a>              <span class="fu">scale_color_manual</span>(<span class="st">&quot;Host&quot;</span>,<span class="at">values=</span>colrs) <span class="sc">+</span> </span>
+<span id="cb66-11"><a href="treeobject.html#cb66-11" tabindex="-1"></a>              <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;right&quot;</span>)</span>
+<span id="cb66-12"><a href="treeobject.html#cb66-12" tabindex="-1"></a>leg2<span class="ot">=</span><span class="fu">get_legend</span>(plo2)</span>
+<span id="cb66-13"><a href="treeobject.html#cb66-13" tabindex="-1"></a></span>
+<span id="cb66-14"><a href="treeobject.html#cb66-14" tabindex="-1"></a>plo3<span class="ot">=</span><span class="fu">gheatmap</span>(plo0,annot) <span class="sc">+</span> </span>
+<span id="cb66-15"><a href="treeobject.html#cb66-15" tabindex="-1"></a>     <span class="fu">scale_color_manual</span>(<span class="at">values=</span>colrs) <span class="sc">+</span> </span>
+<span id="cb66-16"><a href="treeobject.html#cb66-16" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>)</span>
+<span id="cb66-17"><a href="treeobject.html#cb66-17" tabindex="-1"></a></span>
+<span id="cb66-18"><a href="treeobject.html#cb66-18" tabindex="-1"></a>all_leg<span class="ot">=</span><span class="fu">plot_grid</span>(<span class="cn">NULL</span>,leg1,leg2,<span class="cn">NULL</span>,<span class="at">nrow=</span><span class="dv">1</span>,<span class="at">ncol=</span><span class="dv">4</span>,</span>
+<span id="cb66-19"><a href="treeobject.html#cb66-19" tabindex="-1"></a>                  <span class="at">rel_widths=</span><span class="fu">c</span>(<span class="fl">0.25</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="fl">0.25</span>))</span>
+<span id="cb66-20"><a href="treeobject.html#cb66-20" tabindex="-1"></a><span class="fu">plot_grid</span>(plo3,all_leg,<span class="at">nrow=</span><span class="dv">2</span>,<span class="at">ncol=</span><span class="dv">1</span>,</span>
+<span id="cb66-21"><a href="treeobject.html#cb66-21" tabindex="-1"></a>          <span class="at">rel_heights=</span><span class="fu">c</span>(<span class="fl">1.3</span>,<span class="fl">0.15</span>))</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ggtree1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="heats.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/OMICS-Analysis/Tutorial_phylogenies/tree/main/docs/03-tree_object_handling.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

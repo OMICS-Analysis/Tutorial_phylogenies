@@ -8,6 +8,10 @@ basic-tree-visualization
 tree-layouts
 annotating-trees
 adding-metadata
+treeobject
+phylo-objects
+tibbles-and-tidytree-objects
+ggtree-objects
 heats
 customrecipes
 section

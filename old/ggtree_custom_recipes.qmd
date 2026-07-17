@@ -1,3 +1,9 @@
+---
+title: "ggtree_custom_recipes"
+format: pdf
+editor: visual
+---
+
 # `ggtree` Custom Recipes
 
 We will load a phylogenetic tree in Newick format for demonstration.
