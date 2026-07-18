@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Adding Heatmaps | OMICs Analysis - Phylogeny training</title>
+  <title>Chapter 5 Adding Heatmaps | Case study: Clavibacter</title>
   <meta name="description" content="Recetas principales para la graficación de filogenias" />
   <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Adding Heatmaps | OMICs Analysis - Phylogeny training" />
+  <meta property="og:title" content="Chapter 5 Adding Heatmaps | Case study: Clavibacter" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Recetas principales para la graficación de filogenias" />
   <meta name="github-repo" content="OMICS-Analysis/Tutorial_phylogenies" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Adding Heatmaps | OMICs Analysis - Phylogeny training" />
+  <meta name="twitter:title" content="Chapter 5 Adding Heatmaps | Case study: Clavibacter" />
   
   <meta name="twitter:description" content="Recetas principales para la graficación de filogenias" />
   
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="treeobject.html"/>
+<link rel="prev" href="ggtree1.html"/>
 <link rel="next" href="customrecipes.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -143,36 +143,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="newick.html"><a href="newick.html"><i class="fa fa-check"></i><b>2</b> Newick Format</a></li>
-<li class="chapter" data-level="3" data-path="ggtree1.html"><a href="ggtree1.html"><i class="fa fa-check"></i><b>3</b> Main ggtree functions</a>
+<li class="chapter" data-level="3" data-path="treeobject.html"><a href="treeobject.html"><i class="fa fa-check"></i><b>3</b> phylo objects in R</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="ggtree1.html"><a href="ggtree1.html#prerequisites"><i class="fa fa-check"></i><b>3.1</b> Prerequisites</a></li>
-<li class="chapter" data-level="3.2" data-path="ggtree1.html"><a href="ggtree1.html#loading-a-phylogenetic-tree"><i class="fa fa-check"></i><b>3.2</b> Loading a Phylogenetic Tree</a></li>
-<li class="chapter" data-level="3.3" data-path="ggtree1.html"><a href="ggtree1.html#basic-tree-visualization"><i class="fa fa-check"></i><b>3.3</b> Basic Tree Visualization</a></li>
-<li class="chapter" data-level="3.4" data-path="ggtree1.html"><a href="ggtree1.html#tree-layouts"><i class="fa fa-check"></i><b>3.4</b> Tree Layouts</a></li>
-<li class="chapter" data-level="3.5" data-path="ggtree1.html"><a href="ggtree1.html#annotating-trees"><i class="fa fa-check"></i><b>3.5</b> Annotating Trees</a></li>
-<li class="chapter" data-level="3.6" data-path="ggtree1.html"><a href="ggtree1.html#adding-metadata"><i class="fa fa-check"></i><b>3.6</b> Adding Metadata</a></li>
+<li class="chapter" data-level="3.1" data-path="treeobject.html"><a href="treeobject.html#structure"><i class="fa fa-check"></i><b>3.1</b> Structure</a></li>
+<li class="chapter" data-level="3.2" data-path="treeobject.html"><a href="treeobject.html#basic-manipulation"><i class="fa fa-check"></i><b>3.2</b> Basic manipulation</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="treeobject.html"><a href="treeobject.html#cut-a-branch"><i class="fa fa-check"></i><b>3.2.1</b> Cut a branch</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="treeobject.html"><a href="treeobject.html"><i class="fa fa-check"></i><b>4</b> Tree object handling</a>
+<li class="chapter" data-level="3.3" data-path="treeobject.html"><a href="treeobject.html#biological-annotations"><i class="fa fa-check"></i><b>3.3</b> Biological annotations</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="treeobject.html"><a href="treeobject.html#phylo-objects"><i class="fa fa-check"></i><b>4.1</b> <code>phylo</code> objects</a></li>
-<li class="chapter" data-level="4.2" data-path="treeobject.html"><a href="treeobject.html#tibbles-and-tidytree-objects"><i class="fa fa-check"></i><b>4.2</b> tibbles and tidytree objects</a></li>
-<li class="chapter" data-level="4.3" data-path="treeobject.html"><a href="treeobject.html#ggtree-objects"><i class="fa fa-check"></i><b>4.3</b> ggtree objects</a></li>
+<li class="chapter" data-level="3.3.1" data-path="treeobject.html"><a href="treeobject.html#phylo-to-tidytree"><i class="fa fa-check"></i><b>3.3.1</b> phylo to tidytree</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ggtree1.html"><a href="ggtree1.html"><i class="fa fa-check"></i><b>4</b> Main ggtree functions</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ggtree1.html"><a href="ggtree1.html#prerequisites"><i class="fa fa-check"></i><b>4.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="4.2" data-path="ggtree1.html"><a href="ggtree1.html#loading-a-phylogenetic-tree"><i class="fa fa-check"></i><b>4.2</b> Loading a Phylogenetic Tree</a></li>
+<li class="chapter" data-level="4.3" data-path="ggtree1.html"><a href="ggtree1.html#basic-tree-visualization"><i class="fa fa-check"></i><b>4.3</b> Basic Tree Visualization</a></li>
+<li class="chapter" data-level="4.4" data-path="ggtree1.html"><a href="ggtree1.html#tree-layouts"><i class="fa fa-check"></i><b>4.4</b> Tree Layouts</a></li>
+<li class="chapter" data-level="4.5" data-path="ggtree1.html"><a href="ggtree1.html#annotating-trees"><i class="fa fa-check"></i><b>4.5</b> Annotating Trees</a></li>
+<li class="chapter" data-level="4.6" data-path="ggtree1.html"><a href="ggtree1.html#adding-metadata"><i class="fa fa-check"></i><b>4.6</b> Adding Metadata</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="heats.html"><a href="heats.html"><i class="fa fa-check"></i><b>5</b> Adding Heatmaps</a></li>
 <li class="chapter" data-level="6" data-path="customrecipes.html"><a href="customrecipes.html"><i class="fa fa-check"></i><b>6</b> ggtree Custom Recipes</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="customrecipes.html"><a href="customrecipes.html#section"><i class="fa fa-check"></i><b>6.1</b> </a></li>
-<li class="chapter" data-level="6.2" data-path="customrecipes.html"><a href="customrecipes.html#circular-layout-visualization"><i class="fa fa-check"></i><b>6.2</b> Circular Layout Visualization</a>
+<li class="chapter" data-level="6.1" data-path="customrecipes.html"><a href="customrecipes.html#circular-layout-visualization"><i class="fa fa-check"></i><b>6.1</b> Circular Layout Visualization</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="customrecipes.html"><a href="customrecipes.html#highlighting-clades-in-circular-trees"><i class="fa fa-check"></i><b>6.2.1</b> Highlighting Clades in Circular Trees</a></li>
-<li class="chapter" data-level="6.2.2" data-path="customrecipes.html"><a href="customrecipes.html#adding-heatmaps-to-circular-trees"><i class="fa fa-check"></i><b>6.2.2</b> Adding Heatmaps to Circular Trees</a></li>
+<li class="chapter" data-level="6.1.1" data-path="customrecipes.html"><a href="customrecipes.html#highlighting-clades-in-circular-trees"><i class="fa fa-check"></i><b>6.1.1</b> Highlighting Clades in Circular Trees</a></li>
 </ul></li>
+<li class="chapter" data-level="6.2" data-path="customrecipes.html"><a href="customrecipes.html#adding-heatmaps-to-circular-trees"><i class="fa fa-check"></i><b>6.2</b> Adding Heatmaps to Circular Trees</a></li>
 <li class="chapter" data-level="6.3" data-path="customrecipes.html"><a href="customrecipes.html#styling-trees-with-advanced-themes"><i class="fa fa-check"></i><b>6.3</b> Styling Trees with Advanced Themes</a>
 <ul>
 <li class="chapter" data-level="6.3.1" data-path="customrecipes.html"><a href="customrecipes.html#customizing-themes-for-trees"><i class="fa fa-check"></i><b>6.3.1</b> Customizing Themes for Trees</a></li>
 <li class="chapter" data-level="6.3.2" data-path="customrecipes.html"><a href="customrecipes.html#adding-multiple-aesthetic-layers"><i class="fa fa-check"></i><b>6.3.2</b> Adding Multiple Aesthetic Layers</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="customrecipes.html"><a href="customrecipes.html#combining-trees-with-ggnewscale"><i class="fa fa-check"></i><b>6.4</b> Combining Trees with ggnewscale</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html"><i class="fa fa-check"></i><b>7</b> <code>treeio</code> tutorial</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#purpose"><i class="fa fa-check"></i><b>7.1</b> Purpose</a></li>
+<li class="chapter" data-level="7.2" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#install"><i class="fa fa-check"></i><b>7.2</b> Install</a></li>
+<li class="chapter" data-level="7.3" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#tree-handling"><i class="fa fa-check"></i><b>7.3</b> Tree Handling</a></li>
+<li class="chapter" data-level="7.4" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#advantages"><i class="fa fa-check"></i><b>7.4</b> Advantages</a></li>
+<li class="chapter" data-level="7.5" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#prepare-session"><i class="fa fa-check"></i><b>7.5</b> Prepare session:</a></li>
+<li class="chapter" data-level="7.6" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#prepare-metadata"><i class="fa fa-check"></i><b>7.6</b> Prepare metadata</a></li>
+<li class="chapter" data-level="7.7" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#graph"><i class="fa fa-check"></i><b>7.7</b> Graph</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -186,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">OMICs Analysis - Phylogeny training</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Case study: Clavibacter</a>
           </h1>
         </div>
 
@@ -197,34 +212,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="heats" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Adding Heatmaps<a href="heats.html#heats" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>We will use these libraries</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="heats.html#cb67-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
-<span id="cb67-2"><a href="heats.html#cb67-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggtree&quot;</span>)</span>
-<span id="cb67-3"><a href="heats.html#cb67-3" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;readr&quot;</span>)</span>
-<span id="cb67-4"><a href="heats.html#cb67-4" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="heats.html#cb61-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb61-2"><a href="heats.html#cb61-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggtree&quot;</span>)</span>
+<span id="cb61-3"><a href="heats.html#cb61-3" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;readr&quot;</span>)</span>
+<span id="cb61-4"><a href="heats.html#cb61-4" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
 <p>And load our tree and our clade metadata</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="heats.html#cb68-1" tabindex="-1"></a><span class="co"># Tree</span></span>
-<span id="cb68-2"><a href="heats.html#cb68-2" tabindex="-1"></a>tr<span class="ot">&lt;-</span><span class="fu">read.tree</span>(<span class="st">&quot;data/example_2_phylo.nwk&quot;</span>)</span>
-<span id="cb68-3"><a href="heats.html#cb68-3" tabindex="-1"></a></span>
-<span id="cb68-4"><a href="heats.html#cb68-4" tabindex="-1"></a><span class="co"># Metadata</span></span>
-<span id="cb68-5"><a href="heats.html#cb68-5" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">&quot;data/Experiment_Design_example_2.tsv&quot;</span>)</span>
-<span id="cb68-6"><a href="heats.html#cb68-6" tabindex="-1"></a><span class="co"># keeping only the relevant columns</span></span>
-<span id="cb68-7"><a href="heats.html#cb68-7" tabindex="-1"></a>design<span class="ot">&lt;-</span>design <span class="sc">%&gt;%</span>  <span class="fu">select</span>(Assembly.Accession,Strain,</span>
-<span id="cb68-8"><a href="heats.html#cb68-8" tabindex="-1"></a>         Phylogroup,Patotype,Geographic.location,source)</span>
-<span id="cb68-9"><a href="heats.html#cb68-9" tabindex="-1"></a></span>
-<span id="cb68-10"><a href="heats.html#cb68-10" tabindex="-1"></a><span class="co">#Make design must follow same order than tree tips</span></span>
-<span id="cb68-11"><a href="heats.html#cb68-11" tabindex="-1"></a><span class="co">#In this case: same order of Assembly Accessions GCF_0020201...</span></span>
-<span id="cb68-12"><a href="heats.html#cb68-12" tabindex="-1"></a>design <span class="ot">&lt;-</span> design <span class="sc">%&gt;%</span></span>
-<span id="cb68-13"><a href="heats.html#cb68-13" tabindex="-1"></a>  <span class="fu">filter</span>(Assembly.Accession <span class="sc">%in%</span> tr<span class="sc">$</span>tip.label) <span class="sc">%&gt;%</span></span>
-<span id="cb68-14"><a href="heats.html#cb68-14" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">match</span>(Assembly.Accession, tr<span class="sc">$</span>tip.label))</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="heats.html#cb62-1" tabindex="-1"></a><span class="co"># Tree</span></span>
+<span id="cb62-2"><a href="heats.html#cb62-2" tabindex="-1"></a>tr<span class="ot">&lt;-</span><span class="fu">read.tree</span>(<span class="st">&quot;data/example_2_phylo.nwk&quot;</span>)</span>
+<span id="cb62-3"><a href="heats.html#cb62-3" tabindex="-1"></a></span>
+<span id="cb62-4"><a href="heats.html#cb62-4" tabindex="-1"></a><span class="co"># Metadata</span></span>
+<span id="cb62-5"><a href="heats.html#cb62-5" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">&quot;data/Experiment_Design_example_2.tsv&quot;</span>)</span>
+<span id="cb62-6"><a href="heats.html#cb62-6" tabindex="-1"></a><span class="co"># keeping only the relevant columns</span></span>
+<span id="cb62-7"><a href="heats.html#cb62-7" tabindex="-1"></a>design<span class="ot">&lt;-</span>design <span class="sc">%&gt;%</span>  <span class="fu">select</span>(Assembly.Accession,Strain,</span>
+<span id="cb62-8"><a href="heats.html#cb62-8" tabindex="-1"></a>         Phylogroup,Patotype,Geographic.location,source)</span>
+<span id="cb62-9"><a href="heats.html#cb62-9" tabindex="-1"></a></span>
+<span id="cb62-10"><a href="heats.html#cb62-10" tabindex="-1"></a><span class="co">#Make design must follow same order than tree tips</span></span>
+<span id="cb62-11"><a href="heats.html#cb62-11" tabindex="-1"></a><span class="co">#In this case: same order of Assembly Accessions GCF_0020201...</span></span>
+<span id="cb62-12"><a href="heats.html#cb62-12" tabindex="-1"></a>design <span class="ot">&lt;-</span> design <span class="sc">%&gt;%</span></span>
+<span id="cb62-13"><a href="heats.html#cb62-13" tabindex="-1"></a>  <span class="fu">filter</span>(Assembly.Accession <span class="sc">%in%</span> tr<span class="sc">$</span>tip.label) <span class="sc">%&gt;%</span></span>
+<span id="cb62-14"><a href="heats.html#cb62-14" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">match</span>(Assembly.Accession, tr<span class="sc">$</span>tip.label))</span></code></pre></div>
 <p>Use design to create a data frame with heatmap data. The rownames
 must of this data frame must be the tree tip labels (Assembly Accessions in this case)</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="heats.html#cb69-1" tabindex="-1"></a>heat_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Patotype =</span> <span class="fu">as.factor</span>(design<span class="sc">$</span>Patotype))</span>
-<span id="cb69-2"><a href="heats.html#cb69-2" tabindex="-1"></a><span class="fu">rownames</span>(heat_data) <span class="ot">&lt;-</span>design<span class="sc">$</span>Assembly.Accession</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="heats.html#cb63-1" tabindex="-1"></a>heat_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Patotype =</span> <span class="fu">as.factor</span>(design<span class="sc">$</span>Patotype))</span>
+<span id="cb63-2"><a href="heats.html#cb63-2" tabindex="-1"></a><span class="fu">rownames</span>(heat_data) <span class="ot">&lt;-</span>design<span class="sc">$</span>Assembly.Accession</span></code></pre></div>
 <p>Create a ggtree object and add the metadata</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="heats.html#cb70-1" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">ggtree</span>(tr) <span class="sc">%&lt;+%</span> design</span>
-<span id="cb70-2"><a href="heats.html#cb70-2" tabindex="-1"></a>p<span class="ot">&lt;-</span>p <span class="sc">+</span> <span class="fu">geom_tiplab</span>(<span class="fu">aes</span>(<span class="at">label =</span> Strain),<span class="at">size=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="heats.html#cb64-1" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">ggtree</span>(tr) <span class="sc">%&lt;+%</span> design</span>
+<span id="cb64-2"><a href="heats.html#cb64-2" tabindex="-1"></a>p<span class="ot">&lt;-</span>p <span class="sc">+</span> <span class="fu">geom_tiplab</span>(<span class="fu">aes</span>(<span class="at">label =</span> Strain),<span class="at">size=</span><span class="dv">2</span>)</span></code></pre></div>
 <p>Now we can use gheatmap to plot a tree with heatmap</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="heats.html#cb71-1" tabindex="-1"></a><span class="fu">gheatmap</span>(p, heat_data, <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">width=</span><span class="fl">0.05</span>, <span class="at">colnames=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="heats.html#cb65-1" tabindex="-1"></a><span class="fu">gheatmap</span>(p, heat_data, <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">width=</span><span class="fl">0.05</span>, <span class="at">colnames=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/treeheat-1.png" alt="" width="672" /></p>
 
 </div>
@@ -233,7 +248,7 @@ must of this data frame must be the tree tip labels (Assembly Accessions in this
           </div>
         </div>
       </div>
-<a href="treeobject.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ggtree1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="customrecipes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

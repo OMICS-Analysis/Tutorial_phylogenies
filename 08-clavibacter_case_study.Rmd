@@ -6,7 +6,7 @@ editor: visual
 
 ## Prepare session:
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
 library(ggtree)
 library(treeio)
 library(tidyverse)
@@ -14,7 +14,7 @@ library(tidyverse)
 
 ```{r}
 # Load a tree file
-tree <- read.newick("Cmi_cut_reroot.nwk")
+tree <- read.newick("data/example_phylo_Cmi.nwk")
 tree$node.label <- round(as.numeric(tree$node.label), digits = 3)
 #Convert tree information to tibble
 treetib<-as_tibble(tree)
@@ -22,10 +22,10 @@ treetib<-as_tibble(tree)
 
 ## Prepare metadata
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
 
 # Cargar metadata
-metadata <- readr::read_tsv("Experiment_Design_example_1.tsv")
+metadata <- readr::read_tsv("data/Experiment_Design_Cmi.tsv")
 
 metadata <- metadata %>%
   rename(label = Assembly.Accession)  # Para coincidir con etiquetas del árbol
@@ -58,7 +58,7 @@ country_colors <- RColorBrewer::brewer.pal(n = min(length(unique(matrix_heatmap$
 
 ## Graph
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
 
 library(phytools)
 # reroot

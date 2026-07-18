@@ -1,75 +1,3 @@
-# Tree object handling {#treeobject}
-
-Trees exist as objects of various forms in R before they are printed to a
-visual form. These objects allow us to modify tree data in different ways
-to enrich and improve visualization.
-
-## `phylo` objects
-Trees are initially imported from Newick files by `read.newick` as `phylo`
-objects. These are simple objects which outline tree nodes, edges, and
-their labels making them easily accessible.
-
-```{r, warning=FALSE, message=FALSE}
-library(treeio)
-tree0=read.newick("data/example_phylo_Cmi.nwk")
-class(tree0) # simple phylo tree
-print(tree0) # simple summary
-```
-
-You can find the following information in a tree object
-```{r, warning=FALSE, message=FALSE}
-names(tree0)
-```
-
-`tip.label` has the leaf names.
-```{r, warning=FALSE, message=FALSE}
-head(tree0$tip.label)
-```
-
-`node.label` has the tags in the nodes from the Newick file. In the case of RAxML outputs, these tags are the bootstrap support values.
-
-```{r, warning=FALSE, message=FALSE}
-print(head(tree0$node.label))
-```
-
-`edge` links leaves and inner nodes to build the tree.
-```{r, warning=FALSE, message=FALSE}
-print(head(tree0$edge))
-```
-
-`edge.length` holds the lengths of the edges according to the phylogenetic
- calculations from RAxML. The edges are counted starting from the number
-of leaves + 1.
-```{r, warning=FALSE, message=FALSE}
-print(head(tree0$edge.length))
-```
-
-The advantage of the `phylo` object is that its contents are easy to
-modify:
-```{r, warning=FALSE, message=FALSE}
-tree0a<-tree0
-xtip<-which(tree0a$tip.label=="GCF_021952865.1")
-tree0a$tip.label[xtip]="changed"
-plot(tree0a)
-rm(tree0a)
-```
-## tibbles and tidytree objects
-The downside of `phylo` objects is that they are not easy to enrich with
-needed annotations. A good way to cover this is `tidytree` objects, which
-seamlessly merge all data and make them easily accessible for routines 
-downstream. `tidytree` objects, though, are S4 objects which have more
-rigid encapsulation.
-Building `tidytree` objects from `phylo` objects can become cumbersome
-using regular data manipulation routines. Fortunately, tibble functions
-make this construction much easier.
-
-```{r, warning=FALSE, message=FALSE}
-treetib<-as_tibble(tree0)
-class(treetib)
-print(treetib)
-```
-
-This makes it easy to add metadata. We will use some annotations as example. Remember that metadata labels must be in the same order as tip labels.
 ```{r message=FALSE, warning=FALSE}
 library(dplyr)
 # Charge metadata and keep relevant columns
@@ -105,6 +33,7 @@ plo
 
 
 ggplot's added methods operate on the object
+
 ```{r, warning=FALSE, message=FALSE}
 plo0<-plo +
       geom_nodelab(color="black",breaks=NA) +

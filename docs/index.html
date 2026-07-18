@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>OMICs Analysis - Phylogeny training</title>
+  <title>Case study: Clavibacter</title>
   <meta name="description" content="Recetas principales para la graficación de filogenias" />
   <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="OMICs Analysis - Phylogeny training" />
+  <meta property="og:title" content="Case study: Clavibacter" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Recetas principales para la graficación de filogenias" />
   <meta name="github-repo" content="OMICS-Analysis/Tutorial_phylogenies" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="OMICs Analysis - Phylogeny training" />
+  <meta name="twitter:title" content="Case study: Clavibacter" />
   
   <meta name="twitter:description" content="Recetas principales para la graficación de filogenias" />
   
@@ -143,36 +143,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="newick.html"><a href="newick.html"><i class="fa fa-check"></i><b>2</b> Newick Format</a></li>
-<li class="chapter" data-level="3" data-path="ggtree1.html"><a href="ggtree1.html"><i class="fa fa-check"></i><b>3</b> Main ggtree functions</a>
+<li class="chapter" data-level="3" data-path="treeobject.html"><a href="treeobject.html"><i class="fa fa-check"></i><b>3</b> phylo objects in R</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="ggtree1.html"><a href="ggtree1.html#prerequisites"><i class="fa fa-check"></i><b>3.1</b> Prerequisites</a></li>
-<li class="chapter" data-level="3.2" data-path="ggtree1.html"><a href="ggtree1.html#loading-a-phylogenetic-tree"><i class="fa fa-check"></i><b>3.2</b> Loading a Phylogenetic Tree</a></li>
-<li class="chapter" data-level="3.3" data-path="ggtree1.html"><a href="ggtree1.html#basic-tree-visualization"><i class="fa fa-check"></i><b>3.3</b> Basic Tree Visualization</a></li>
-<li class="chapter" data-level="3.4" data-path="ggtree1.html"><a href="ggtree1.html#tree-layouts"><i class="fa fa-check"></i><b>3.4</b> Tree Layouts</a></li>
-<li class="chapter" data-level="3.5" data-path="ggtree1.html"><a href="ggtree1.html#annotating-trees"><i class="fa fa-check"></i><b>3.5</b> Annotating Trees</a></li>
-<li class="chapter" data-level="3.6" data-path="ggtree1.html"><a href="ggtree1.html#adding-metadata"><i class="fa fa-check"></i><b>3.6</b> Adding Metadata</a></li>
+<li class="chapter" data-level="3.1" data-path="treeobject.html"><a href="treeobject.html#structure"><i class="fa fa-check"></i><b>3.1</b> Structure</a></li>
+<li class="chapter" data-level="3.2" data-path="treeobject.html"><a href="treeobject.html#basic-manipulation"><i class="fa fa-check"></i><b>3.2</b> Basic manipulation</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="treeobject.html"><a href="treeobject.html#cut-a-branch"><i class="fa fa-check"></i><b>3.2.1</b> Cut a branch</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="treeobject.html"><a href="treeobject.html"><i class="fa fa-check"></i><b>4</b> Tree object handling</a>
+<li class="chapter" data-level="3.3" data-path="treeobject.html"><a href="treeobject.html#biological-annotations"><i class="fa fa-check"></i><b>3.3</b> Biological annotations</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="treeobject.html"><a href="treeobject.html#phylo-objects"><i class="fa fa-check"></i><b>4.1</b> <code>phylo</code> objects</a></li>
-<li class="chapter" data-level="4.2" data-path="treeobject.html"><a href="treeobject.html#tibbles-and-tidytree-objects"><i class="fa fa-check"></i><b>4.2</b> tibbles and tidytree objects</a></li>
-<li class="chapter" data-level="4.3" data-path="treeobject.html"><a href="treeobject.html#ggtree-objects"><i class="fa fa-check"></i><b>4.3</b> ggtree objects</a></li>
+<li class="chapter" data-level="3.3.1" data-path="treeobject.html"><a href="treeobject.html#phylo-to-tidytree"><i class="fa fa-check"></i><b>3.3.1</b> phylo to tidytree</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ggtree1.html"><a href="ggtree1.html"><i class="fa fa-check"></i><b>4</b> Main ggtree functions</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ggtree1.html"><a href="ggtree1.html#prerequisites"><i class="fa fa-check"></i><b>4.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="4.2" data-path="ggtree1.html"><a href="ggtree1.html#loading-a-phylogenetic-tree"><i class="fa fa-check"></i><b>4.2</b> Loading a Phylogenetic Tree</a></li>
+<li class="chapter" data-level="4.3" data-path="ggtree1.html"><a href="ggtree1.html#basic-tree-visualization"><i class="fa fa-check"></i><b>4.3</b> Basic Tree Visualization</a></li>
+<li class="chapter" data-level="4.4" data-path="ggtree1.html"><a href="ggtree1.html#tree-layouts"><i class="fa fa-check"></i><b>4.4</b> Tree Layouts</a></li>
+<li class="chapter" data-level="4.5" data-path="ggtree1.html"><a href="ggtree1.html#annotating-trees"><i class="fa fa-check"></i><b>4.5</b> Annotating Trees</a></li>
+<li class="chapter" data-level="4.6" data-path="ggtree1.html"><a href="ggtree1.html#adding-metadata"><i class="fa fa-check"></i><b>4.6</b> Adding Metadata</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="heats.html"><a href="heats.html"><i class="fa fa-check"></i><b>5</b> Adding Heatmaps</a></li>
 <li class="chapter" data-level="6" data-path="customrecipes.html"><a href="customrecipes.html"><i class="fa fa-check"></i><b>6</b> ggtree Custom Recipes</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="customrecipes.html"><a href="customrecipes.html#section"><i class="fa fa-check"></i><b>6.1</b> </a></li>
-<li class="chapter" data-level="6.2" data-path="customrecipes.html"><a href="customrecipes.html#circular-layout-visualization"><i class="fa fa-check"></i><b>6.2</b> Circular Layout Visualization</a>
+<li class="chapter" data-level="6.1" data-path="customrecipes.html"><a href="customrecipes.html#circular-layout-visualization"><i class="fa fa-check"></i><b>6.1</b> Circular Layout Visualization</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="customrecipes.html"><a href="customrecipes.html#highlighting-clades-in-circular-trees"><i class="fa fa-check"></i><b>6.2.1</b> Highlighting Clades in Circular Trees</a></li>
-<li class="chapter" data-level="6.2.2" data-path="customrecipes.html"><a href="customrecipes.html#adding-heatmaps-to-circular-trees"><i class="fa fa-check"></i><b>6.2.2</b> Adding Heatmaps to Circular Trees</a></li>
+<li class="chapter" data-level="6.1.1" data-path="customrecipes.html"><a href="customrecipes.html#highlighting-clades-in-circular-trees"><i class="fa fa-check"></i><b>6.1.1</b> Highlighting Clades in Circular Trees</a></li>
 </ul></li>
+<li class="chapter" data-level="6.2" data-path="customrecipes.html"><a href="customrecipes.html#adding-heatmaps-to-circular-trees"><i class="fa fa-check"></i><b>6.2</b> Adding Heatmaps to Circular Trees</a></li>
 <li class="chapter" data-level="6.3" data-path="customrecipes.html"><a href="customrecipes.html#styling-trees-with-advanced-themes"><i class="fa fa-check"></i><b>6.3</b> Styling Trees with Advanced Themes</a>
 <ul>
 <li class="chapter" data-level="6.3.1" data-path="customrecipes.html"><a href="customrecipes.html#customizing-themes-for-trees"><i class="fa fa-check"></i><b>6.3.1</b> Customizing Themes for Trees</a></li>
 <li class="chapter" data-level="6.3.2" data-path="customrecipes.html"><a href="customrecipes.html#adding-multiple-aesthetic-layers"><i class="fa fa-check"></i><b>6.3.2</b> Adding Multiple Aesthetic Layers</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="customrecipes.html"><a href="customrecipes.html#combining-trees-with-ggnewscale"><i class="fa fa-check"></i><b>6.4</b> Combining Trees with ggnewscale</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html"><i class="fa fa-check"></i><b>7</b> <code>treeio</code> tutorial</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#purpose"><i class="fa fa-check"></i><b>7.1</b> Purpose</a></li>
+<li class="chapter" data-level="7.2" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#install"><i class="fa fa-check"></i><b>7.2</b> Install</a></li>
+<li class="chapter" data-level="7.3" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#tree-handling"><i class="fa fa-check"></i><b>7.3</b> Tree Handling</a></li>
+<li class="chapter" data-level="7.4" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#advantages"><i class="fa fa-check"></i><b>7.4</b> Advantages</a></li>
+<li class="chapter" data-level="7.5" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#prepare-session"><i class="fa fa-check"></i><b>7.5</b> Prepare session:</a></li>
+<li class="chapter" data-level="7.6" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#prepare-metadata"><i class="fa fa-check"></i><b>7.6</b> Prepare metadata</a></li>
+<li class="chapter" data-level="7.7" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#graph"><i class="fa fa-check"></i><b>7.7</b> Graph</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -186,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">OMICs Analysis - Phylogeny training</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Case study: Clavibacter</a>
           </h1>
         </div>
 
@@ -195,7 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">OMICs Analysis - Phylogeny training</h1>
+<h1 class="title">Case study: Clavibacter</h1>
 <p class="author"><em>OMICs Analysis</em></p>
 <p class="date"><em>2026-07-17</em></p>
 </div>

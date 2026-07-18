@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 treeio tutorial | Case study: Clavibacter</title>
+  <meta name="description" content="Recetas principales para la graficación de filogenias" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 treeio tutorial | Case study: Clavibacter" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Recetas principales para la graficación de filogenias" />
+  <meta name="github-repo" content="OMICS-Analysis/Tutorial_phylogenies" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 treeio tutorial | Case study: Clavibacter" />
+  
+  <meta name="twitter:description" content="Recetas principales para la graficación de filogenias" />
+  
+
+<meta name="author" content="OMICs Analysis" />
+
+
+<meta name="date" content="2026-07-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="customrecipes.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Phylogenies tutorial</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="newick.html"><a href="newick.html"><i class="fa fa-check"></i><b>2</b> Newick Format</a></li>
+<li class="chapter" data-level="3" data-path="treeobject.html"><a href="treeobject.html"><i class="fa fa-check"></i><b>3</b> phylo objects in R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="treeobject.html"><a href="treeobject.html#structure"><i class="fa fa-check"></i><b>3.1</b> Structure</a></li>
+<li class="chapter" data-level="3.2" data-path="treeobject.html"><a href="treeobject.html#basic-manipulation"><i class="fa fa-check"></i><b>3.2</b> Basic manipulation</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="treeobject.html"><a href="treeobject.html#cut-a-branch"><i class="fa fa-check"></i><b>3.2.1</b> Cut a branch</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="treeobject.html"><a href="treeobject.html#biological-annotations"><i class="fa fa-check"></i><b>3.3</b> Biological annotations</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="treeobject.html"><a href="treeobject.html#phylo-to-tidytree"><i class="fa fa-check"></i><b>3.3.1</b> phylo to tidytree</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ggtree1.html"><a href="ggtree1.html"><i class="fa fa-check"></i><b>4</b> Main ggtree functions</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ggtree1.html"><a href="ggtree1.html#prerequisites"><i class="fa fa-check"></i><b>4.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="4.2" data-path="ggtree1.html"><a href="ggtree1.html#loading-a-phylogenetic-tree"><i class="fa fa-check"></i><b>4.2</b> Loading a Phylogenetic Tree</a></li>
+<li class="chapter" data-level="4.3" data-path="ggtree1.html"><a href="ggtree1.html#basic-tree-visualization"><i class="fa fa-check"></i><b>4.3</b> Basic Tree Visualization</a></li>
+<li class="chapter" data-level="4.4" data-path="ggtree1.html"><a href="ggtree1.html#tree-layouts"><i class="fa fa-check"></i><b>4.4</b> Tree Layouts</a></li>
+<li class="chapter" data-level="4.5" data-path="ggtree1.html"><a href="ggtree1.html#annotating-trees"><i class="fa fa-check"></i><b>4.5</b> Annotating Trees</a></li>
+<li class="chapter" data-level="4.6" data-path="ggtree1.html"><a href="ggtree1.html#adding-metadata"><i class="fa fa-check"></i><b>4.6</b> Adding Metadata</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="heats.html"><a href="heats.html"><i class="fa fa-check"></i><b>5</b> Adding Heatmaps</a></li>
+<li class="chapter" data-level="6" data-path="customrecipes.html"><a href="customrecipes.html"><i class="fa fa-check"></i><b>6</b> ggtree Custom Recipes</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="customrecipes.html"><a href="customrecipes.html#circular-layout-visualization"><i class="fa fa-check"></i><b>6.1</b> Circular Layout Visualization</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="customrecipes.html"><a href="customrecipes.html#highlighting-clades-in-circular-trees"><i class="fa fa-check"></i><b>6.1.1</b> Highlighting Clades in Circular Trees</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="customrecipes.html"><a href="customrecipes.html#adding-heatmaps-to-circular-trees"><i class="fa fa-check"></i><b>6.2</b> Adding Heatmaps to Circular Trees</a></li>
+<li class="chapter" data-level="6.3" data-path="customrecipes.html"><a href="customrecipes.html#styling-trees-with-advanced-themes"><i class="fa fa-check"></i><b>6.3</b> Styling Trees with Advanced Themes</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="customrecipes.html"><a href="customrecipes.html#customizing-themes-for-trees"><i class="fa fa-check"></i><b>6.3.1</b> Customizing Themes for Trees</a></li>
+<li class="chapter" data-level="6.3.2" data-path="customrecipes.html"><a href="customrecipes.html#adding-multiple-aesthetic-layers"><i class="fa fa-check"></i><b>6.3.2</b> Adding Multiple Aesthetic Layers</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="customrecipes.html"><a href="customrecipes.html#combining-trees-with-ggnewscale"><i class="fa fa-check"></i><b>6.4</b> Combining Trees with ggnewscale</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html"><i class="fa fa-check"></i><b>7</b> <code>treeio</code> tutorial</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#purpose"><i class="fa fa-check"></i><b>7.1</b> Purpose</a></li>
+<li class="chapter" data-level="7.2" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#install"><i class="fa fa-check"></i><b>7.2</b> Install</a></li>
+<li class="chapter" data-level="7.3" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#tree-handling"><i class="fa fa-check"></i><b>7.3</b> Tree Handling</a></li>
+<li class="chapter" data-level="7.4" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#advantages"><i class="fa fa-check"></i><b>7.4</b> Advantages</a></li>
+<li class="chapter" data-level="7.5" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#prepare-session"><i class="fa fa-check"></i><b>7.5</b> Prepare session:</a></li>
+<li class="chapter" data-level="7.6" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#prepare-metadata"><i class="fa fa-check"></i><b>7.6</b> Prepare metadata</a></li>
+<li class="chapter" data-level="7.7" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#graph"><i class="fa fa-check"></i><b>7.7</b> Graph</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Case study: Clavibacter</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="treeio-tutorial" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> <code>treeio</code> tutorial<a href="treeio-tutorial.html#treeio-tutorial" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Sources:</p>
+<ul>
+<li><a href="https://www.r-bloggers.com/2018/05/treeio-phylogenetic-data-integration/"><code>treeio</code>: Phylogenetic data integration</a> (<a href="https://ropensci.org/blog/2018/05/17/treeio/">original</a>)</li>
+</ul>
+<div id="purpose" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Purpose<a href="treeio-tutorial.html#purpose" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Using <code>treeio</code> allows us to enrich phylogenetic trees with data on the leaves which are not directly related to the tree (as would be data like distances and support values).</p>
+</div>
+<div id="install" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Install<a href="treeio-tutorial.html#install" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>From BioConductoR install, just do:</p>
+<pre><code>BiocManager::install(&quot;treeio&quot;)</code></pre>
+<p>or on the light version:</p>
+<pre><code>biocLite::install(&quot;treeio&quot;)</code></pre>
+</div>
+<div id="tree-handling" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Tree Handling<a href="treeio-tutorial.html#tree-handling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s call the library:</p>
+<pre><code>library(treeio)</code></pre>
+<p><code>RAxML-ng</code> outputs Newick trees, so let’s stick to that:</p>
+<pre><code>tree0=read.newick(&quot;example_phylo.nwk&quot;)
+class(tree0) # simple phylo tree
+print(tree0) # simple summary</code></pre>
+<p>Now we can get the metadata file, choose data, and include. Let’s prepare the metadata:</p>
+<pre><code>Design=read.table(&quot;Experiment_Design_example_1.tsv&quot;,sep=&quot;\t&quot;,header=T)
+colnames(Design)
+rownames(Design)=Design$Assembly.Accession</code></pre>
+<p>Now we pick relevant data and compact them into a single table. For this example, we fill gradually by variable type:</p>
+<pre><code>chrs=c(&quot;Strain&quot;)
+fcts=c(&quot;Organism&quot;,&quot;Host&quot;,&quot;Assembly_level&quot;)
+nums=c(&quot;Count_gene_total&quot;,&quot;ANI&quot;,&quot;BUSCO_Scaffold_N50_.MB.&quot;,&quot;BUSCO_Contigs_N50_.MB.&quot;,&quot;CheckM_Completeness&quot;)
+
+x=data.frame(label=tree0$tip.label)
+for(i in fcts) {
+    x[,i]=rep(&quot;&quot;,length(x$label))
+    for(n in x$label){
+        x[which(x$label==n),i]=as.character(Design[n,i])
+    }
+    x[,i]=as_factor(x[,i])
+}
+for(i in chrs) {
+    x[,i]=rep(&quot;&quot;,length(x$label))
+    for(n in x$label){
+        x[which(x$label==n),i]=as.character(Design[n,i])
+    }
+}
+for(i in nums) {
+    x[,i]=rep(0,length(x$label))
+    for(n in x$label){
+        x[which(x$label==n),i]=Design[n,i]
+    }
+    x[,i]=as.numeric(x[,i])
+}</code></pre>
+<p>Now we simply add the metadata to the tree using <code>treeio</code>’s <code>full_join()</code> function. This also changes the type of object to one that reflects the association:</p>
+<pre><code>tree1=full_join(tree0,x,by=&quot;label&quot;)
+class(tree1) # treedata with attributes (the table)
+print(tree1) # summary + tibble with data</code></pre>
+</div>
+<div id="advantages" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Advantages<a href="treeio-tutorial.html#advantages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The main advantage of using <code>treeio</code> to add metadata is that we can now take the table’s variables and reference them by name in <code>ggtree</code>. This simplifies the process of handling them as part of the tree object:</p>
+<pre><code>library(ggtree)
+library(RColorBrewer)
+
+wd=20
+ht=40
+
+plo=ggtree(tree1) +
+    geom_nodelab(size=ht*0.05,color=&quot;black&quot;,breaks=NA) +
+    geom_tiplab(aes(label=label),size=ht*0.05,fontface=2) +
+    geom_tippoint(aes(color=Organism)) +
+    scale_color_manual(&quot;Organism&quot;,
+                       values=brewer.pal(length(levels(x$Organism)),&quot;Paired&quot;)
+                      ) +
+    theme(legend.title=element_text(size=ht*0.3),
+          legend.text=element_text(size=ht*0.25),
+          legend.position=&quot;bottom&quot;)
+
+pdf(&quot;example_phylo_w_orgs.pdf&quot;,width=wd,height=ht)
+print(plo)
+dev.off()</code></pre>
+
+</div>
+<div id="prepare-session" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Prepare session:<a href="treeio-tutorial.html#prepare-session" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="treeio-tutorial.html#cb82-1" tabindex="-1"></a><span class="fu">library</span>(ggtree)</span>
+<span id="cb82-2"><a href="treeio-tutorial.html#cb82-2" tabindex="-1"></a><span class="fu">library</span>(treeio)</span>
+<span id="cb82-3"><a href="treeio-tutorial.html#cb82-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="treeio-tutorial.html#cb83-1" tabindex="-1"></a><span class="co"># Load a tree file</span></span>
+<span id="cb83-2"><a href="treeio-tutorial.html#cb83-2" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">read.newick</span>(<span class="st">&quot;data/example_phylo_Cmi.nwk&quot;</span>)</span>
+<span id="cb83-3"><a href="treeio-tutorial.html#cb83-3" tabindex="-1"></a>tree<span class="sc">$</span>node.label <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">as.numeric</span>(tree<span class="sc">$</span>node.label), <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb83-4"><a href="treeio-tutorial.html#cb83-4" tabindex="-1"></a><span class="co">#Convert tree information to tibble</span></span>
+<span id="cb83-5"><a href="treeio-tutorial.html#cb83-5" tabindex="-1"></a>treetib<span class="ot">&lt;-</span><span class="fu">as_tibble</span>(tree)</span></code></pre></div>
+</div>
+<div id="prepare-metadata" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Prepare metadata<a href="treeio-tutorial.html#prepare-metadata" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="treeio-tutorial.html#cb84-1" tabindex="-1"></a><span class="co"># Cargar metadata</span></span>
+<span id="cb84-2"><a href="treeio-tutorial.html#cb84-2" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">&quot;data/Experiment_Design_Cmi.tsv&quot;</span>)</span>
+<span id="cb84-3"><a href="treeio-tutorial.html#cb84-3" tabindex="-1"></a></span>
+<span id="cb84-4"><a href="treeio-tutorial.html#cb84-4" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> metadata <span class="sc">%&gt;%</span></span>
+<span id="cb84-5"><a href="treeio-tutorial.html#cb84-5" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">label =</span> Assembly.Accession)  <span class="co"># Para coincidir con etiquetas del árbol</span></span>
+<span id="cb84-6"><a href="treeio-tutorial.html#cb84-6" tabindex="-1"></a></span>
+<span id="cb84-7"><a href="treeio-tutorial.html#cb84-7" tabindex="-1"></a><span class="co"># Unir metadata con etiquetas del árbol</span></span>
+<span id="cb84-8"><a href="treeio-tutorial.html#cb84-8" tabindex="-1"></a>treetib<span class="ot">&lt;-</span><span class="fu">left_join</span>(treetib, metadata, <span class="at">by =</span> <span class="st">&#39;label&#39;</span>)</span>
+<span id="cb84-9"><a href="treeio-tutorial.html#cb84-9" tabindex="-1"></a><span class="co"># Estos tibbles pueden ser convertidos nuevamente a arbol facilmante</span></span>
+<span id="cb84-10"><a href="treeio-tutorial.html#cb84-10" tabindex="-1"></a><span class="do">##Source: https://yulab-smu.top/treedata-book/chapter2.html</span></span>
+<span id="cb84-11"><a href="treeio-tutorial.html#cb84-11" tabindex="-1"></a>metadata_ordered <span class="ot">&lt;-</span> metadata <span class="sc">%&gt;%</span></span>
+<span id="cb84-12"><a href="treeio-tutorial.html#cb84-12" tabindex="-1"></a>  <span class="fu">filter</span>(label <span class="sc">%in%</span> tree<span class="sc">$</span>tip.label) <span class="sc">%&gt;%</span></span>
+<span id="cb84-13"><a href="treeio-tutorial.html#cb84-13" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">match</span>(label, tree<span class="sc">$</span>tip.label))</span>
+<span id="cb84-14"><a href="treeio-tutorial.html#cb84-14" tabindex="-1"></a></span>
+<span id="cb84-15"><a href="treeio-tutorial.html#cb84-15" tabindex="-1"></a></span>
+<span id="cb84-16"><a href="treeio-tutorial.html#cb84-16" tabindex="-1"></a>metadata_ordered <span class="ot">&lt;-</span> metadata_ordered[,<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>)]</span>
+<span id="cb84-17"><a href="treeio-tutorial.html#cb84-17" tabindex="-1"></a>tree<span class="sc">$</span>tip.label <span class="ot">&lt;-</span> metadata_ordered<span class="sc">$</span>Strain</span>
+<span id="cb84-18"><a href="treeio-tutorial.html#cb84-18" tabindex="-1"></a></span>
+<span id="cb84-19"><a href="treeio-tutorial.html#cb84-19" tabindex="-1"></a>matrix_heatmap <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(metadata_ordered <span class="sc">%&gt;%</span></span>
+<span id="cb84-20"><a href="treeio-tutorial.html#cb84-20" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Country =</span> <span class="fu">str_extract</span>(Location, <span class="st">&quot;^[^:]+&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb84-21"><a href="treeio-tutorial.html#cb84-21" tabindex="-1"></a>  <span class="fu">select</span>(Country))</span>
+<span id="cb84-22"><a href="treeio-tutorial.html#cb84-22" tabindex="-1"></a></span>
+<span id="cb84-23"><a href="treeio-tutorial.html#cb84-23" tabindex="-1"></a>metadata_ordered <span class="ot">&lt;-</span> metadata_ordered <span class="sc">%&gt;%</span></span>
+<span id="cb84-24"><a href="treeio-tutorial.html#cb84-24" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Country =</span> <span class="fu">str_extract</span>(Location, <span class="st">&quot;^[^:]+&quot;</span>))</span>
+<span id="cb84-25"><a href="treeio-tutorial.html#cb84-25" tabindex="-1"></a></span>
+<span id="cb84-26"><a href="treeio-tutorial.html#cb84-26" tabindex="-1"></a><span class="fu">rownames</span>(matrix_heatmap) <span class="ot">&lt;-</span> <span class="fu">make.unique</span>(metadata_ordered<span class="sc">$</span>Strain)</span>
+<span id="cb84-27"><a href="treeio-tutorial.html#cb84-27" tabindex="-1"></a><span class="fu">rownames</span>(metadata_ordered) <span class="ot">&lt;-</span> <span class="fu">make.unique</span>(metadata_ordered<span class="sc">$</span>Strain)</span>
+<span id="cb84-28"><a href="treeio-tutorial.html#cb84-28" tabindex="-1"></a></span>
+<span id="cb84-29"><a href="treeio-tutorial.html#cb84-29" tabindex="-1"></a>country_colors <span class="ot">&lt;-</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="at">n =</span> <span class="fu">min</span>(<span class="fu">length</span>(<span class="fu">unique</span>(matrix_heatmap<span class="sc">$</span>Country)), <span class="dv">30</span>), <span class="at">name =</span> <span class="st">&quot;Set1&quot;</span>)</span></code></pre></div>
+</div>
+<div id="graph" class="section level2 hasAnchor" number="7.7">
+<h2><span class="header-section-number">7.7</span> Graph<a href="treeio-tutorial.html#graph" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="treeio-tutorial.html#cb85-1" tabindex="-1"></a><span class="fu">library</span>(phytools)</span>
+<span id="cb85-2"><a href="treeio-tutorial.html#cb85-2" tabindex="-1"></a><span class="co"># reroot</span></span>
+<span id="cb85-3"><a href="treeio-tutorial.html#cb85-3" tabindex="-1"></a></span>
+<span id="cb85-4"><a href="treeio-tutorial.html#cb85-4" tabindex="-1"></a><span class="co"># Reenraizar en la hoja &quot;LeafName&quot;</span></span>
+<span id="cb85-5"><a href="treeio-tutorial.html#cb85-5" tabindex="-1"></a>tree_rerooted <span class="ot">&lt;-</span> <span class="fu">reroot</span>(tree, <span class="at">node =</span> <span class="fu">which</span>(tree<span class="sc">$</span>tip.label <span class="sc">==</span> <span class="st">&quot;DM1&quot;</span>))</span>
+<span id="cb85-6"><a href="treeio-tutorial.html#cb85-6" tabindex="-1"></a></span>
+<span id="cb85-7"><a href="treeio-tutorial.html#cb85-7" tabindex="-1"></a><span class="fu">ggtree</span>(tree_rerooted) <span class="sc">%&lt;+%</span> metadata_ordered <span class="sc">+</span> </span>
+<span id="cb85-8"><a href="treeio-tutorial.html#cb85-8" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="fu">aes</span>(<span class="at">label =</span> label))</span>
+<span id="cb85-9"><a href="treeio-tutorial.html#cb85-9" tabindex="-1"></a></span>
+<span id="cb85-10"><a href="treeio-tutorial.html#cb85-10" tabindex="-1"></a><span class="fu">ggtree</span>(tree_rerooted, <span class="at">ladderize =</span> <span class="cn">TRUE</span>, <span class="at">layout =</span> <span class="st">&quot;circular&quot;</span>) <span class="sc">%&lt;+%</span> metadata_ordered <span class="sc">+</span> </span>
+<span id="cb85-11"><a href="treeio-tutorial.html#cb85-11" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="fu">aes</span>(<span class="at">label =</span> label, <span class="at">angle =</span> angle),</span>
+<span id="cb85-12"><a href="treeio-tutorial.html#cb85-12" tabindex="-1"></a>              <span class="at">linesize =</span> .<span class="dv">1</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">offset =</span> .<span class="dv">01</span>) <span class="sc">+</span></span>
+<span id="cb85-13"><a href="treeio-tutorial.html#cb85-13" tabindex="-1"></a>  <span class="fu">geom_nodelab</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb85-14"><a href="treeio-tutorial.html#cb85-14" tabindex="-1"></a>  <span class="fu">geom_tippoint</span>(<span class="fu">aes</span>(<span class="at">color =</span> Country), <span class="at">size =</span> <span class="dv">8</span>, <span class="at">shape =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb85-15"><a href="treeio-tutorial.html#cb85-15" tabindex="-1"></a>  <span class="fu">geom_tippoint</span>(<span class="fu">aes</span>(<span class="at">shape =</span> Source), <span class="at">size =</span> <span class="dv">10</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb85-16"><a href="treeio-tutorial.html#cb85-16" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">8</span>, <span class="dv">18</span>)) <span class="sc">+</span></span>
+<span id="cb85-17"><a href="treeio-tutorial.html#cb85-17" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">shape =</span> <span class="st">&quot;Source&quot;</span>)</span>
+<span id="cb85-18"><a href="treeio-tutorial.html#cb85-18" tabindex="-1"></a></span>
+<span id="cb85-19"><a href="treeio-tutorial.html#cb85-19" tabindex="-1"></a><span class="co"># Generar el grafico</span></span>
+<span id="cb85-20"><a href="treeio-tutorial.html#cb85-20" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(tree_rerooted, <span class="at">ladderize =</span> <span class="cn">TRUE</span>, <span class="at">layout =</span> <span class="st">&quot;circular&quot;</span>) <span class="sc">%&lt;+%</span> metadata_ordered <span class="sc">+</span> </span>
+<span id="cb85-21"><a href="treeio-tutorial.html#cb85-21" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="fu">aes</span>(<span class="at">label =</span> label, <span class="at">angle =</span> angle), <span class="at">linesize=</span>.<span class="dv">1</span>, <span class="at">size =</span> <span class="dv">8</span>, <span class="at">align =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb85-22"><a href="treeio-tutorial.html#cb85-22" tabindex="-1"></a>              <span class="at">offset =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb85-23"><a href="treeio-tutorial.html#cb85-23" tabindex="-1"></a>  <span class="fu">geom_nodelab</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">nudge_x =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb85-24"><a href="treeio-tutorial.html#cb85-24" tabindex="-1"></a>  <span class="fu">geom_tippoint</span>(<span class="fu">aes</span>(<span class="at">color =</span> Country), <span class="at">size =</span> <span class="dv">8</span>, <span class="at">shape =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb85-25"><a href="treeio-tutorial.html#cb85-25" tabindex="-1"></a>  <span class="fu">geom_tippoint</span>(<span class="fu">aes</span>(<span class="at">shape =</span> Source), <span class="at">size =</span> <span class="dv">10</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb85-26"><a href="treeio-tutorial.html#cb85-26" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">8</span>, <span class="dv">18</span>)) <span class="sc">+</span></span>
+<span id="cb85-27"><a href="treeio-tutorial.html#cb85-27" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">shape =</span> <span class="st">&quot;Source&quot;</span>)</span>
+<span id="cb85-28"><a href="treeio-tutorial.html#cb85-28" tabindex="-1"></a><span class="co"># p4</span></span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="customrecipes.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/OMICS-Analysis/Tutorial_phylogenies/tree/main/docs/07-treeio.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Main ggtree functions | OMICs Analysis - Phylogeny training</title>
+  <title>Chapter 4 Main ggtree functions | Case study: Clavibacter</title>
   <meta name="description" content="Recetas principales para la graficación de filogenias" />
   <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Main ggtree functions | OMICs Analysis - Phylogeny training" />
+  <meta property="og:title" content="Chapter 4 Main ggtree functions | Case study: Clavibacter" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Recetas principales para la graficación de filogenias" />
   <meta name="github-repo" content="OMICS-Analysis/Tutorial_phylogenies" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Main ggtree functions | OMICs Analysis - Phylogeny training" />
+  <meta name="twitter:title" content="Chapter 4 Main ggtree functions | Case study: Clavibacter" />
   
   <meta name="twitter:description" content="Recetas principales para la graficación de filogenias" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="newick.html"/>
-<link rel="next" href="treeobject.html"/>
+<link rel="prev" href="treeobject.html"/>
+<link rel="next" href="heats.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -143,36 +143,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="newick.html"><a href="newick.html"><i class="fa fa-check"></i><b>2</b> Newick Format</a></li>
-<li class="chapter" data-level="3" data-path="ggtree1.html"><a href="ggtree1.html"><i class="fa fa-check"></i><b>3</b> Main ggtree functions</a>
+<li class="chapter" data-level="3" data-path="treeobject.html"><a href="treeobject.html"><i class="fa fa-check"></i><b>3</b> phylo objects in R</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="ggtree1.html"><a href="ggtree1.html#prerequisites"><i class="fa fa-check"></i><b>3.1</b> Prerequisites</a></li>
-<li class="chapter" data-level="3.2" data-path="ggtree1.html"><a href="ggtree1.html#loading-a-phylogenetic-tree"><i class="fa fa-check"></i><b>3.2</b> Loading a Phylogenetic Tree</a></li>
-<li class="chapter" data-level="3.3" data-path="ggtree1.html"><a href="ggtree1.html#basic-tree-visualization"><i class="fa fa-check"></i><b>3.3</b> Basic Tree Visualization</a></li>
-<li class="chapter" data-level="3.4" data-path="ggtree1.html"><a href="ggtree1.html#tree-layouts"><i class="fa fa-check"></i><b>3.4</b> Tree Layouts</a></li>
-<li class="chapter" data-level="3.5" data-path="ggtree1.html"><a href="ggtree1.html#annotating-trees"><i class="fa fa-check"></i><b>3.5</b> Annotating Trees</a></li>
-<li class="chapter" data-level="3.6" data-path="ggtree1.html"><a href="ggtree1.html#adding-metadata"><i class="fa fa-check"></i><b>3.6</b> Adding Metadata</a></li>
+<li class="chapter" data-level="3.1" data-path="treeobject.html"><a href="treeobject.html#structure"><i class="fa fa-check"></i><b>3.1</b> Structure</a></li>
+<li class="chapter" data-level="3.2" data-path="treeobject.html"><a href="treeobject.html#basic-manipulation"><i class="fa fa-check"></i><b>3.2</b> Basic manipulation</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="treeobject.html"><a href="treeobject.html#cut-a-branch"><i class="fa fa-check"></i><b>3.2.1</b> Cut a branch</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="treeobject.html"><a href="treeobject.html"><i class="fa fa-check"></i><b>4</b> Tree object handling</a>
+<li class="chapter" data-level="3.3" data-path="treeobject.html"><a href="treeobject.html#biological-annotations"><i class="fa fa-check"></i><b>3.3</b> Biological annotations</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="treeobject.html"><a href="treeobject.html#phylo-objects"><i class="fa fa-check"></i><b>4.1</b> <code>phylo</code> objects</a></li>
-<li class="chapter" data-level="4.2" data-path="treeobject.html"><a href="treeobject.html#tibbles-and-tidytree-objects"><i class="fa fa-check"></i><b>4.2</b> tibbles and tidytree objects</a></li>
-<li class="chapter" data-level="4.3" data-path="treeobject.html"><a href="treeobject.html#ggtree-objects"><i class="fa fa-check"></i><b>4.3</b> ggtree objects</a></li>
+<li class="chapter" data-level="3.3.1" data-path="treeobject.html"><a href="treeobject.html#phylo-to-tidytree"><i class="fa fa-check"></i><b>3.3.1</b> phylo to tidytree</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ggtree1.html"><a href="ggtree1.html"><i class="fa fa-check"></i><b>4</b> Main ggtree functions</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ggtree1.html"><a href="ggtree1.html#prerequisites"><i class="fa fa-check"></i><b>4.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="4.2" data-path="ggtree1.html"><a href="ggtree1.html#loading-a-phylogenetic-tree"><i class="fa fa-check"></i><b>4.2</b> Loading a Phylogenetic Tree</a></li>
+<li class="chapter" data-level="4.3" data-path="ggtree1.html"><a href="ggtree1.html#basic-tree-visualization"><i class="fa fa-check"></i><b>4.3</b> Basic Tree Visualization</a></li>
+<li class="chapter" data-level="4.4" data-path="ggtree1.html"><a href="ggtree1.html#tree-layouts"><i class="fa fa-check"></i><b>4.4</b> Tree Layouts</a></li>
+<li class="chapter" data-level="4.5" data-path="ggtree1.html"><a href="ggtree1.html#annotating-trees"><i class="fa fa-check"></i><b>4.5</b> Annotating Trees</a></li>
+<li class="chapter" data-level="4.6" data-path="ggtree1.html"><a href="ggtree1.html#adding-metadata"><i class="fa fa-check"></i><b>4.6</b> Adding Metadata</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="heats.html"><a href="heats.html"><i class="fa fa-check"></i><b>5</b> Adding Heatmaps</a></li>
 <li class="chapter" data-level="6" data-path="customrecipes.html"><a href="customrecipes.html"><i class="fa fa-check"></i><b>6</b> ggtree Custom Recipes</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="customrecipes.html"><a href="customrecipes.html#section"><i class="fa fa-check"></i><b>6.1</b> </a></li>
-<li class="chapter" data-level="6.2" data-path="customrecipes.html"><a href="customrecipes.html#circular-layout-visualization"><i class="fa fa-check"></i><b>6.2</b> Circular Layout Visualization</a>
+<li class="chapter" data-level="6.1" data-path="customrecipes.html"><a href="customrecipes.html#circular-layout-visualization"><i class="fa fa-check"></i><b>6.1</b> Circular Layout Visualization</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="customrecipes.html"><a href="customrecipes.html#highlighting-clades-in-circular-trees"><i class="fa fa-check"></i><b>6.2.1</b> Highlighting Clades in Circular Trees</a></li>
-<li class="chapter" data-level="6.2.2" data-path="customrecipes.html"><a href="customrecipes.html#adding-heatmaps-to-circular-trees"><i class="fa fa-check"></i><b>6.2.2</b> Adding Heatmaps to Circular Trees</a></li>
+<li class="chapter" data-level="6.1.1" data-path="customrecipes.html"><a href="customrecipes.html#highlighting-clades-in-circular-trees"><i class="fa fa-check"></i><b>6.1.1</b> Highlighting Clades in Circular Trees</a></li>
 </ul></li>
+<li class="chapter" data-level="6.2" data-path="customrecipes.html"><a href="customrecipes.html#adding-heatmaps-to-circular-trees"><i class="fa fa-check"></i><b>6.2</b> Adding Heatmaps to Circular Trees</a></li>
 <li class="chapter" data-level="6.3" data-path="customrecipes.html"><a href="customrecipes.html#styling-trees-with-advanced-themes"><i class="fa fa-check"></i><b>6.3</b> Styling Trees with Advanced Themes</a>
 <ul>
 <li class="chapter" data-level="6.3.1" data-path="customrecipes.html"><a href="customrecipes.html#customizing-themes-for-trees"><i class="fa fa-check"></i><b>6.3.1</b> Customizing Themes for Trees</a></li>
 <li class="chapter" data-level="6.3.2" data-path="customrecipes.html"><a href="customrecipes.html#adding-multiple-aesthetic-layers"><i class="fa fa-check"></i><b>6.3.2</b> Adding Multiple Aesthetic Layers</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="customrecipes.html"><a href="customrecipes.html#combining-trees-with-ggnewscale"><i class="fa fa-check"></i><b>6.4</b> Combining Trees with ggnewscale</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html"><i class="fa fa-check"></i><b>7</b> <code>treeio</code> tutorial</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#purpose"><i class="fa fa-check"></i><b>7.1</b> Purpose</a></li>
+<li class="chapter" data-level="7.2" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#install"><i class="fa fa-check"></i><b>7.2</b> Install</a></li>
+<li class="chapter" data-level="7.3" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#tree-handling"><i class="fa fa-check"></i><b>7.3</b> Tree Handling</a></li>
+<li class="chapter" data-level="7.4" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#advantages"><i class="fa fa-check"></i><b>7.4</b> Advantages</a></li>
+<li class="chapter" data-level="7.5" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#prepare-session"><i class="fa fa-check"></i><b>7.5</b> Prepare session:</a></li>
+<li class="chapter" data-level="7.6" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#prepare-metadata"><i class="fa fa-check"></i><b>7.6</b> Prepare metadata</a></li>
+<li class="chapter" data-level="7.7" data-path="treeio-tutorial.html"><a href="treeio-tutorial.html#graph"><i class="fa fa-check"></i><b>7.7</b> Graph</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -186,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">OMICs Analysis - Phylogeny training</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Case study: Clavibacter</a>
           </h1>
         </div>
 
@@ -194,38 +209,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ggtree1" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Main ggtree functions<a href="ggtree1.html#ggtree1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="ggtree1" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Main ggtree functions<a href="ggtree1.html#ggtree1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>The ggtree package in R is a powerful tool for visualizing and annotating phylogenetic trees. It is built on top of the ggplot2 package and allows for highly customizable and publication-ready tree visualizations.</p>
-<div id="prerequisites" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Prerequisites<a href="ggtree1.html#prerequisites" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="prerequisites" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Prerequisites<a href="ggtree1.html#prerequisites" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To follow this tutorial, ensure you have the following R packages installed:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="ggtree1.html#cb11-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
-<span id="cb11-2"><a href="ggtree1.html#cb11-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb11-3"><a href="ggtree1.html#cb11-3" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
-<span id="cb11-4"><a href="ggtree1.html#cb11-4" tabindex="-1"></a>}</span>
-<span id="cb11-5"><a href="ggtree1.html#cb11-5" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="ggtree1.html#cb11-6" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;ggtree&quot;</span>)</span>
-<span id="cb11-7"><a href="ggtree1.html#cb11-7" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;treeio&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="ggtree1.html#cb39-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb39-2"><a href="ggtree1.html#cb39-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb39-3"><a href="ggtree1.html#cb39-3" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
+<span id="cb39-4"><a href="ggtree1.html#cb39-4" tabindex="-1"></a>}</span>
+<span id="cb39-5"><a href="ggtree1.html#cb39-5" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="ggtree1.html#cb39-6" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;ggtree&quot;</span>)</span>
+<span id="cb39-7"><a href="ggtree1.html#cb39-7" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;treeio&quot;</span>)</span></code></pre></div>
 <p>Load the neccesary packages</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="ggtree1.html#cb12-1" tabindex="-1"></a><span class="fu">library</span>(ggtree)</span>
-<span id="cb12-2"><a href="ggtree1.html#cb12-2" tabindex="-1"></a><span class="fu">library</span>(treeio)</span>
-<span id="cb12-3"><a href="ggtree1.html#cb12-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb12-4"><a href="ggtree1.html#cb12-4" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="ggtree1.html#cb40-1" tabindex="-1"></a><span class="fu">library</span>(ggtree)</span>
+<span id="cb40-2"><a href="ggtree1.html#cb40-2" tabindex="-1"></a><span class="fu">library</span>(treeio)</span>
+<span id="cb40-3"><a href="ggtree1.html#cb40-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb40-4"><a href="ggtree1.html#cb40-4" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 </div>
-<div id="loading-a-phylogenetic-tree" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Loading a Phylogenetic Tree<a href="ggtree1.html#loading-a-phylogenetic-tree" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="loading-a-phylogenetic-tree" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Loading a Phylogenetic Tree<a href="ggtree1.html#loading-a-phylogenetic-tree" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>ggtree supports various formats of phylogenetic trees. The most common is the Newick format and therefore we will use a *.nwk tree for demonstration.</p>
-<p>All of the following functions can create a phylo object from a newick file</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="ggtree1.html#cb13-1" tabindex="-1"></a>ape<span class="sc">::</span><span class="fu">read.tree</span>(<span class="st">&quot;example_phylo.nwk&quot;</span>) <span class="sc">%&gt;%</span> class</span>
-<span id="cb13-2"><a href="ggtree1.html#cb13-2" tabindex="-1"></a>phyloseq<span class="sc">::</span><span class="fu">read_tree</span>(<span class="st">&quot;example_phylo.nwk&quot;</span>) <span class="sc">%&gt;%</span> class</span>
-<span id="cb13-3"><a href="ggtree1.html#cb13-3" tabindex="-1"></a>phytools<span class="sc">::</span><span class="fu">read.newick</span>(<span class="st">&quot;example_phylo.nwk&quot;</span>) <span class="sc">%&gt;%</span> class</span>
-<span id="cb13-4"><a href="ggtree1.html#cb13-4" tabindex="-1"></a>treeio<span class="sc">::</span><span class="fu">read.newick</span>(<span class="st">&quot;example_phylo.nwk&quot;</span>) <span class="sc">%&gt;%</span> class</span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="ggtree1.html#cb14-1" tabindex="-1"></a><span class="co"># Load tree from a Newick file as a phylo object (read.nwwick from treeio)</span></span>
-<span id="cb14-2"><a href="ggtree1.html#cb14-2" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">read.newick</span>(<span class="st">&quot;data/example_2_phylo.nwk&quot;</span>)</span>
-<span id="cb14-3"><a href="ggtree1.html#cb14-3" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="ggtree1.html#cb14-4" tabindex="-1"></a><span class="co"># Print tree structure</span></span>
-<span id="cb14-5"><a href="ggtree1.html#cb14-5" tabindex="-1"></a><span class="fu">print</span>(tree)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="ggtree1.html#cb41-1" tabindex="-1"></a><span class="co"># Load tree from a Newick file as a phylo object (read.nwwick from treeio)</span></span>
+<span id="cb41-2"><a href="ggtree1.html#cb41-2" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">read.newick</span>(<span class="st">&quot;data/example_2_phylo.nwk&quot;</span>)</span>
+<span id="cb41-3"><a href="ggtree1.html#cb41-3" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="ggtree1.html#cb41-4" tabindex="-1"></a><span class="co"># Print tree structure</span></span>
+<span id="cb41-5"><a href="ggtree1.html#cb41-5" tabindex="-1"></a><span class="fu">print</span>(tree)</span></code></pre></div>
 <pre><code>## 
 ## Phylogenetic tree with 110 tips and 108 internal nodes.
 ## 
@@ -236,14 +246,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Unrooted; includes branch length(s).</code></pre>
 </div>
-<div id="basic-tree-visualization" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Basic Tree Visualization<a href="ggtree1.html#basic-tree-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="basic-tree-visualization" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Basic Tree Visualization<a href="ggtree1.html#basic-tree-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Visualizing the tree is straightforward</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="ggtree1.html#cb16-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="ggtree1.html#cb43-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree)</span></code></pre></div>
 <p><img src="_main_files/figure-html/plottree-1.png" alt="" width="672" /></p>
 <p>Adding Tip Labels</p>
 <p>You can add labels to the tips of the tree using geom_tiplab:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="ggtree1.html#cb17-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span> <span class="fu">geom_tiplab</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="ggtree1.html#cb44-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span> <span class="fu">geom_tiplab</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/tree_tiplab-1.png" alt="" width="672" /></p>
 <p>Parameters for geom_tiplab:</p>
 <ul>
@@ -251,11 +261,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>align: Aligns labels horizontally.</li>
 <li>angle: Rotates labels (useful for circular trees).</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="ggtree1.html#cb18-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span> <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">align =</span> <span class="cn">TRUE</span>, <span class="at">angle =</span> <span class="dv">45</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="ggtree1.html#cb45-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span> <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">align =</span> <span class="cn">TRUE</span>, <span class="at">angle =</span> <span class="dv">45</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/tree_tiplab_edit-1.png" alt="" width="672" /></p>
 </div>
-<div id="tree-layouts" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Tree Layouts<a href="ggtree1.html#tree-layouts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="tree-layouts" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Tree Layouts<a href="ggtree1.html#tree-layouts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>ggtree supports various layouts for trees, such as:</p>
 <ul>
 <li>rectangular (default)</li>
@@ -265,20 +275,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>radial</li>
 </ul>
 <p>Circular layout</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="ggtree1.html#cb19-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)) <span class="co"># Bottom, Left, Top, Right margins</span></span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="ggtree1.html#cb46-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)) <span class="co"># Bottom, Left, Top, Right margins</span></span></code></pre></div>
 <p>Slanted layout</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="ggtree1.html#cb20-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree, <span class="at">layout =</span> <span class="st">&quot;slanted&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="ggtree1.html#cb47-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree, <span class="at">layout =</span> <span class="st">&quot;slanted&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/tree_slanted-1.png" alt="" width="672" /></p>
 </div>
-<div id="annotating-trees" class="section level2 hasAnchor" number="3.5">
-<h2><span class="header-section-number">3.5</span> Annotating Trees<a href="ggtree1.html#annotating-trees" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="annotating-trees" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Annotating Trees<a href="ggtree1.html#annotating-trees" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Adding Node Labels</p>
 <p>To annotate nodes, use geom_nodelab:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="ggtree1.html#cb21-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span> <span class="fu">geom_nodelab</span>(<span class="fu">aes</span>(<span class="at">label =</span> node), <span class="at">size =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="ggtree1.html#cb48-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span> <span class="fu">geom_nodelab</span>(<span class="fu">aes</span>(<span class="at">label =</span> node), <span class="at">size =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/tree_tip_labs-1.png" alt="" width="672" /></p>
 <p>Highlighting Clades</p>
 <p>Highlight specific clades with geom_hilight:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="ggtree1.html#cb22-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span> <span class="fu">geom_hilight</span>(<span class="at">node =</span> <span class="dv">199</span>, <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="ggtree1.html#cb49-1" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span> <span class="fu">geom_hilight</span>(<span class="at">node =</span> <span class="dv">199</span>, <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/tree_highli-1.png" alt="" width="672" /></p>
 <p>Parameters for geom_hilight</p>
 <ul>
@@ -287,18 +297,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>alpha: Transparency of the highlight.</li>
 </ul>
 <p>Annotating Specific Tips</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="ggtree1.html#cb23-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(tree) <span class="sc">+</span></span>
-<span id="cb23-2"><a href="ggtree1.html#cb23-2" tabindex="-1"></a>  <span class="fu">geom_tippoint</span>(<span class="fu">aes</span>(<span class="at">color =</span> label), <span class="at">size =</span> <span class="dv">3</span>)<span class="sc">+</span></span>
-<span id="cb23-3"><a href="ggtree1.html#cb23-3" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb23-4"><a href="ggtree1.html#cb23-4" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="ggtree1.html#cb50-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(tree) <span class="sc">+</span></span>
+<span id="cb50-2"><a href="ggtree1.html#cb50-2" tabindex="-1"></a>  <span class="fu">geom_tippoint</span>(<span class="fu">aes</span>(<span class="at">color =</span> label), <span class="at">size =</span> <span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb50-3"><a href="ggtree1.html#cb50-3" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb50-4"><a href="ggtree1.html#cb50-4" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
 </div>
-<div id="adding-metadata" class="section level2 hasAnchor" number="3.6">
-<h2><span class="header-section-number">3.6</span> Adding Metadata<a href="ggtree1.html#adding-metadata" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="adding-metadata" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Adding Metadata<a href="ggtree1.html#adding-metadata" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Metadata can be merged into the tree object and displayed, metadata is a data.frame:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="ggtree1.html#cb24-1" tabindex="-1"></a><span class="co"># Charge metadata and keep relevant columns</span></span>
-<span id="cb24-2"><a href="ggtree1.html#cb24-2" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">&quot;data/Experiment_Design_example_2.tsv&quot;</span>)</span>
-<span id="cb24-3"><a href="ggtree1.html#cb24-3" tabindex="-1"></a>metadata<span class="ot">&lt;-</span>metadata <span class="sc">%&gt;%</span> <span class="fu">select</span>(Assembly.Accession,Strain,Phylogroup,Patotype,Geographic.location,source)</span>
-<span id="cb24-4"><a href="ggtree1.html#cb24-4" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(metadata))</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="ggtree1.html#cb51-1" tabindex="-1"></a><span class="co"># Charge metadata and keep relevant columns</span></span>
+<span id="cb51-2"><a href="ggtree1.html#cb51-2" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">&quot;data/Experiment_Design_example_2.tsv&quot;</span>)</span>
+<span id="cb51-3"><a href="ggtree1.html#cb51-3" tabindex="-1"></a>metadata<span class="ot">&lt;-</span>metadata <span class="sc">%&gt;%</span> <span class="fu">select</span>(Assembly.Accession,Strain,Phylogroup,Patotype,Geographic.location,source)</span>
+<span id="cb51-4"><a href="ggtree1.html#cb51-4" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(metadata))</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 6
 ##   Assembly.Accession Strain Phylogroup Patotype Geographic.location source   
 ##   &lt;chr&gt;              &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;               &lt;chr&gt;    
@@ -308,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 GCF_000010745.1    12009  B1         EHEC     &lt;NA&gt;                reference
 ## 5 GCF_000010765.1    11128  B1         EHEC     &lt;NA&gt;                reference
 ## 6 GCF_000013265.1    UTI89  B2         UPEC     &lt;NA&gt;                reference</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="ggtree1.html#cb26-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">tail</span>(metadata))</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="ggtree1.html#cb53-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">tail</span>(metadata))</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 6
 ##   Assembly.Accession Strain Phylogroup Patotype Geographic.location source
 ##   &lt;chr&gt;              &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;               &lt;chr&gt; 
@@ -318,34 +328,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 GCF_040215525.1    B1     &lt;NA&gt;       &lt;NA&gt;     China:Tongliao      bovine
 ## 5 GCF_040215555.1    800    &lt;NA&gt;       &lt;NA&gt;     China:TongLiao      bovine
 ## 6 GCF_043950225.1    TC24   &lt;NA&gt;       &lt;NA&gt;     Guadeloupe          bovine</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="ggtree1.html#cb28-1" tabindex="-1"></a><span class="co"># Metadata rows have to be in the same order as the tree</span></span>
-<span id="cb28-2"><a href="ggtree1.html#cb28-2" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="ggtree1.html#cb28-3" tabindex="-1"></a>tree<span class="ot">&lt;-</span><span class="fu">read.tree</span>(<span class="st">&quot;data/example_2_phylo.nwk&quot;</span>)</span>
-<span id="cb28-4"><a href="ggtree1.html#cb28-4" tabindex="-1"></a></span>
-<span id="cb28-5"><a href="ggtree1.html#cb28-5" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> metadata <span class="sc">%&gt;%</span></span>
-<span id="cb28-6"><a href="ggtree1.html#cb28-6" tabindex="-1"></a>  <span class="fu">filter</span>(Assembly.Accession <span class="sc">%in%</span> tree<span class="sc">$</span>tip.label) <span class="sc">%&gt;%</span></span>
-<span id="cb28-7"><a href="ggtree1.html#cb28-7" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">match</span>(Assembly.Accession, tree<span class="sc">$</span>tip.label))</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="ggtree1.html#cb55-1" tabindex="-1"></a><span class="co"># Metadata rows have to be in the same order as the tree</span></span>
+<span id="cb55-2"><a href="ggtree1.html#cb55-2" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="ggtree1.html#cb55-3" tabindex="-1"></a>tree<span class="ot">&lt;-</span><span class="fu">read.tree</span>(<span class="st">&quot;data/example_eco_model.nwk&quot;</span>)</span>
+<span id="cb55-4"><a href="ggtree1.html#cb55-4" tabindex="-1"></a></span>
+<span id="cb55-5"><a href="ggtree1.html#cb55-5" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> metadata <span class="sc">%&gt;%</span></span>
+<span id="cb55-6"><a href="ggtree1.html#cb55-6" tabindex="-1"></a>  <span class="fu">filter</span>(Assembly.Accession <span class="sc">%in%</span> tree<span class="sc">$</span>tip.label) <span class="sc">%&gt;%</span></span>
+<span id="cb55-7"><a href="ggtree1.html#cb55-7" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">match</span>(Assembly.Accession, tree<span class="sc">$</span>tip.label))</span></code></pre></div>
 <p>You can rename the taxa in the tree object</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="ggtree1.html#cb29-1" tabindex="-1"></a><span class="co"># Rename the taxa in the tree object</span></span>
-<span id="cb29-2"><a href="ggtree1.html#cb29-2" tabindex="-1"></a>tree2 <span class="ot">&lt;-</span> <span class="fu">rename_taxa</span>(tree, metadata, Assembly.Accession, Strain)</span>
-<span id="cb29-3"><a href="ggtree1.html#cb29-3" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">ggtree</span>(tree2)<span class="sc">+</span><span class="fu">geom_tiplab</span>()</span>
-<span id="cb29-4"><a href="ggtree1.html#cb29-4" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="ggtree1.html#cb56-1" tabindex="-1"></a><span class="co"># Rename the taxa in the tree object</span></span>
+<span id="cb56-2"><a href="ggtree1.html#cb56-2" tabindex="-1"></a>tree2 <span class="ot">&lt;-</span> <span class="fu">rename_taxa</span>(tree, metadata, Assembly.Accession, Strain)</span>
+<span id="cb56-3"><a href="ggtree1.html#cb56-3" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">ggtree</span>(tree2)<span class="sc">+</span><span class="fu">geom_tiplab</span>()</span>
+<span id="cb56-4"><a href="ggtree1.html#cb56-4" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
 <p><img src="_main_files/figure-html/tip_rename-1.png" alt="" width="672" /></p>
 <p>Or even better, attach metadata to ggtree object …</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="ggtree1.html#cb30-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(tree) <span class="sc">%&lt;+%</span> metadata</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="ggtree1.html#cb57-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(tree) <span class="sc">%&lt;+%</span> metadata</span></code></pre></div>
 <p>… and use any metadata column as labels</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="ggtree1.html#cb31-1" tabindex="-1"></a>p<span class="ot">&lt;-</span>p <span class="sc">+</span> <span class="fu">geom_tiplab</span>(<span class="fu">aes</span>(<span class="at">label =</span> Strain))</span>
-<span id="cb31-2"><a href="ggtree1.html#cb31-2" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="ggtree1.html#cb58-1" tabindex="-1"></a>p<span class="ot">&lt;-</span>p <span class="sc">+</span> <span class="fu">geom_tiplab</span>(<span class="fu">aes</span>(<span class="at">label =</span> Strain))</span>
+<span id="cb58-2"><a href="ggtree1.html#cb58-2" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
 <p><img src="_main_files/figure-html/label%20Strain%20-1.png" alt="" width="672" /></p>
 <p>You could also change tip labels by</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="ggtree1.html#cb32-1" tabindex="-1"></a>tree2<span class="ot">&lt;-</span>tree</span>
-<span id="cb32-2"><a href="ggtree1.html#cb32-2" tabindex="-1"></a>tree2<span class="sc">$</span>tip.label <span class="ot">&lt;-</span> metadata<span class="sc">$</span>Strain</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="ggtree1.html#cb59-1" tabindex="-1"></a>tree2<span class="ot">&lt;-</span>tree</span>
+<span id="cb59-2"><a href="ggtree1.html#cb59-2" tabindex="-1"></a>tree2<span class="sc">$</span>tip.label <span class="ot">&lt;-</span> metadata<span class="sc">$</span>Strain</span></code></pre></div>
 <p>Color elements using metadataa</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="ggtree1.html#cb33-1" tabindex="-1"></a><span class="co"># Plot tree with metadata</span></span>
-<span id="cb33-2"><a href="ggtree1.html#cb33-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(tree) <span class="sc">%&lt;+%</span> metadata <span class="sc">+</span></span>
-<span id="cb33-3"><a href="ggtree1.html#cb33-3" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="fu">aes</span>(<span class="at">label=</span>Strain))<span class="sc">+</span></span>
-<span id="cb33-4"><a href="ggtree1.html#cb33-4" tabindex="-1"></a>  <span class="fu">geom_tippoint</span>(<span class="fu">aes</span>(<span class="at">color =</span> source), <span class="at">size =</span> <span class="dv">3</span>)</span>
-<span id="cb33-5"><a href="ggtree1.html#cb33-5" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="ggtree1.html#cb60-1" tabindex="-1"></a><span class="co"># Plot tree with metadata</span></span>
+<span id="cb60-2"><a href="ggtree1.html#cb60-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(tree) <span class="sc">%&lt;+%</span> metadata <span class="sc">+</span></span>
+<span id="cb60-3"><a href="ggtree1.html#cb60-3" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="fu">aes</span>(<span class="at">label=</span>Strain))<span class="sc">+</span></span>
+<span id="cb60-4"><a href="ggtree1.html#cb60-4" tabindex="-1"></a>  <span class="fu">geom_tippoint</span>(<span class="fu">aes</span>(<span class="at">color =</span> source), <span class="at">size =</span> <span class="dv">3</span>)</span>
+<span id="cb60-5"><a href="ggtree1.html#cb60-5" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
 <p><img src="_main_files/figure-html/color_source-1.png" alt="" width="672" /></p>
 <p>Note: There is a metadata fusion alternative with full_join, check in the code treeio.R</p>
 
@@ -356,8 +366,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="newick.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="treeobject.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="treeobject.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="heats.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -388,7 +398,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/OMICS-Analysis/Tutorial_phylogenies/tree/main/docs/02-ggtree_main_funs.Rmd",
+    "link": "https://github.com/OMICS-Analysis/Tutorial_phylogenies/tree/main/docs/03-ggtree_main_funs.Rmd",
     "text": "Edit"
   },
   "history": {

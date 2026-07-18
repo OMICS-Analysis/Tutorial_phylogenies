@@ -29,14 +29,6 @@ library(dplyr)
 
 ggtree supports various formats of phylogenetic trees. The most common is the Newick format and therefore we will use a *.nwk tree for demonstration.
 
-All of the following functions can create a phylo object from a newick file
-```{r eval=FALSE, warning=FALSE}
-ape::read.tree("example_phylo.nwk") %>% class
-phyloseq::read_tree("example_phylo.nwk") %>% class
-phytools::read.newick("example_phylo.nwk") %>% class
-treeio::read.newick("example_phylo.nwk") %>% class
-```
-
 
 ```{r, warning=FALSE, message=FALSE}
 # Load tree from a Newick file as a phylo object (read.nwwick from treeio)
@@ -140,7 +132,7 @@ print(tail(metadata))
 ```{r, message=FALSE, warning=FALSE}
 # Metadata rows have to be in the same order as the tree
 
-tree<-read.tree("data/example_2_phylo.nwk")
+tree<-read.tree("data/example_eco_model.nwk")
 
 metadata <- metadata %>%
   filter(Assembly.Accession %in% tree$tip.label) %>%
