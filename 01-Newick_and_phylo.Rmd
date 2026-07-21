@@ -1,0 +1,152 @@
+# Newick and phylo trees {#newickphylo}
+
+## Newick files
+
+Newick format is a way of representing a phylogeny tree with parentheses and commas. If we have a simple phylogeny like the following:
+
+```{r eval=TRUE, warning= FALSE}   
+#             ______A        A, B and C are leaves or Tip nodes.
+#      _____.|               The dots mark internal nodes.
+#     |      |_______B       
+#    .|
+#     |____________C
+```
+
+Its most simple Newick format representation would be:
+```{r eval=TRUE, warning= FALSE}   
+#  "(,(,));"  With no leaf labels
+# 
+```
+
+As we will see later the standard phylogeny object in R is an object of class "phylo". Lets obtain our tree in phylo format.
+
+```{r eval=TRUE, warning= FALSE}
+library(ape)
+tree<-"(,(,));" 
+tree<-ape::read.tree(text=tree)
+```
+
+And now we can use ggtree to generate an image
+```{r newick1, out.width='50%', fig.align='center', message=FALSE, warning=FALSE}
+library(ggtree)
+ggtree(tree)
+```
+
+Here you can see leaves (Tip nodes) and internal nodes colored in red and blue, respectively
+
+```{r newick2, fig.cap='Leaves (tips) in red and internal nodes in blue', out.width='50%', fig.align='center', warning=FALSE}
+ggtree(tree)+
+  geom_tippoint(size=3, color="red")+
+  geom_nodepoint(size=3, color="blue")
+```
+
+The tree leaves can be labeled with clade names( ej. species, strains)
+
+```{r newick3, fig.cap='If a Newick has leave names', out.width='50%', fig.align='center', warning=FALSE}
+tree<-"(cat,(dog,fox));" 
+tree<-read.tree(text=tree)
+ggtree(tree)+geom_tiplab()
+```
+
+You can indicate different lengths for each branch
+The length reflects the amount of evolutionary change of the branch
+
+```{r newick4, fig.cap='If a newick has branch lengths', out.width='50%', fig.align='center', warning=FALSE}
+tree<-"(cat:0.6,(dog:0.1,fox:0.1):0.2);" 
+tree<-read.tree(text=tree)
+ggtree(tree)+geom_tiplab()
+```
+
+Internal nodes are common ancestors for a group of leaves and you can also label them.
+
+```{r newick5, fig.cap='Newick with internal node labels', out.width='50%', fig.align='center', warning=FALSE}
+tree<-"(cat:0.6,(dog:0.1,fox:0.1)Anc2:0.2)Anc1;" 
+tree<-read.tree(text=tree)
+ggtree(tree)+geom_tiplab()+geom_nodelab()
+```
+
+... or instead of a name you can use a bootstrap value:
+Bootstrap values show how frequently we observe same branch is we repeat the generation of a phylogeny hundreds of times with random samples of our data. They are percentages.
+
+```{r newick6, fig.cap='Newick with bootstraps', out.width='50%', fig.align='center', warning=FALSE}
+#Notice the format bootstrap_value:distance in internal nodes
+tree<-"(cat:0.6,(dog:0.1,fox:0.1)90:0.2)98;" 
+tree<-read.tree(text=tree)
+ggtree(tree,)+geom_tiplab()+geom_nodelab()
+```
+
+Here we have a more complex example
+```{r newick7, out.width='50%', fig.align='center', warning=FALSE}
+tree<-"(Bovine:0.69395,
+      (Gibbon:0.36079,
+          (Orang:0.33636,
+              (Gorilla:0.17147,
+                  (Chimp:0.19268, Human:0.11927)50:0.08386
+               )90:0.06124
+           )70:0.15057
+       )80:0.54939,Mouse:1.21460)90;"
+tree<-read.tree(text=tree)
+ggtree(tree)+geom_tiplab()+geom_nodelab()
+```
+
+## phylo objects 
+
+The standard phylogeny object in R is the *phylo* object popularized by the *ape package*. The phylo class is used by most R packages that deal with phylogenies. Thanks to that there are many functions to *create a phylo* object *from a Newick* format file:
+
+```{r eval=FALSE, warning=FALSE}
+ape::read.tree("example_eco_model.nwk") %>% class
+phyloseq::read_tree("example_eco_model.nwk") %>% class
+phytools::read.newick("example_eco_model.nwk") %>% class
+treeio::read.newick("example_eco_model.nwk"") %>% class
+```
+
+A phylo object describes a phylogeny with the following data:
+```{r, warning=FALSE, message=FALSE}
+library(ape)
+tree0<-ape::read.tree("data/example_eco_model.nwk")
+class(tree0)
+names(tree0)
+```
+
+*tip.label* shows the names or ids of the species, genomes or strains whose evolutionary history we are studying (names of the leaves or tips):
+```{r, warning=FALSE, message=FALSE}
+head(tree0$tip.label)
+```
+
+*node.label* has the labels of the *internal nodes*. In many cases, these tags are the bootstrap support values.
+
+> [!NOTE]
+> When we: 1) Create phylogeny from a sequence alignment with RaxML and b) calculate bootstraps for the phylogeny we obtain a final tree with bootstrap support values added as *internal node* labels.
+
+```{r, warning=FALSE, message=FALSE}
+head(tree0$node.label)
+```
+
+Phylo contains an *edges matrix* of ancestor --- > descendant connections. Here the numbers are IDs of the internal and tip nodes.
+
+* Column 1: Ancestral nodes (closer to the root)
+* Column 2: Descendant nodes.
+* The leaves are numbered from 1 to the total number of leaves.
+* The internal node ids go after the leave ids.
+
+```{r, warning=FALSE, message=FALSE}
+head(tree0$edge)
+```
+
+You can obtain the *label for a given node ID* like this
+```{r, warning=FALSE, message=FALSE}
+match("GCF_000010385.1", tree0$tip.label)
+```
+
+
+*edge.length* holds the lengths of the edges of the edge matrix.
+
+> [!NOTE]
+> When we create phylogeny from a sequence alignment with RaxML, branch lengths are genetic distances, defined as the expected number of nucleotide or amino acid substitutions per site.
+
+```{r, warning=FALSE, message=FALSE}
+head(tree0$edge.length)
+```
+
+
+

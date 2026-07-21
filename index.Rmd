@@ -1,8 +1,8 @@
 --- 
-title: "OMICs Analysis - Phylogeny training"
+title: "Phylogeny training"
 author: "OMICs Analysis"
 date: "`r Sys.Date()`"
-site: OMICS-Analysis/Tutorial_phylogenies
+site: bookdown::bookdown_site
 documentclass: book
 # bibliography: [book.bib, packages.bib]
 # url: your book url like https://pkg.yihui.org/bookdown
@@ -23,11 +23,7 @@ These is our main training resource for phylogeny manipulation and graphic repre
 *Specific tasks*
 
 - [x] Newick format mini-manual
-- [ ] Phylogenies mini-manual
-  - [ ] Distances
-  - [ ] Bootstrapping and support values
-  - [ ] Root
-- [ ] Graph: ggtree (graphs) and its main functions
+- [x] Graph: ggtree (graphs) and its main functions
 - [x] Manipulate phylogeny: treeio
 - [ ] Metadata managing: df o treeio-> ggtree
 - [ ] Frequent processes in visualization
@@ -52,3 +48,23 @@ These is our main training resource for phylogeny manipulation and graphic repre
 
 So it is important that phylogenetic distances, support values, as well as relevant data are clearly visible in the phylogeny images :)
 (Big font, color: high contrast)
+
+## Packages studied R {#packages}
+
+* ape: It provides a structure for storing a phylogenetic tree (phylo class), as well as basic manipulation and plotting functions. The phylo class Its used by most R packages which deal with phylogenies, so it is important to understand it.
+
+ A complete list of functions:
+ https://cran.r-project.org/web/packages/ape/refman/ape.html#node.depth
+
+https://eeob-macroevolution.github.io/Practicals/Intro_to_Phylo/intro_to_phylo.html
+
+* ggtree: An extension of ggplot to plot phylo trees and also the treedata objects of treeio (see below)
+
+* treeio: Contains functions to read and write multiple tree formats. We will study these functions:
+   + full_join: joins metadata with a phylo object.
+   + drop.tip: to eliminate one or many tree.tips
+   + tree.subbset
+
+* phyloseq
+
+* phytools 
